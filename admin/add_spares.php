@@ -52,13 +52,13 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-3">
+                        <a href="employee.php" class="nav-link px-3">
                             <span class="me-2"><i class="fa-solid fa-user-tie"></i></span>
                             <span>ข้อมูลพนักงาน</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-3">
+                        <a href="customer.php" class="nav-link px-3">
                             <span class="me-2"><i class="fa-solid fa-user"></i></span>
                             <span>ข้อมูลลูกค้า</span>
                         </a>
@@ -167,7 +167,7 @@
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label>จำนวน:</label>
-                                <input type="text" name="spare_quanlity" class="form-control" />
+                                <input type="number" name="spare_quanlity" min="1" class="form-control" />
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label>ราคา:</label>
