@@ -154,7 +154,7 @@
                 <div class="col-md-12 mb-3 mt-2">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light">ตารางข้อมูลอะไหล่</span>
+                            <span class="text-light"><i class="fa-solid fa-car-rear"></i> ตารางข้อมูลอะไหล่</span>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

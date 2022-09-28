@@ -160,7 +160,7 @@
                             <span class="text-light">เพิ่มข้อมูลพนักงาน</span>
                         </div>
                         <div class="card-body">
-                            <form action="crud.php" method="POST" class="row g-3">
+                            <form action="#" method="POST" class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">ชื่อ :</label>
                                     <input type="text" name="name_emp" class="form-control" />

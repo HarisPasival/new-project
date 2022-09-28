@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <title>ข้อมูลพนักงาน</title>
+    <link rel="stylesheet" href="../css/form.css" />
+    <title>แก้ไขข้อมูลประเภทฝาสูบ</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -52,7 +52,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="employee.php" class="nav-link active px-3">
+                        <a href="employee.php" class="nav-link px-3">
                             <span class="me-2"><i class="fa-solid fa-user-tie"></i></span>
                             <span>ข้อมูลพนักงาน</span>
                         </a>
@@ -144,93 +144,45 @@
     <!-- content -->
     <main class="mt-5 pt-3">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 mt-2">
-                    <h4>ข้อมูลพนักงาน</h4>
-                    <a href="add_employee.php" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</a>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">ข้อมูลพื้นฐาน</li>
+                        <li class="breadcrumb-item">ข้อมูลประเภทฝาสูบ</li>
+                        <li class="breadcrumb-item active text-primary">แก้ไขข้อมูลประเภทฝาสูบ</li>
+                    </ol>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 mb-3 mt-2">
+                <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light"><i class="fa-solid fa-user-tie"></i> ตารางข้อมูลพนักงาน</span>
+                            <span class="text-light">แก้ไขข้อมูลประเภทฝาสูบ</span>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table table-striped data-table" style="width: 100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Hermione Butler</td>
-                                            <td>Regional Director</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2011/03/21</td>
-                                            <td>$356,250</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Lael Greer</td>
-                                            <td>Systems Administrator</td>
-                                            <td>London</td>
-                                            <td>21</td>
-                                            <td>2009/02/27</td>
-                                            <td>$103,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jonas Alexander</td>
-                                            <td>Developer</td>
-                                            <td>San Francisco</td>
-                                            <td>30</td>
-                                            <td>2010/07/14</td>
-                                            <td>$86,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Shad Decker</td>
-                                            <td>Regional Director</td>
-                                            <td>Edinburgh</td>
-                                            <td>51</td>
-                                            <td>2008/11/13</td>
-                                            <td>$183,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Michael Bruce</td>
-                                            <td>Javascript Developer</td>
-                                            <td>Singapore</td>
-                                            <td>29</td>
-                                            <td>2011/06/27</td>
-                                            <td>$183,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>2011/01/25</td>
-                                            <td>$112,000</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
+                            <?php
+                            require '../config/connect.php';
+                            if (isset($_GET['model_id'])) {
+                                $model_id = $_GET['model_id'];
+                                $query = "SELECT * FROM model WHERE model_id =:model_id";
+                                $stmt = $conn->prepare($query);
+                                $data = [':model_id' => $model_id];
+                                $stmt->execute($data);
+
+                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                            }
+                            ?>
+                            <form action="crud.php" method="POST">
+                                <input type="hidden" name="model_id" value="<?= $result['model_id'] ?>">
+                                <div class="mb-3">
+                                    <label>ชื่อประเภทฝาสูบ</label>
+                                    <input type="text" name="model_name" value="<?= $result['model_name']; ?>" class="form-control" />
+                                </div>
+                                <div class="mb-3">
+                                    <button type="submit" name="update_model" class="btn btn-primary">แก้ไขข้อมูล</button>
+                                    <a href="model.php" class="btn btn-danger">ย้อนกลับ</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
