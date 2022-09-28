@@ -1,5 +1,5 @@
 <script src="../js/jquery-3.5.1.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/sweetalert2.all.min.js"></script>
 <?php
 session_start();
 require '../config/connect.php';
