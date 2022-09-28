@@ -144,7 +144,7 @@
     <!-- content -->
     <main class="mt-5 pt-3">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-md-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">ข้อมูลพื้นฐาน</li>
