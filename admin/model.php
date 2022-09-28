@@ -41,7 +41,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-3 mt-3 my-3">
+                        <a href="main.php" class="nav-link px-3 mt-3 my-3">
                             <span class="me-2"><i class="fa-solid fa-table-columns"></i></span>
                             <span>หน้าหลัก</span>
                         </a>
@@ -153,8 +153,8 @@
             <div class="row">
                 <div class="col-md-12 mb-3 mt-2">
                     <div class="card">
-                        <div class="card-header">
-                            <span>ตารางข้อมูลประเภทฝาสูบ</span>
+                        <div class="card-header bg-dark">
+                            <span class="text-light">ตารางข้อมูลประเภทฝาสูบ</span>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

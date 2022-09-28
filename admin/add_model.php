@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/form.css" />
-    <title>หน้าหลัก</title>
+    <title>เพิ่มข้อมูลประเภทฝาสูบ</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -41,7 +41,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-3 mt-3 my-3">
+                        <a href="main.php" class="nav-link px-3 mt-3 my-3">
                             <span class="me-2"><i class="fa-solid fa-table-columns"></i></span>
                             <span>หน้าหลัก</span>
                         </a>

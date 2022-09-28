@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/form.css" />
-    <title>เพิ่มข้อมูลอะไหล่</title>
+    <title>เพิ่มข้อมูลพนักงาน</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -148,8 +148,8 @@
                 <div class="col-md-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">ข้อมูลพื้นฐาน</li>
-                        <li class="breadcrumb-item">ข้อมูลอะไหล่</li>
-                        <li class="breadcrumb-item active text-primary">เพิ่มข้อมูลอะไหล่</li>
+                        <li class="breadcrumb-item">ข้อมูลพนักงาน</li>
+                        <li class="breadcrumb-item active text-primary">เพิ่มข้อมูลพนักงาน</li>
                     </ol>
                 </div>
             </div>
@@ -157,27 +157,51 @@
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light">เพิ่มข้อมูลอะไหล่</span>
+                            <span class="text-light">เพิ่มข้อมูลพนักงาน</span>
                         </div>
                         <div class="card-body">
-                        <form action="#" method="POST" class="row g-3">
-                            <div class="col-md-4 mb-3">
-                                <label>ชื่ออะไหล่:</label>
-                                <input type="text" name="spare_name" class="form-control" />
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label>จำนวน:</label>
-                                <input type="number" name="spare_quanlity" min="1" class="form-control" />
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label>ราคา:</label>
-                                <input type="text" name="spare_cost" class="form-control" />
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" name="save_spare" class="btn btn-primary">เพิ่มข้อมูล</button>
-                                <a href="spares.php" class="btn btn-danger">ย้อนกลับ</a>
-                            </div>
-                        </form>
+                            <form action="crud.php" method="POST" class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">ชื่อ :</label>
+                                    <input type="text" name="name_emp" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">นามสกุล :</label>
+                                    <input type="text" name="surname_emp" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">ชื่อผู้ใช้ :</label>
+                                    <input type="text" name="username_emp" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">รหัสผ่าน :</label>
+                                    <input type="password" name="password_emp" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">ตำแหน่ง :</label>
+                                    <select class="form-control">
+                                        <option selected>เลือกสิทธิ์</option>
+                                        <option value="1">เจ้าของร้าน</option>
+                                        <option value="2">พนักงาน</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">เบอร์โทรศัพท์:</label>
+                                    <input type="text" name="phone_emp" class="form-control" />
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="form-label">อีเมล:</label>
+                                    <input type="email" name="email_emp" class="form-control" />
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">ที่อยู่:</label>
+                                    <textarea class="form-control" name="adress_emp" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <button type="submit" name="save_emp" class="btn btn-primary">เพิ่มข้อมูล</button>
+                                    <a href="employee.php" class="btn btn-danger">ย้อนกลับ</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
