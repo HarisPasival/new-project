@@ -158,10 +158,10 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="example" class="table table-striped data-table" style="width: 100%">
+                                <table id="example" class="table table-hover data-table" style="width: 100%">
                                     <thead>
                                         <tr>
-                                            <th>อันดับ</th>
+                                            <th>ลำดับ</th>
                                             <th>ชื่อรุ่นฝาสูบ</th>
                                             <th>จัดการ</th>
                                         </tr>

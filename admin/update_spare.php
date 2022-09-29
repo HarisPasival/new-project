@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/form.css" />
-    <title>แก้ไขข้อมูลประเภทฝาสูบ</title>
+    <title>เพิ่มข้อมูลอะไหล่</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -18,7 +18,6 @@
         }
     </style>
 </head>
-
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -148,8 +147,8 @@
                 <div class="col-md-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">ข้อมูลพื้นฐาน</li>
-                        <li class="breadcrumb-item">ข้อมูลประเภทฝาสูบ</li>
-                        <li class="breadcrumb-item active text-primary">แก้ไขข้อมูลประเภทฝาสูบ</li>
+                        <li class="breadcrumb-item">ข้อมูลอะไหล่</li>
+                        <li class="breadcrumb-item active text-primary">เเก้ไขข้อมูลอะไหล่</li>
                     </ol>
                 </div>
             </div>
@@ -157,29 +156,51 @@
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light">แก้ไขข้อมูลประเภทฝาสูบ</span>
+                            <span class="text-light">แก้ไขข้อมูลอะไหล่</span>
                         </div>
                         <div class="card-body">
                             <?php
                             require '../config/connect.php';
-                            if (isset($_GET['model_id'])) {
-                                $model_id = $_GET['model_id'];
-                                $query = "SELECT * FROM model WHERE model_id =:model_id";
+                            if (isset($_GET['spare_id'])) {
+                                $spare_id = $_GET['spare_id'];
+                                $query = "SELECT * FROM spare WHERE spare_id =:spare_id";
                                 $stmt = $conn->prepare($query);
-                                $data = [':model_id' => $model_id];
+                                $data = [':spare_id' => $spare_id];
                                 $stmt->execute($data);
+
                                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                             }
                             ?>
-                            <form action="crud.php" method="POST">
-                                <input type="hidden" name="model_id" value="<?= $result['model_id'] ?>">
-                                <div class="mb-3">
-                                    <label>ชื่อประเภทฝาสูบ</label>
-                                    <input type="text" name="model_name" value="<?= $result['model_name']; ?>" class="form-control" />
+                            <form action="crud.php" method="POST" class="row g-3">
+                                <input type="hidden" name="spare_id" value="<?= $result['spare_id'] ?>">
+                                <div class="col-md-6 mb-3">
+                                    <label>ชื่ออะไหล่:</label>
+                                    <input type="text" name="spare_name" value="<?= $result['spare_name']; ?>" class="form-control" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>รุ่นฝาสูบ</label>
+                                    <select name="model_id" class="form-control">
+                                        <?php
+                                        require '../config/connect.php';
+                                        $stmt = $conn->query("SELECT model_id,model_name FROM model");
+                                        $stmt->execute();
+                                        while ($row = $stmt->fetch()) {
+                                        ?>
+                                            <option value="<?= $row['model_id']; ?>"><?= $row['model_name'];?></option>
+                                        <?php }  ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>จำนวน:</label>
+                                    <input type="number" name="spare_quanlity" min="1" value="<?= $result['spare_quanlity']; ?>" class="form-control" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>ราคา:</label>
+                                    <input type="text" name="spare_price" value="<?= $result['spare_price']; ?>" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="update_model" class="btn btn-primary">แก้ไขข้อมูล</button>
-                                    <a href="model.php" class="btn btn-danger">ย้อนกลับ</a>
+                                    <button type="submit" name="update_spare" class="btn btn-primary">แก้ไขข้อมูล</button>
+                                    <a href="spares.php" class="btn btn-danger">ย้อนกลับ</a>
                                 </div>
                             </form>
                         </div>

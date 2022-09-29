@@ -160,24 +160,37 @@
                             <span class="text-light">เพิ่มข้อมูลอะไหล่</span>
                         </div>
                         <div class="card-body">
-                        <form action="#" method="POST" class="row g-3">
-                            <div class="col-md-4 mb-3">
-                                <label>ชื่ออะไหล่:</label>
-                                <input type="text" name="spare_name" class="form-control" />
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label>จำนวน:</label>
-                                <input type="number" name="spare_quanlity" min="1" class="form-control" />
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label>ราคา:</label>
-                                <input type="text" name="spare_cost" class="form-control" />
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" name="save_spare" class="btn btn-primary">เพิ่มข้อมูล</button>
-                                <a href="spares.php" class="btn btn-danger">ย้อนกลับ</a>
-                            </div>
-                        </form>
+                            <form action="crud.php" method="POST" class="row g-3">
+                                <div class="col-md-6 mb-3">
+                                    <label>ชื่ออะไหล่:</label>
+                                    <input type="text" name="spare_name" class="form-control" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>รุ่นฝาสูบ</label>
+                                    <select name="model_id" class="form-control">
+                                        <?php
+                                        require '../config/connect.php';
+                                        $stmt = $conn->query("SELECT model_id,model_name FROM model");
+                                        $stmt->execute();
+                                        while ($row = $stmt->fetch()) {
+                                        ?>
+                                            <option value="<?=$row['model_id'];?>"><?=$row['model_name'];?></option>
+                                        <?php }  ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>จำนวน:</label>
+                                    <input type="number" name="spare_quanlity" min="1" class="form-control" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>ราคา:</label>
+                                    <input type="text" name="spare_price" class="form-control" />
+                                </div>
+                                <div class="mb-3">
+                                    <button type="submit" name="add_spare" class="btn btn-primary">เพิ่มข้อมูล</button>
+                                    <a href="spares.php" class="btn btn-danger">ย้อนกลับ</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
