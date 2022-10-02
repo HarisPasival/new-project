@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-8 mb-3">
                 <h3 class="signin-text mb-3">ลูกค้า</h3>
-                <form>
+                <form action="logindb_ct.php" method="POST">
                     <div class="form-group mb-3">
                         <label for="username_ct">ชื่อผู้ใช้</label>
                         <input type="text" name="username_ct" class="form-control">
@@ -34,11 +34,7 @@
                         <label for="password_ct">รหัสผ่าน</label>
                         <input type="password" name="password_ct" class="form-control">
                     </div>
-                    <div class="form-group form-check mb-3">
-                        <input type="checkbox" name="checkbox" class="form-check-input" id="checkbox">
-                        <label class="form-check-label" for="checkbox">จดจำไว้</label>
-                    </div>
-                    <button class="btn btn-info" name="login-ct">เข้าสู่ระบบ</button>
+                    <button class="btn btn-info" name="login_ct">เข้าสู่ระบบ</button>
                     <a href="Register.php" class="btn btn-primary">สมัครสมาชิก</a>
                 </form>
             </div>

@@ -163,7 +163,6 @@
                                         <tr>
                                             <th>ลำดับ</th>
                                             <th>ชื่ออะไหล่</th>
-                                            <th>รหัสรุ่นฝาสูบ</th>
                                             <th>รุ่นฝาสูบ</th>
                                             <th>จำนวน</th>
                                             <th>ราคา</th>
@@ -183,7 +182,6 @@
                                             <tr>
                                                 <td><?= $i++ ?></td>
                                                 <td><?= $row['spare_name']; ?></td>
-                                                <td><?= $row['model_id']; ?></td>
                                                 <td><?= $row['model_name']; ?></td>
                                                 <td><?= $row['spare_quanlity']; ?></td>
                                                 <td><?= $row['spare_price']; ?></td>
