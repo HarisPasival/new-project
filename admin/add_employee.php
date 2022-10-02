@@ -175,7 +175,9 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">รหัสผ่าน :</label>
-                                    <input type="password" name="password_emp" class="form-control" />
+                                    <input type="password" name="password_emp" id="myPassword" class="form-control" />
+                                    <input type="checkbox" onclick="passShow()">
+                                    <label>แสดงรหัสผ่าน</label>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">ตำแหน่ง :</label>
@@ -195,10 +197,10 @@
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">ที่อยู่:</label>
-                                    <textarea class="form-control" name="adress_emp" rows="3"></textarea>
+                                    <input type="text" name="address_emp" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="save_emp" class="btn btn-primary">เพิ่มข้อมูล</button>
+                                    <button type="submit" name="save_emp" class="btn btn-success">เพิ่มข้อมูล</button>
                                     <a href="employee.php" class="btn btn-danger">ย้อนกลับ</a>
                                 </div>
                             </form>
@@ -215,6 +217,7 @@
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/dataTables.bootstrap5.min.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/sheet.js"></script>
 </body>
 
 </html>

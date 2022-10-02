@@ -32,7 +32,11 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="password_ct">รหัสผ่าน</label>
-                        <input type="password" name="password_ct" class="form-control">
+                        <input type="password" name="password_ct" id="myPassword" class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="checkbox" onclick="passShow()">
+                        <label>แสดงรหัสผ่าน</label>
                     </div>
                     <button class="btn btn-info" name="login_ct">เข้าสู่ระบบ</button>
                     <a href="Register.php" class="btn btn-primary">สมัครสมาชิก</a>
@@ -41,6 +45,7 @@
         </div>
     </div>
     <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/sheet.js"></script>
 </body>
 
 </html>

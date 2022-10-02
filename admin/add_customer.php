@@ -160,7 +160,7 @@
                             <span class="text-light">เพิ่มข้อมูลลูกค้า</span>
                         </div>
                         <div class="card-body">
-                            <form action="#" method="POST" class="row g-3">
+                            <form action="crud.php" method="POST" class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">ชื่อ :</label>
                                     <input type="text" name="name_ct" class="form-control" />
@@ -175,7 +175,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">รหัสผ่าน :</label>
-                                    <input type="password" name="password_ct" class="form-control" />
+                                    <input type="password" name="password_ct" id="myPassword" class="form-control" />
+                                    <input type="checkbox" onclick="passShow()">
+                                    <label>แสดงรหัสผ่าน</label>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">เบอร์โทรศัพท์:</label>
@@ -187,10 +189,10 @@
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">ที่อยู่:</label>
-                                    <textarea class="form-control" name="address_ct" rows="3"></textarea>
+                                    <input type="text" name="address_ct" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="save_ct" class="btn btn-primary">เพิ่มข้อมูล</button>
+                                    <button type="submit" name="add_cus" class="btn btn-success">เพิ่มข้อมูล</button>
                                     <a href="customer.php" class="btn btn-danger">ย้อนกลับ</a>
                                 </div>
                             </form>
@@ -207,6 +209,7 @@
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/dataTables.bootstrap5.min.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/sheet.js"></script>
 </body>
 
 </html>

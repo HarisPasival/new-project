@@ -41,15 +41,19 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="address_ct">ที่อยู่</label>
-                        <textarea class="form-control" name="address_ct" rows="3" ></textarea>
+                        <input type="text" name="address_ct" class="form-control" />
                     </div>
                     <div class="form-group mb-3">
                         <label for="username_ct">ชื่อผู้ใช้</label>
-                        <input type="text" name="username_ct" class="form-control" >
+                        <input type="text" name="username_ct" class="form-control">
                     </div>
                     <div class="form-group mb-3">
                         <label for="password_ct">รหัสผ่าน</label>
-                        <input type="password" name="password_ct" class="form-control" >
+                        <input type="password" name="password_ct" id="myPassword" class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="checkbox" onclick="passShow()">
+                        <label>แสดงรหัสผ่าน</label>
                     </div>
                     <div class="mb-3">
                         <button type="submit" name="Regis" class="btn btn-primary">สมัครสมาชิก</button>
@@ -59,6 +63,8 @@
             </div>
         </div>
     </div>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/sheet.js"></script>
 </body>
 
 </html>

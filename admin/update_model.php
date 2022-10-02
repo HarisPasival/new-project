@@ -178,7 +178,7 @@
                                     <input type="text" name="model_name" value="<?= $result['model_name']; ?>" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="update_model" class="btn btn-primary">แก้ไขข้อมูล</button>
+                                    <button type="submit" name="update_model" class="btn btn-warning">แก้ไขข้อมูล</button>
                                     <a href="model.php" class="btn btn-danger">ย้อนกลับ</a>
                                 </div>
                             </form>

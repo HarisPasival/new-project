@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/form.css" />
-    <title>เพิ่มข้อมูลอะไหล่</title>
+    <title>แก้ไขข้อมูลลูกค้า</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -18,6 +18,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -147,8 +148,8 @@
                 <div class="col-md-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">ข้อมูลพื้นฐาน</li>
-                        <li class="breadcrumb-item">ข้อมูลอะไหล่</li>
-                        <li class="breadcrumb-item active text-primary">เเก้ไขข้อมูลอะไหล่</li>
+                        <li class="breadcrumb-item">ข้อมูลลูกค้า</li>
+                        <li class="breadcrumb-item active text-primary">แก้ไขข้อมูลลูกค้า</li>
                     </ol>
                 </div>
             </div>
@@ -156,51 +157,55 @@
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light">แก้ไขข้อมูลอะไหล่</span>
+                            <span class="text-light">แก้ไขข้อมูลลูกค้า</span>
                         </div>
                         <div class="card-body">
-                            <?php
+                        <?php
                             require '../config/connect.php';
-                            if (isset($_GET['spare_id'])) {
-                                $spare_id = $_GET['spare_id'];
-                                $query = "SELECT * FROM spare WHERE spare_id =:spare_id";
+                            if (isset($_GET['customer_id'])) {
+                                $customer_id = $_GET['customer_id'];
+                                $query = "SELECT * FROM customer WHERE customer_id =:customer_id";
                                 $stmt = $conn->prepare($query);
-                                $data = [':spare_id' => $spare_id];
+                                $data = [':customer_id' => $customer_id];
                                 $stmt->execute($data);
-
                                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                             }
                             ?>
                             <form action="crud.php" method="POST" class="row g-3">
-                                <input type="hidden" name="spare_id" value="<?= $result['spare_id'] ?>">
-                                <div class="col-md-6 mb-3">
-                                    <label>ชื่ออะไหล่:</label>
-                                    <input type="text" name="spare_name" value="<?= $result['spare_name']; ?>" class="form-control" />
+                            <input type="hidden" name="customer_id" value="<?= $result['customer_id'] ?>">
+                                <div class="col-md-6">
+                                    <label class="form-label">ชื่อ :</label>
+                                    <input type="text" name="name_ct" value="<?= $result['name_ct'] ?>" class="form-control" />
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label>รุ่นฝาสูบ</label>
-                                    <select name="model_id" class="form-control">
-                                        <?php
-                                        require '../config/connect.php';
-                                        $stmt = $conn->query("SELECT model_id,model_name FROM model");
-                                        $stmt->execute();
-                                        while ($row = $stmt->fetch()) {
-                                        ?>
-                                            <option value="<?= $row['model_id']; ?>"><?= $row['model_name'];?></option>
-                                        <?php }  ?>
-                                    </select>
+                                <div class="col-md-6">
+                                    <label class="form-label">นามสกุล :</label>
+                                    <input type="text" name="surname_ct" value="<?= $result['surname_ct'] ?>" class="form-control" />
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label>จำนวน:</label>
-                                    <input type="number" name="spare_quanlity" min="1" value="<?= $result['spare_quanlity']; ?>" class="form-control" />
+                                <div class="col-md-6">
+                                    <label class="form-label">ชื่อผู้ใช้ :</label>
+                                    <input type="text" name="username_ct" value="<?= $result['username_ct'] ?>" class="form-control" />
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label>ราคา:</label>
-                                    <input type="text" name="spare_price" value="<?= $result['spare_price']; ?>" class="form-control" />
+                                <div class="col-md-6">
+                                    <label class="form-label">รหัสผ่าน :</label>
+                                    <input type="password" name="password_ct" id="myPassword" value="<?= $result['password_ct'] ?>" class="form-control" />
+                                    <input type="checkbox" onclick="passShow()">
+                                    <label>แสดงรหัสผ่าน</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">เบอร์โทรศัพท์:</label>
+                                    <input type="text" name="phone_ct" value="<?= $result['phone_ct'] ?>" class="form-control" />
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="form-label">อีเมล:</label>
+                                    <input type="email" name="email_ct" value="<?= $result['email_ct'] ?>" class="form-control" />
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">ที่อยู่:</label>
+                                    <input type="text" name="address_ct" value="<?= $result['address_ct'] ?>" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="update_spare" class="btn btn-warning">แก้ไขข้อมูล</button>
-                                    <a href="spares.php" class="btn btn-danger">ย้อนกลับ</a>
+                                    <button type="submit" name="update_cus" class="btn btn-warning">แก้ไขข้อมูล</button>
+                                    <a href="customer.php" class="btn btn-danger">ย้อนกลับ</a>
                                 </div>
                             </form>
                         </div>
@@ -216,6 +221,7 @@
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/dataTables.bootstrap5.min.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/sheet.js"></script>
 </body>
 
 </html>
