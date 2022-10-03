@@ -46,17 +46,17 @@ if (isset($_POST['Regis'])) {
             header('refresh:1; url = Register.php');
             exit(0);
         } else {
-            $insert_stmt = $conn->prepare("INSERT INTO customer (name_ct, surname_ct, username_ct, password_ct, phone_ct, email_ct, address_ct) VALUES (:name_ct, :surname_ct, :username_ct, :password_ct, :phone_ct, :email_ct, :address_ct)");
-            $insert_stmt->bindParam(':name_ct', $name_ct);
-            $insert_stmt->bindParam(':surname_ct', $surname_ct);
-            $insert_stmt->bindParam(':username_ct', $username_ct);
-            $insert_stmt->bindParam(':password_ct', $password_ct);
-            $insert_stmt->bindParam(':phone_ct', $phone_ct);
-            $insert_stmt->bindParam(':email_ct', $email_ct);
-            $insert_stmt->bindParam(':address_ct', $address_ct);
-            $insert_stmt->execute();
+            $add_stmt = $conn->prepare("INSERT INTO customer (name_ct, surname_ct, username_ct, password_ct, phone_ct, email_ct, address_ct) VALUES (:name_ct, :surname_ct, :username_ct, :password_ct, :phone_ct, :email_ct, :address_ct)");
+            $add_stmt->bindParam(':name_ct', $name_ct);
+            $add_stmt->bindParam(':surname_ct', $surname_ct);
+            $add_stmt->bindParam(':username_ct', $username_ct);
+            $add_stmt->bindParam(':password_ct', $password_ct);
+            $add_stmt->bindParam(':phone_ct', $phone_ct);
+            $add_stmt->bindParam(':email_ct', $email_ct);
+            $add_stmt->bindParam(':address_ct', $address_ct);
+            $add_stmt->execute();
 
-            if ($insert_stmt) {
+            if ($add_stmt) {
                 echo "<script>
                 $(document).ready(function(){
                     Swal.fire({

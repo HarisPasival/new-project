@@ -160,7 +160,7 @@
                             <span class="text-light">เพิ่มข้อมูลพนักงาน</span>
                         </div>
                         <div class="card-body">
-                            <form action="#" method="POST" class="row g-3">
+                            <form action="crud.php" method="POST" class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">ชื่อ :</label>
                                     <input type="text" name="name_emp" class="form-control" />
@@ -181,10 +181,10 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">ตำแหน่ง :</label>
-                                    <select class="form-control">
+                                    <select name="u_role"  class="form-control">
                                         <option selected>เลือกสิทธิ์</option>
-                                        <option value="1">เจ้าของร้าน</option>
-                                        <option value="2">พนักงาน</option>
+                                        <option value="A">เจ้าของร้าน</option>
+                                        <option value="U">พนักงาน</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
@@ -200,7 +200,7 @@
                                     <input type="text" name="address_emp" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="save_emp" class="btn btn-success">เพิ่มข้อมูล</button>
+                                    <button type="submit" name="add_emp" class="btn btn-success">เพิ่มข้อมูล</button>
                                     <a href="employee.php" class="btn btn-danger">ย้อนกลับ</a>
                                 </div>
                             </form>

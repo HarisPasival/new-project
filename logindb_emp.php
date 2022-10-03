@@ -3,34 +3,33 @@
 <?php
 session_start();
 require 'config/connect.php';
-if (isset($_POST['login_ct'])) {
-    $username_ct = $_POST['username_ct'];
-    $password_ct = $_POST['password_ct'];
+if (isset($_POST['login_emp'])) {
+    $username_emp = $_POST['username_emp'];
+    $password_emp = $_POST['password_emp'];
 }
-if (empty($username_ct) || empty($password_ct)) {
+if (empty('username_emp') || empty('password_emp')) {
     echo "<script>
-            $(document).ready(function(){
-                Swal.fire({
-                    title: 'warning',
-                    text: 'กรุณากรอกข้อมูลให้ครบถ้วน',
-                    icon: 'warning',
-                    timer : 1500,
-                    showConfirmButton: false
-                });
-            });
-            </script>";
+    $(document).ready(function(){
+        Swal.fire({
+            title: 'warning',
+            text: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+            icon: 'warning',
+            timer : 1500,
+            showConfirmButton: false
+        });
+    });
+    </script>";
     header('refresh:1; url = Login-cus.php');
     exit(0);
 } else {
     try {
-        $check_cut = $conn->prepare("SELECT * FROM customer WHERE username_ct = :username_ct");
-        $check_cut->bindParam(":username_ct", $username_ct);
-        $check_cut->execute();
-        $row = $check_cut->fetch(PDO::FETCH_ASSOC);
-        if ($check_cut->rowCount() > 0) {
-            $_SESSION['login_cus'] = $row['customer_id'];
-
-            if ($username_ct == $row['username_ct']) {
+        $check_user = $conn->prepare("SELECT * FROM employee WHERE username_emp = :username_emp");
+        $check_user->bindParam("username_emp", $username_emp);
+        $check_user->execute();
+        $row = $check_user->fetch(PDO::FETCH_ASSOC);
+        if ($check_user->rowCount() > 0) {
+            if ($row['u_role'] == 'A') {
+                $_SESSION['Admin_login'] = $row['employee_id'];
                 echo "<script>
                 $(document).ready(function(){
                     Swal.fire({
@@ -42,7 +41,22 @@ if (empty($username_ct) || empty($password_ct)) {
                     });
                 });
                 </script>";
-                header('refresh:1; url = customer/Home_Customer.php');
+                header('refresh:1; url = admin/Dashboard.php');
+                exit(0);
+            } else if ($row['u_role'] == 'U') {
+                $_SESSION['Emp_login'] = $row['employee_id'];
+                echo "<script>
+                $(document).ready(function(){
+                    Swal.fire({
+                        title: 'success',
+                        text: 'เข้าสู่ระบบสำเร็จ',
+                        icon: 'success',
+                        timer : 1500,
+                        showConfirmButton: false
+                    });
+                });
+                </script>";
+                header('refresh:1; url = employee/Home_Employee.php');
                 exit(0);
             } else {
                 echo "<script>
@@ -56,7 +70,7 @@ if (empty($username_ct) || empty($password_ct)) {
                     });
                 });
                 </script>";
-                header('refresh:1; url = Login-cus.php');
+                header('refresh:1; url = Login-emp.php');
                 exit(0);
             }
         } else {
@@ -71,11 +85,12 @@ if (empty($username_ct) || empty($password_ct)) {
                 });
             });
             </script>";
-            header('refresh:1; url = Login-cus.php');
+            header('refresh:1; url = Login-emp.php');
             exit(0);
         }
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
 }
+
 ?>
