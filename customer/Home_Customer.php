@@ -41,7 +41,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="Home_Customer.php" class="nav-link px-3 mt-3 my-3">
+                        <a href="Home_Customer.php" class="nav-link active px-3 mt-3 my-3">
                             <span class="me-2"><i class="fa-solid fa-table-columns"></i></span>
                             <span>หน้าหลัก</span>
                         </a>
@@ -80,7 +80,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-3">
+                        <a href="profile_cus.php" class="nav-link px-3">
                             <span class="me-2"><i class="fa-solid fa-user-pen"></i></span>
                             <span>แก้ไขข้อมูลส่วนตัว</span>
                         </a>

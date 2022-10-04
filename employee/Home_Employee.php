@@ -104,7 +104,7 @@
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link px-3">
+            <a href="../Logout.php" class="nav-link px-3">
               <span class="me-2"><i class="fa-solid fa-right-from-bracket" style="color: red;"></i></span>
               <span>ออกจากระบบ</span>
             </a>
@@ -129,7 +129,7 @@
             <div class="card-footer d-flex">
               View Details
               <span class="ms-auto">
-                <i class="bi bi-chevron-right"></i>
+              <i class="fa-solid fa-circle-right"></i>
               </span>
             </div>
           </div>
@@ -140,7 +140,7 @@
             <div class="card-footer d-flex">
               View Details
               <span class="ms-auto">
-                <i class="bi bi-chevron-right"></i>
+              <i class="fa-solid fa-circle-right"></i>
               </span>
             </div>
           </div>
@@ -151,7 +151,7 @@
             <div class="card-footer d-flex">
               View Details
               <span class="ms-auto">
-                <i class="bi bi-chevron-right"></i>
+              <i class="fa-solid fa-circle-right"></i>
               </span>
             </div>
           </div>
@@ -162,7 +162,7 @@
             <div class="card-footer d-flex">
               View Details
               <span class="ms-auto">
-                <i class="bi bi-chevron-right"></i>
+              <i class="fa-solid fa-circle-right"></i>
               </span>
             </div>
           </div>

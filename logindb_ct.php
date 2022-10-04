@@ -29,35 +29,36 @@ if (empty($username_ct) || empty($password_ct)) {
         $row = $check_cut->fetch(PDO::FETCH_ASSOC);
         if ($check_cut->rowCount() > 0) {
             $_SESSION['login_cus'] = $row['customer_id'];
-
             if ($username_ct == $row['username_ct']) {
-                echo "<script>
-                $(document).ready(function(){
-                    Swal.fire({
-                        title: 'success',
-                        text: 'เข้าสู่ระบบสำเร็จ',
-                        icon: 'success',
-                        timer : 1500,
-                        showConfirmButton: false
+                if ($password_ct == $row['password_ct']) {
+                    echo "<script>
+                    $(document).ready(function(){
+                        Swal.fire({
+                            title: 'success',
+                            text: 'เข้าสู่ระบบสำเร็จ',
+                            icon: 'success',
+                            timer : 1500,
+                            showConfirmButton: false
+                        });
                     });
-                });
-                </script>";
-                header('refresh:1; url = customer/Home_Customer.php');
-                exit(0);
-            } else {
-                echo "<script>
-                $(document).ready(function(){
-                    Swal.fire({
-                        title: 'warning',
-                        text: 'ชื่อผู้ใช้หรือหัสผ่านไม่ถูกต้อง',
-                        icon: 'warning',
-                        timer : 1500,
-                        showConfirmButton: false
+                    </script>";
+                    header('refresh:1; url = customer/Home_Customer.php');
+                    exit(0);
+                } else {
+                    echo "<script>
+                    $(document).ready(function(){
+                        Swal.fire({
+                            title: 'warning',
+                            text: 'รหัสผ่านไม่ถูกต้อง',
+                            icon: 'warning',
+                            timer : 1500,
+                            showConfirmButton: false
+                        });
                     });
-                });
-                </script>";
-                header('refresh:1; url = Login-cus.php');
-                exit(0);
+                    </script>";
+                    header('refresh:1; url = Login-cus.php');
+                    exit(0);
+                }
             }
         } else {
             echo "<script>

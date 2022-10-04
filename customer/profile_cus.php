@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +13,7 @@
     <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/form.css">
-    <title>เพิ่มรายการซ่อม</title>
+    <title>หน้าหลักลูกค้า</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -42,37 +45,37 @@
                         </div>
                     </li>
                     <li>
-                        <a href="Home_Employee.php" class="nav-link px-3 mt-3 my-3">
+                        <a href="Home_Customer.php" class="nav-link px-3 mt-3 my-3">
                             <span class="me-2"><i class="fa-solid fa-table-columns"></i></span>
                             <span>หน้าหลัก</span>
                         </a>
                     </li>
                     <li>
                         <div class="text-muted small fw-bold px-3 mb-3">
-                            จัดการรับซ่อม
+                            การซ่อม
                         </div>
                     </li>
                     <li>
-                        <a href="add_repair.php" class="nav-link active px-3">
-                            <span class="me-2"><i class="fa-solid fa-screwdriver-wrench"></i></span>
-                            <span>เพิ่มรายการซ่อม</span>
+                        <a href="#" class="nav-link px-3">
+                            <span class="me-2"><i class="fa-solid fa-signal"></i></span>
+                            <span>ติดตามสถานะการซ่อม</span>
                         </a>
                     </li>
                     <li>
-                        <a href="repair.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-toolbox"></i></span>
-                            <span>รายการซ่อมทั้งหมด</span>
+                        <a href="#" class="nav-link px-3">
+                            <span class="me-2"><i class="fa-solid fa-calendar-week"></i></span>
+                            <span>ดูรายละเอียดการซ่อม</span>
                         </a>
                     </li>
                     <li>
                         <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            ข้อมูลรายการส่งมอบ
+                            ชำระเงิน
                         </div>
                     </li>
                     <li>
-                        <a href="return_repair.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-rotate-left"></i></span>
-                            <span>รายการที่ส่งมอบแล้ว</span>
+                        <a href="#" class="nav-link px-3">
+                            <span class="me-2"><i class="fa-regular fa-credit-card"></i></span>
+                            <span>รายการชำระเงิน</span>
                         </a>
                     </li>
                     <li>
@@ -81,30 +84,13 @@
                         </div>
                     </li>
                     <li>
-                        <a href="profile_emp.php" class="nav-link px-3">
+                        <a href="profile_cus.php" class="nav-link active px-3">
                             <span class="me-2"><i class="fa-solid fa-user-pen"></i></span>
                             <span>แก้ไขข้อมูลส่วนตัว</span>
                         </a>
                     </li>
                     <li>
-                        <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            รายงาน
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-flag"></i></span>
-                            <span>รายงานการรับซ่อม</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-flag"></i></span>
-                            <span>รายงานการส่งมอบฝาสูบ</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
+                        <a href="../Logout.php" class="nav-link px-3">
                             <span class="me-2"><i class="fa-solid fa-right-from-bracket" style="color: red;"></i></span>
                             <span>ออกจากระบบ</span>
                         </a>
@@ -120,8 +106,8 @@
             <div class="row mt-2">
                 <div class="col-md-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">จัดการรับซ่อม</li>
-                        <li class="breadcrumb-item active text-primary">เพิ่มรายการซ่อม</li>
+                        <li class="breadcrumb-item">ข้อมูลลูกค้า</li>
+                        <li class="breadcrumb-item active text-primary">แก้ไขข้อมูลส่วนตัว</li>
                     </ol>
                 </div>
             </div>
@@ -129,39 +115,54 @@
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light">เพิ่มรายการซ่อม</span>
+                            <span class="text-light">แก้ไขข้อมูลส่วนตัว</span>
                         </div>
                         <div class="card-body">
-                            <form action="repairdb.php" method="POST" class="row g-3">
+                        <?php
+                            require '../config/connect.php';
+                            if (isset($_SESSION['login_cus'])) {
+                                $customer_id = $_SESSION['login_cus'];
+                                $query = "SELECT * FROM customer WHERE customer_id =:customer_id";
+                                $stmt = $conn->prepare($query);
+                                $data = [':customer_id' => $customer_id];
+                                $stmt->execute($data);
+                                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                            }
+                            ?>
+                            <form action="procusdb.php" method="POST" class="row g-3">
+                            <input type="hidden" name="customer_id" value="<?= $row['customer_id'] ?>">
+                                <div class="col-md-6">
+                                    <label class="form-label">ชื่อ :</label>
+                                    <input type="text" name="name_ct" value="<?= $row['name_ct'] ?>" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">นามสกุล :</label>
+                                    <input type="text" name="surname_ct" value="<?= $row['surname_ct'] ?>" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">ชื่อผู้ใช้ :</label>
+                                    <input type="text" name="username_ct" value="<?= $row['username_ct'] ?>" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">รหัสผ่าน :</label>
+                                    <input type="password" name="password_ct" id="myPassword" value="<?= $row['password_ct'] ?>" class="form-control" />
+                                    <input type="checkbox" onclick="passShow()">
+                                    <label>แสดงรหัสผ่าน</label>
+                                </div>
                                 <div class="col-md-4">
-                                    <label class="form-label">วันที่แจ้งซ่อม :</label>
-                                    <input type="datetime-local" name="repair_date" class="form-control" />
+                                    <label class="form-label">เบอร์โทรศัพท์:</label>
+                                    <input type="text" name="phone_ct" value="<?= $row['phone_ct'] ?>" class="form-control" />
                                 </div>
                                 <div class="col-md-8">
-                                    <label class="form-label">ชื่อลูกค้าที่มาซ่อม :</label>
-                                    <input type="text" name="repair_cname" class="form-control" />
+                                    <label class="form-label">อีเมล:</label>
+                                    <input type="email" name="email_ct" value="<?= $row['email_ct'] ?>" class="form-control" />
                                 </div>
                                 <div class="col-12">
-                                    <label class="form-label">สาเหตุที่เสีย :</label>
-                                    <input type="text" name="details" class="form-control"></input>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">ราคาค่าซ่อม:</label>
-                                    <input type="number" min="1" name="repair_price" class="form-control" />
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">สถานะการซ่อม :</label>
-                                    <select name="repair_status" class="form-control">
-                                        <option selected value="1">รอยืนยันการซ่อม</option>
-                                        <option value="2">ยืนยันแล้ว</option>
-                                        <option value="3">กำลังซ่อม</option>
-                                        <option value="4">ซ่อมเสร็จแล้ว</option>
-                                        <option value="5">ส่งมอบเรียบร้อย</option>
-                                        <option value="6">ยกเลิก</option>
-                                    </select>
+                                    <label class="form-label">ที่อยู่:</label>
+                                    <input type="text" name="address_ct" value="<?= $row['address_ct'] ?>" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="add_repair" class="btn btn-success">เพิ่มรายการซ่อม</button>
+                                    <button type="submit" name="updatepro_cus" class="btn btn-warning">แก้ไขข้อมูล</button>
                                 </div>
                             </form>
                         </div>
@@ -177,6 +178,7 @@
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/dataTables.bootstrap5.min.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/sheet.js"></script>
 </body>
 
 </html>

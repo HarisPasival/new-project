@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">ราคาค่าซ่อม:</label>
-                                    <input type="number" name="repair_price" value="<?= $result['repair_price'] ?>" class="form-control" />
+                                    <input type="number" min="1" name="repair_price" value="<?= $result['repair_price'] ?>" class="form-control" />
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">สถานะการซ่อม :</label>

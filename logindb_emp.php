@@ -28,42 +28,60 @@ if (empty('username_emp') || empty('password_emp')) {
         $check_user->execute();
         $row = $check_user->fetch(PDO::FETCH_ASSOC);
         if ($check_user->rowCount() > 0) {
-            if ($row['u_role'] == 1) {
-                $_SESSION['Admin_login'] = $row['employee_id'];
-                echo "<script>
-                $(document).ready(function(){
-                    Swal.fire({
-                        title: 'success',
-                        text: 'เข้าสู่ระบบสำเร็จ',
-                        icon: 'success',
-                        timer : 1500,
-                        showConfirmButton: false
+            if ($username_emp == $row['username_emp']) {
+                if ($password_emp == $row['password_emp']) {
+                    if ($row['u_role'] == 1) {
+                        $_SESSION['Admin_login'] = $row['employee_id'];
+                        echo "<script>
+                        $(document).ready(function(){
+                            Swal.fire({
+                                title: 'success',
+                                text: 'เข้าสู่ระบบสำเร็จ',
+                                icon: 'success',
+                                timer : 1500,
+                                showConfirmButton: false
+                            });
+                        });
+                        </script>";
+                        header('refresh:1; url = admin/Dashboard.php');
+                        exit(0);
+                    } else if ($row['u_role'] == 2) {
+                        $_SESSION['Emp_login'] = $row['employee_id'];
+                        echo "<script>
+                        $(document).ready(function(){
+                            Swal.fire({
+                                title: 'success',
+                                text: 'เข้าสู่ระบบสำเร็จ',
+                                icon: 'success',
+                                timer : 1500,
+                                showConfirmButton: false
+                            });
+                        });
+                        </script>";
+                        header('refresh:1; url = employee/Home_Employee.php');
+                        exit(0);
+                    }
+                } else {
+                    echo "<script>
+                    $(document).ready(function(){
+                        Swal.fire({
+                            title: 'warning',
+                            text: 'รหัสผ่านไม่ถูกต้อง',
+                            icon: 'warning',
+                            timer : 1500,
+                            showConfirmButton: false
+                        });
                     });
-                });
-                </script>";
-                header('refresh:1; url = admin/Dashboard.php');
-                exit(0);
-            } else if ($row['u_role'] == 2) {
-                $_SESSION['Emp_login'] = $row['employee_id'];
-                echo "<script>
-                $(document).ready(function(){
-                    Swal.fire({
-                        title: 'success',
-                        text: 'เข้าสู่ระบบสำเร็จ',
-                        icon: 'success',
-                        timer : 1500,
-                        showConfirmButton: false
-                    });
-                });
-                </script>";
-                header('refresh:1; url = employee/Home_Employee.php');
-                exit(0);
-            } else {
+                    </script>";
+                    header('refresh:1; url = Login-emp.php');
+                    exit(0);
+                }
+            } else if ($username_emp != $row['username_emp']) {
                 echo "<script>
                 $(document).ready(function(){
                     Swal.fire({
                         title: 'warning',
-                        text: 'ชื่อผู้ใช้หรือหัสผ่านไม่ถูกต้อง',
+                        text: 'ชื่อผู้ใช้ไม่ถูกต้อง',
                         icon: 'warning',
                         timer : 1500,
                         showConfirmButton: false
