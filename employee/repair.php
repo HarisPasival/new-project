@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <title>ข้อมูลพนักงาน</title>
+    <title>เพิ่มรายการซ่อม</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -41,76 +41,49 @@
                         </div>
                     </li>
                     <li>
-                        <a href="Dashboard.php" class="nav-link px-3 mt-3 my-3">
+                        <a href="Home_Employee.php" class="nav-link px-3 mt-3 my-3">
                             <span class="me-2"><i class="fa-solid fa-table-columns"></i></span>
                             <span>หน้าหลัก</span>
                         </a>
                     </li>
                     <li>
                         <div class="text-muted small fw-bold px-3 mb-3">
-                            ข้อมูลผู้ใช้ระบบ
+                            จัดการรับซ่อม
                         </div>
                     </li>
                     <li>
-                        <a href="employee.php" class="nav-link active px-3">
-                            <span class="me-2"><i class="fa-solid fa-user-tie"></i></span>
-                            <span>ข้อมูลพนักงาน</span>
+                        <a href="add_repair.php" class="nav-link px-3">
+                            <span class="me-2"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                            <span>เพิ่มรายการซ่อม</span>
                         </a>
                     </li>
                     <li>
-                        <a href="customer.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-user"></i></span>
-                            <span>ข้อมูลลูกค้า</span>
+                        <a href="repair.php" class="nav-link active px-3">
+                            <span class="me-2"><i class="fa-solid fa-toolbox"></i></span>
+                            <span>รายการซ่อมทั้งหมด</span>
                         </a>
                     </li>
                     <li>
                         <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            ข้อมูลพื้นฐาน
+                            ข้อมูลรายการส่งมอบ
                         </div>
                     </li>
                     <li>
-                        <a href="spares.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-car-rear"></i></span>
-                            <span>ข้อมูลอะไหล่</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="model.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-car-side"></i></span>
-                            <span>ข้อมูลประเภทฝาสูบ</span>
+                        <a href="return_repair.php" class="nav-link px-3">
+                            <span class="me-2"><i class="fa-solid fa-rotate-left"></i></span>
+                            <span>รายการที่ส่งมอบแล้ว</span>
                         </a>
                     </li>
                     <li>
                         <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            ข้อมูลการสั่งซื้อ
+                            โปรไฟล์
                         </div>
                     </li>
                     <li>
-                        <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts">
-                            <span class="me-2"><i class="fa-solid fa-cart-shopping"></i></span>
-                            <span>สั่งซื้ออะไหล่</span>
-                            <span class="ms-auto">
-                                <span class="right-icon">
-                                    <i class="fa-solid fa-sort-down"></i>
-                                </span>
-                            </span>
+                        <a href="profile_emp.php" class="nav-link px-3">
+                            <span class="me-2"><i class="fa-solid fa-user-pen"></i></span>
+                            <span>แก้ไขข้อมูลส่วนตัว</span>
                         </a>
-                        <div class="collapse" id="layouts">
-                            <ul class="navbar-nav ps-3">
-                                <li>
-                                    <a href="#" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa-solid fa-cart-plus"></i></span>
-                                        <span>รายการที่ทำการสั่งซื้อ</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span>
-                                        <span>รายการที่ทำการรับเข้าแล้ว</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
                     <li>
                         <div class="text-muted small fw-bold px-3 mb-3 my-3">
@@ -120,13 +93,13 @@
                     <li>
                         <a href="#" class="nav-link px-3">
                             <span class="me-2"><i class="fa-solid fa-flag"></i></span>
-                            <span>รายงานการสั่งซื้ออะไหล่</span>
+                            <span>รายงานการรับซ่อม</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="nav-link px-3">
                             <span class="me-2"><i class="fa-solid fa-flag"></i></span>
-                            <span>รายงานการรับเข้าอะไหล่</span>
+                            <span>รายงานการส่งมอบฝาสูบ</span>
                         </a>
                     </li>
                     <li>
@@ -135,7 +108,6 @@
                             <span>ออกจากระบบ</span>
                         </a>
                     </li>
-
                 </ul>
             </nav>
         </div>
@@ -146,15 +118,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-2">
-                    <h4>ข้อมูลพนักงาน</h4>
-                    <a href="add_employee.php" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</a>
+                    <h4>รายการซ่อมทั้งหมด</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3 mt-2">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light"><i class="fa-solid fa-user-tie"></i> ตารางข้อมูลพนักงาน</span>
+                            <span class="text-light"><i class="fa-solid fa-toolbox"></i> ตารางรายการซ่อมทั้งหมด</span>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -162,9 +133,9 @@
                                     <thead>
                                         <tr>
                                             <th>ลำดับ</th>
-                                            <th>ชื่อ</th>
-                                            <th>นามสกุล</th>
-                                            <th>เบอร์โทรศัพท์</th>
+                                            <th>วันที่แจ้งซ่อม</th>
+                                            <th>ชื่อลูกค้าที่มาซ่อม</th>
+                                            <th>สาเหตุที่เสีย</th>
                                             <th>สถานะ</th>
                                             <th>จัดการ</th>
                                         </tr>
@@ -173,29 +144,37 @@
                                         <?php
                                         $i = 1;
                                         require '../config/connect.php';
-                                        $sql = "SELECT * FROM employee";
+                                        $sql = "SELECT * FROM repair";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
-                                            $u_role = $row['u_role'];
+                                            $repair_status = $row['repair_status'];
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
-                                                <td><?= $row['name_emp']; ?></td>
-                                                <td><?= $row['surname_emp']; ?></td>
-                                                <td><?= $row['phone_emp']; ?></td>
+                                                <td><?= $row['repair_date']; ?></td>
+                                                <td><?= $row['repair_cname']; ?></td>
+                                                <td><?= $row['details']; ?></td>
                                                 <td>
                                                     <?php
-                                                    if ($u_role == 1) {
-                                                        echo "<b style = 'color:green' >แอดมิน</b>";
-                                                    } else if ($u_role == 2) {
-                                                        echo "<b style = 'color:red' >ช่างซ่อม</b>";
+                                                    if ($repair_status == 1) {
+                                                        echo "<b style = 'color:yellow' >รอยืนยันการซ่อม</b>";
+                                                    } else if ($repair_status == 2) {
+                                                        echo "<b style = 'color:lime' >ยืนยันแล้ว</b>";
+                                                    } else if ($repair_status == 3) {
+                                                        echo "<b style = 'color:Orange' >กำลังซ่อม</b>";
+                                                    } else if ($repair_status == 4) {
+                                                        echo "<b style = 'color:green' >ซ่อมเสร็จแล้ว</b>";
+                                                    } else if ($repair_status == 5) {
+                                                        echo "<b style = 'color:DodgerBlue' >ส่งมอบเรียบร้อย</b>";
+                                                    } else if ($repair_status == 6) {
+                                                        echo "<b style = 'color:red' >ยกเลิก</b>";
                                                     }
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <form action="crud.php" method="POST">
-                                                        <a href="update_employee.php?employee_id=<?= $row['employee_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
-                                                        <button type="submit" name="delete_emp" value="<?= $row['employee_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                                    <form action="repairdb.php.php" method="POST">
+                                                        <a href="view_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                                        <a href="update_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -209,7 +188,7 @@
             </div>
         </div>
     </main>
-    <!-- end content -->
+    <!-- content -->
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="../js/jquery-3.5.1.js"></script>

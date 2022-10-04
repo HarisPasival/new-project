@@ -195,8 +195,8 @@
                                     <label class="form-label">ตำแหน่ง :</label>
                                     <select name="u_role"  class="form-control">
                                         <option selected>เลือกสิทธิ์</option>
-                                        <option value="A" <?php if ($result['u_role'] == 'A') { ?> selected="selected" <?php } ?>>แอดมิน</option>
-                                        <option value="U" <?php if ($result['u_role'] == 'U') { ?> selected="selected" <?php } ?>>ช่างซ่อม</option>
+                                        <option value="1" <?php if ($result['u_role'] == '1') { ?> selected="selected" <?php } ?>>แอดมิน</option>
+                                        <option value="2" <?php if ($result['u_role'] == '2') { ?> selected="selected" <?php } ?>>ช่างซ่อม</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">

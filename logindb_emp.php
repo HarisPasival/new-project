@@ -28,7 +28,7 @@ if (empty('username_emp') || empty('password_emp')) {
         $check_user->execute();
         $row = $check_user->fetch(PDO::FETCH_ASSOC);
         if ($check_user->rowCount() > 0) {
-            if ($row['u_role'] == 'A') {
+            if ($row['u_role'] == 1) {
                 $_SESSION['Admin_login'] = $row['employee_id'];
                 echo "<script>
                 $(document).ready(function(){
@@ -43,7 +43,7 @@ if (empty('username_emp') || empty('password_emp')) {
                 </script>";
                 header('refresh:1; url = admin/Dashboard.php');
                 exit(0);
-            } else if ($row['u_role'] == 'U') {
+            } else if ($row['u_role'] == 2) {
                 $_SESSION['Emp_login'] = $row['employee_id'];
                 echo "<script>
                 $(document).ready(function(){

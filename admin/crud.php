@@ -61,12 +61,12 @@ if (isset($_POST['update_emp'])) {
     $surname_emp = $_POST['surname_emp'];
     $username_emp = $_POST['username_emp'];
     $password_emp = $_POST['password_emp'];
-    $email_emp = $_POST['email_emp'];
-    $phone_emp = $_POST['phone_emp'];
-    $address_emp = $_POST['address_emp'];
     $u_role = $_POST['u_role'];
+    $phone_emp = $_POST['phone_emp'];
+    $email_emp = $_POST['email_emp'];
+    $address_emp = $_POST['address_emp'];
     try {
-        $query = "UPDATE employee SET name_emp = :name_emp,surname_emp = :surname_emp,username_emp = :username_emp,password_emp = :password_emp,email_emp = :email_emp,phone_emp = :phone_emp,address_emp = :address_emp,u_role = :u_role WHERE employee_id = :employee_id";
+        $query = "UPDATE employee SET name_emp = :name_emp,surname_emp = :surname_emp,username_emp = :username_emp,password_emp = :password_emp,u_role = :u_role,phone_emp = :phone_emp,email_emp = :email_emp,address_emp = :address_emp WHERE employee_id = :employee_id";
         $stmt = $conn->prepare($query);
 
         $data = [
@@ -74,10 +74,10 @@ if (isset($_POST['update_emp'])) {
             ':surname_emp' => $surname_emp,
             ':username_emp' => $username_emp,
             ':password_emp' => $password_emp,
+            ':u_role' => $u_role,
             ':phone_emp' => $phone_emp,
             ':email_emp' => $email_emp,
-            ':adress_emp' => $address_emp,
-            ':u_role' => $u_role,
+            ':address_emp' => $address_emp,
             ':employee_id' => $employee_id
         ];
         $query_execute = $stmt->execute($data);
