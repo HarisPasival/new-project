@@ -41,7 +41,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="main.php" class="nav-link px-3 mt-3 my-3">
+                        <a href="Dashboard.php" class="nav-link px-3 mt-3 my-3">
                             <span class="me-2"><i class="fa-solid fa-table-columns"></i></span>
                             <span>หน้าหลัก</span>
                         </a>
