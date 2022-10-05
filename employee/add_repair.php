@@ -137,7 +137,7 @@
                                     <label class="form-label">วันที่แจ้งซ่อม :</label>
                                     <input type="datetime-local" name="repair_date" class="form-control" />
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-12">
                                     <label class="form-label">ชื่อลูกค้าที่มาซ่อม :</label>
                                     <input type="text" name="repair_cname" class="form-control" />
                                 </div>
@@ -145,11 +145,24 @@
                                     <label class="form-label">สาเหตุที่เสีย :</label>
                                     <input type="text" name="details" class="form-control"></input>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-12">
+                                    <label class="form-label">ผู้รับซ่อม :</label>
+                                    <select name="employee_id" class="form-control">
+                                        <?php
+                                        require '../config/connect.php';
+                                        $stmt = $conn->query("SELECT employee_id,name_emp,surname_emp FROM employee WHERE u_role = 2");
+                                        $stmt->execute();
+                                        while ($row = $stmt->fetch()) {
+                                        ?>
+                                            <option value="<?= $row['employee_id']; ?>"><?= $row['name_emp'] . ' ' . $row['surname_emp']; ?></option>
+                                        <?php }  ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
                                     <label class="form-label">ราคาค่าซ่อม:</label>
                                     <input type="number" min="1" name="repair_price" class="form-control" />
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="form-label">สถานะการซ่อม :</label>
                                     <select name="repair_status" class="form-control">
                                         <option selected value="1">รอยืนยันการซ่อม</option>

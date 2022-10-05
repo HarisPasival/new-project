@@ -6,18 +6,18 @@ if (isset($_POST['add_repair'])) {
     $repair_cname = $_POST['repair_cname'];
     $repair_date = $_POST['repair_date'];
     $details = $_POST['details'];
+    $employee_id = $_POST['employee_id'];
     $repair_price = $_POST['repair_price'];
     $repair_status = $_POST['repair_status'];
-    $repair_date_send = $_POST['repair_date_send'];
-    $query = "INSERT INTO repair(repair_cname,repair_date,details,repair_price,repair_status,repair_date_send) VALUES (:repair_cname,:repair_date,:details,:repair_price,:repair_status,:repair_date_send)";
+    $query = "INSERT INTO repair(repair_cname,repair_date,details,employee_id,repair_price,repair_status) VALUES (:repair_cname,:repair_date,:details,:employee_id,:repair_price,:repair_status)";
     $query_run = $conn->prepare($query);
     $data = [
         ':repair_cname' => $repair_cname,
         ':repair_date' => $repair_date,
         ':details' => $details,
+        ':employee_id' => $employee_id,
         ':repair_price' => $repair_price,
-        ':repair_status' => $repair_status,
-        ':repair_date_send' => $repair_date_send
+        ':repair_status' => $repair_status
     ];
     $query_execute = $query_run->execute($data);
     if ($query_execute) {
@@ -55,17 +55,19 @@ if (isset($_POST['update_repair'])) {
     $repair_cname = $_POST['repair_cname'];
     $repair_date = $_POST['repair_date'];
     $details = $_POST['details'];
+    $employee_id = $_POST['employee_id'];
     $repair_price = $_POST['repair_price'];
     $repair_status = $_POST['repair_status'];
     $repair_date_send = $_POST['repair_date_send'];
     try {
-        $query = "UPDATE repair SET repair_cname = :repair_cname,repair_date = :repair_date,details = :details,repair_price = :repair_price,repair_status = :repair_status,repair_date_send = :repair_date_send WHERE repair_id = :repair_id";
+        $query = "UPDATE repair SET repair_cname = :repair_cname,repair_date = :repair_date,details = :details,employee_id = :employee_id,repair_price = :repair_price,repair_status = :repair_status,repair_date_send = :repair_date_send WHERE repair_id = :repair_id";
         $stmt = $conn->prepare($query);
 
         $data = [
             ':repair_cname' => $repair_cname,
             ':repair_date' => $repair_date,
             ':details' => $details,
+            ':employee_id' => $employee_id,
             ':repair_price' => $repair_price,
             ':repair_status' => $repair_status,
             ':repair_date_send' => $repair_date_send,

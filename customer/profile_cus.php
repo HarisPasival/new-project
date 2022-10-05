@@ -125,7 +125,7 @@ session_start();
                                 $query = "SELECT * FROM customer WHERE customer_id =:customer_id";
                                 $stmt = $conn->prepare($query);
                                 $data = [':customer_id' => $customer_id];
-                                $stmt->execute($data);
+                                $stmt->execute($data); 
                                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                             }
                             ?>

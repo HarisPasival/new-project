@@ -136,6 +136,7 @@
                                             <th>วันที่แจ้งซ่อม</th>
                                             <th>ชื่อลูกค้าที่มาซ่อม</th>
                                             <th>สาเหตุที่เสีย</th>
+                                            <th>ผู้รับซ่อม</th>
                                             <th>สถานะ</th>
                                             <th>จัดการ</th>
                                         </tr>
@@ -144,7 +145,9 @@
                                         <?php
                                         $i = 1;
                                         require '../config/connect.php';
-                                        $sql = "SELECT * FROM repair";
+                                        $sql = "SELECT re.repair_id, re.repair_date, re.repair_cname, re.details, re.repair_status, em.employee_id, em.name_emp, em.surname_emp
+                                                FROM repair re
+                                                left JOIN employee em ON re.employee_id = em.employee_id";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
                                             $repair_status = $row['repair_status'];
@@ -154,6 +157,7 @@
                                                 <td><?= $row['repair_date']; ?></td>
                                                 <td><?= $row['repair_cname']; ?></td>
                                                 <td><?= $row['details']; ?></td>
+                                                <td><?= $row['name_emp'].' '.$row['surname_emp']; ?></td>
                                                 <td>
                                                     <?php
                                                     if ($repair_status == 1) {
