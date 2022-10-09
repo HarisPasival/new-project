@@ -147,7 +147,7 @@
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <h4>ข้อมูลลูกค้า</h4>
-                    <a href="add_customer.php" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</a>
+                    <a href="add_customer.php" class="btn btn-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูล</a>
                 </div>
             </div>
             <div class="row">
@@ -187,6 +187,7 @@
                                                 <td><?= $row['address_ct']; ?></td>
                                                 <td>
                                                     <form action="crud.php" method="POST">
+                                                        <a href="view_customer.php?customer_id=<?= $row['customer_id'] ?>" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
                                                         <a href="update_customer.php?customer_id=<?= $row['customer_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
                                                         <button type="submit" name="delete_cus" value="<?= $row['customer_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                                                     </form>

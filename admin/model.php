@@ -147,7 +147,7 @@
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <h4>ข้อมูลประเภทฝาสูบ</h4>
-                    <a href="add_model.php" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</a>
+                    <a href="add_model.php" class="btn btn-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูล</a>
                 </div>
             </div>
             <div class="row">

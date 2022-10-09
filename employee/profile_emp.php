@@ -158,7 +158,7 @@ session_start();
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">ชื่อผู้ใช้ :</label>
-                                    <input type="text" name="username_emp" value="<?= $row['username_emp'] ?>" class="form-control" />
+                                    <input type="text" name="username_emp" value="<?= $row['username_emp'] ?>" class="form-control" readonly/>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">รหัสผ่าน :</label>

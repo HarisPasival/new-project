@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">ชื่อผู้ใช้ :</label>
-                                    <input type="text" name="username_ct" value="<?= $result['username_ct'] ?>" class="form-control" />
+                                    <input type="text" name="username_ct" value="<?= $result['username_ct'] ?>" class="form-control" readonly/>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">รหัสผ่าน :</label>
@@ -204,8 +204,8 @@
                                     <input type="text" name="address_ct" value="<?= $result['address_ct'] ?>" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="update_cus" class="btn btn-warning">แก้ไขข้อมูล</button>
-                                    <a href="customer.php" class="btn btn-danger">ย้อนกลับ</a>
+                                    <button type="submit" name="update_cus" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> แก้ไขข้อมูล</button>
+                                    <a href="customer.php" class="btn btn-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
                                 </div>
                             </form>
                         </div>
