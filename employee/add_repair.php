@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -150,12 +153,14 @@
                                     <select name="employee_id" class="form-control">
                                         <?php
                                         require '../config/connect.php';
-                                        $stmt = $conn->query("SELECT employee_id,name_emp,surname_emp FROM employee WHERE u_role = 2");
-                                        $stmt->execute();
-                                        while ($row = $stmt->fetch()) {
+                                        if (isset($_SESSION['Emp_login'])) {
+                                            $emp_id = $_SESSION['Emp_login'];
+                                            $stmt = $conn->query("SELECT employee_id,name_emp,surname_emp FROM employee WHERE employee_id = $emp_id");
+                                            $stmt->execute();
+                                            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                        }
                                         ?>
-                                            <option value="<?= $row['employee_id']; ?>"><?= $row['name_emp'] . ' ' . $row['surname_emp']; ?></option>
-                                        <?php }  ?>
+                                        <option value="<?=$row['employee_id']?>"><?= $row['name_emp'] . ' ' . $row['surname_emp']; ?></option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">

@@ -1,3 +1,7 @@
+<?php
+session_start();
+require '../config/connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,8 +27,7 @@
   <!-- navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-        aria-controls="offcanvasExample">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasExample">
         <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
       </button>
       <a class="navbar-brand me-auto ms-lg-0 ms-3 fw-bold" href="#">Khawna Phasoob</a>
@@ -117,9 +120,17 @@
   <!-- content -->
   <main class="mt-5 pt-3">
     <div class="container-fluid">
+      <?php
+      if (isset($_SESSION['Emp_login'])) {
+        $emp_id = $_SESSION['Emp_login'];
+        $stmt = $conn->query("SELECT * FROM employee WHERE employee_id = $emp_id");
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      }
+      ?>
       <div class="row">
         <div class="col-md-12">
-          <h4>Dashboard</h4>
+          <h4>Dashboard : <?php echo $row['name_emp'] . ' ' . $row['surname_emp'] ?></h4>
         </div>
       </div>
       <div class="row">
@@ -129,7 +140,7 @@
             <div class="card-footer d-flex">
               View Details
               <span class="ms-auto">
-              <i class="fa-solid fa-circle-right"></i>
+                <i class="fa-solid fa-circle-right"></i>
               </span>
             </div>
           </div>
@@ -140,7 +151,7 @@
             <div class="card-footer d-flex">
               View Details
               <span class="ms-auto">
-              <i class="fa-solid fa-circle-right"></i>
+                <i class="fa-solid fa-circle-right"></i>
               </span>
             </div>
           </div>
@@ -151,7 +162,7 @@
             <div class="card-footer d-flex">
               View Details
               <span class="ms-auto">
-              <i class="fa-solid fa-circle-right"></i>
+                <i class="fa-solid fa-circle-right"></i>
               </span>
             </div>
           </div>
@@ -162,7 +173,7 @@
             <div class="card-footer d-flex">
               View Details
               <span class="ms-auto">
-              <i class="fa-solid fa-circle-right"></i>
+                <i class="fa-solid fa-circle-right"></i>
               </span>
             </div>
           </div>

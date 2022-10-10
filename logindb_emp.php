@@ -46,7 +46,7 @@ if (empty('username_emp') || empty('password_emp')) {
                         header('refresh:1; url = admin/Dashboard.php');
                         exit(0);
                     } else if ($row['u_role'] == 2) {
-                        $_SESSION['Emp_login'] = $row['employee_id'];
+                        $_SESSION['Emp_login'] = $row['employee_id'];                       
                         echo "<script>
                         $(document).ready(function(){
                             Swal.fire({
