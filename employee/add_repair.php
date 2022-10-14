@@ -58,7 +58,7 @@ session_start();
                     <li>
                         <a href="add_repair.php" class="nav-link active px-3">
                             <span class="me-2"><i class="fa-solid fa-screwdriver-wrench"></i></span>
-                            <span>เพิ่มรายการซ่อม</span>
+                            <span>แบบฟอร์มการแจ้งซ่อม</span>
                         </a>
                     </li>
                     <li>
@@ -136,10 +136,16 @@ session_start();
                         </div>
                         <div class="card-body">
                             <form action="repairdb.php" method="POST" class="row g-3">
-                                <div class="col-md-4">
-                                    <label class="form-label">วันที่แจ้งซ่อม :</label>
-                                    <input type="datetime-local" name="repair_date" class="form-control" />
-                                </div>
+                                <?php
+                                require '../config/connect.php';
+                                if (isset($_SESSION['Emp_login'])) {
+                                    $emp_id = $_SESSION['Emp_login'];
+                                    $stmt = $conn->query("SELECT employee_id,name_emp,surname_emp FROM employee WHERE employee_id = $emp_id");
+                                    $stmt->execute();
+                                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                }
+                                ?>
+                                <input type="hidden" name="employee_id" value="<?= $row['employee_id'] ?>">
                                 <div class="col-12">
                                     <label class="form-label">ชื่อลูกค้าที่มาซ่อม :</label>
                                     <input type="text" name="repair_cname" class="form-control" />
@@ -147,21 +153,6 @@ session_start();
                                 <div class="col-12">
                                     <label class="form-label">สาเหตุที่เสีย :</label>
                                     <input type="text" name="details" class="form-control"></input>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label">ผู้รับซ่อม :</label>
-                                    <select name="employee_id" class="form-control">
-                                        <?php
-                                        require '../config/connect.php';
-                                        if (isset($_SESSION['Emp_login'])) {
-                                            $emp_id = $_SESSION['Emp_login'];
-                                            $stmt = $conn->query("SELECT employee_id,name_emp,surname_emp FROM employee WHERE employee_id = $emp_id");
-                                            $stmt->execute();
-                                            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                                        }
-                                        ?>
-                                        <option value="<?=$row['employee_id']?>"><?= $row['name_emp'] . ' ' . $row['surname_emp']; ?></option>
-                                    </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">ราคาค่าซ่อม:</label>
@@ -179,7 +170,7 @@ session_start();
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="add_repair" class="btn btn-success">เพิ่มรายการซ่อม</button>
+                                    <button type="submit" name="add_repair" class="btn btn-success">ยืนยันการแจ้งซ่อม</button>
                                 </div>
                             </form>
                         </div>

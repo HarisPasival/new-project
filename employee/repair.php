@@ -57,7 +57,7 @@ session_start();
                     <li>
                         <a href="add_repair.php" class="nav-link px-3">
                             <span class="me-2"><i class="fa-solid fa-screwdriver-wrench"></i></span>
-                            <span>เพิ่มรายการซ่อม</span>
+                            <span>แบบฟอร์มการแจ้งซ่อม</span>
                         </a>
                     </li>
                     <li>

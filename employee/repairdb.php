@@ -4,16 +4,14 @@
 require '../config/connect.php';
 if (isset($_POST['add_repair'])) {
     $repair_cname = $_POST['repair_cname'];
-    $repair_date = $_POST['repair_date'];
     $details = $_POST['details'];
     $emp_id = $_POST['employee_id'];
     $repair_price = $_POST['repair_price'];
     $repair_status = $_POST['repair_status'];
-    $query = "INSERT INTO repair(repair_cname,repair_date,details,employee_id,repair_price,repair_status) VALUES (:repair_cname,:repair_date,:details,:employee_id,:repair_price,:repair_status)";
+    $query = "INSERT INTO repair(repair_cname,details,employee_id,repair_price,repair_status) VALUES (:repair_cname,:details,:employee_id,:repair_price,:repair_status)";
     $query_run = $conn->prepare($query);
     $data = [
         ':repair_cname' => $repair_cname,
-        ':repair_date' => $repair_date,
         ':details' => $details,
         ':employee_id' => $emp_id,
         ':repair_price' => $repair_price,
@@ -25,7 +23,7 @@ if (isset($_POST['add_repair'])) {
         $(document).ready(function(){
             Swal.fire({
                 title: 'success',
-                text: 'เพิ่มรายการสำเร็จ',
+                text: 'เพิ่มรายการแจ้งซ่อมสำเร็จ',
                 icon: 'success',
                 timer : 1500,
                 showConfirmButton: false
@@ -39,7 +37,7 @@ if (isset($_POST['add_repair'])) {
         $(document).ready(function(){
             Swal.fire({
                 title: 'warning',
-                text: 'เพิ่มรายการไม่สำเร็จ',
+                text: 'เพิ่มรายการแจ้งซ่อมไม่สำเร็จ',
                 icon: 'warning',
                 timer : 1500,
                 showConfirmButton: false
@@ -53,24 +51,20 @@ if (isset($_POST['add_repair'])) {
 if (isset($_POST['update_repair'])) {
     $repair_id = $_POST['repair_id'];
     $repair_cname = $_POST['repair_cname'];
-    $repair_date = $_POST['repair_date'];
     $details = $_POST['details'];
     $emp_id = $_POST['employee_id'];
     $repair_price = $_POST['repair_price'];
     $repair_status = $_POST['repair_status'];
-    $repair_date_send = $_POST['repair_date_send'];
     try {
-        $query = "UPDATE repair SET repair_cname = :repair_cname,repair_date = :repair_date,details = :details,employee_id = :employee_id,repair_price = :repair_price,repair_status = :repair_status,repair_date_send = :repair_date_send WHERE repair_id = :repair_id";
+        $query = "UPDATE repair SET repair_cname = :repair_cname,details = :details,employee_id = :employee_id,repair_price = :repair_price,repair_status = :repair_status WHERE repair_id = :repair_id";
         $stmt = $conn->prepare($query);
 
         $data = [
             ':repair_cname' => $repair_cname,
-            ':repair_date' => $repair_date,
             ':details' => $details,
             ':employee_id' => $emp_id,
             ':repair_price' => $repair_price,
             ':repair_status' => $repair_status,
-            ':repair_date_send' => $repair_date_send,
             ':repair_id' => $repair_id
         ];
         $query_execute = $stmt->execute($data);

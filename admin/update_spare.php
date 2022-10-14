@@ -97,7 +97,7 @@
                         <div class="collapse" id="layouts">
                             <ul class="navbar-nav ps-3">
                                 <li>
-                                    <a href="#" class="nav-link px-3">
+                                    <a href="orders.php" class="nav-link px-3">
                                         <span class="me-2"><i class="fa-solid fa-cart-plus"></i></span>
                                         <span>รายการที่ทำการสั่งซื้อ</span>
                                     </a>

@@ -58,7 +58,7 @@ session_start();
                     <li>
                         <a href="add_repair.php" class="nav-link active px-3">
                             <span class="me-2"><i class="fa-solid fa-screwdriver-wrench"></i></span>
-                            <span>เพิ่มรายการซ่อม</span>
+                            <span>แบบฟอร์มการแจ้งซ่อม</span>
                         </a>
                     </li>
                     <li>
@@ -161,19 +161,17 @@ session_start();
                                     <input type="text" name="details" value="<?= $result['details'] ?>" class="form-control"></input>
                                 </div>
                                 <div class="col-12">
+                                    <?php
+                                    require '../config/connect.php';
+                                    if (isset($_SESSION['Emp_login'])) {
+                                        $emp_id = $_SESSION['Emp_login'];
+                                        $stmt = $conn->query("SELECT employee_id,name_emp,surname_emp FROM employee WHERE employee_id = $emp_id");
+                                        $stmt->execute();
+                                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                    }
+                                    ?>
                                     <label class="form-label">ผู้รับซ่อม :</label>
-                                    <select name="employee_id" class="form-control">
-                                        <?php
-                                        require '../config/connect.php';
-                                        if (isset($_SESSION['Emp_login'])) {
-                                            $emp_id = $_SESSION['Emp_login'];
-                                            $stmt = $conn->query("SELECT employee_id,name_emp,surname_emp FROM employee WHERE employee_id = $emp_id");
-                                            $stmt->execute();
-                                            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                                        }
-                                        ?>
-                                        <option value="<?= $row['employee_id']; ?>"><?= $row['name_emp'] . ' ' . $row['surname_emp']; ?></option>
-                                    </select>
+                                    <input type="text" name="employee_id" value="<?= $row['employee_id'] . ' : ' . $row['name_emp'] . ' ' . $row['surname_emp']; ?>" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">ราคาค่าซ่อม:</label>
@@ -189,10 +187,6 @@ session_start();
                                         <option value="5" <?php if ($result['repair_status'] == 5) { ?> selected="selected" <?php } ?>>ส่งมอบเรียบร้อย</option>
                                         <option value="6" <?php if ($result['repair_status'] == 6) { ?> selected="selected" <?php } ?>>ยกเลิก</option>
                                     </select>
-                                </div>
-                                <div class="col-4">
-                                    <label class="form-label">วันที่ส่งมอบ :</label>
-                                    <input type="datetime-local" name="repair_date_send" value="<?= $result['repair_date_send'] ?>" class="form-control" />
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit" name="update_repair" class="btn btn-warning">แก้ไขรายการซ่อม</button>
