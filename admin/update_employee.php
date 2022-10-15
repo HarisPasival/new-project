@@ -212,8 +212,8 @@
                                     <input type="text" name="address_emp" value="<?= $result['address_emp'] ?>" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="update_emp" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> แก้ไขข้อมูล</button>
-                                    <a href="employee.php" class="btn btn-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
+                                    <button type="submit" name="update_emp" class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> แก้ไขข้อมูล</button>
+                                    <a href="employee.php" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
                                 </div>
                             </form>
                         </div>

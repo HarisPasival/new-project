@@ -171,7 +171,7 @@
                                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                                 $u_role = $result['u_role'];
                                 if ($u_role == 1) {
-                                    echo "<b style = 'color:green' >แอดมิน</b>";
+                                    echo  "<b style = 'color:green' >แอดมิน</b>";
                                 } else if ($u_role == 2) {
                                     echo "<b style = 'color:red' >ช่างซ่อม</b>";
                                 }
@@ -186,7 +186,7 @@
                             <span style="font-weight: 700; font-size:large">อีเมล</span> : <span style="font-size:large;"><?php echo $result['email_emp']; ?></span><br>
                             <span style="font-weight: 700; font-size:large">ที่อยู่</span> : <span style="font-size:large;"><?php echo $result['address_emp']; ?></span><br>
                             <div class="mb-3 mt-2">
-                                <a href="employee.php" class="btn btn-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
+                                <a href="employee.php" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
                             </div>
                             <!-- <form action="crud.php" method="POST" class="row g-3">
                                 <input type="hidden" name="employee_id" value="<?= $result['employee_id'] ?>">

@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/form.css" />
     <title>ข้อมูลลูกค้า</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
@@ -147,7 +148,32 @@
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <h4>ข้อมูลการสั่งซื้อ</h4>
-                    <a href="#" class="btn btn-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มรายการสั่งซื้อ</a>
+                    <!-- <a href="#" class="btn btn-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มรายการสั่งซื้อ</a> -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addorders">
+                        <i class="fa-solid fa-folder-plus"></i> เพิ่มรายการสั่งซื้อ</a>
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="addorders" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">รายการอะไหล่ทั้งหมด</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col">
+                                        <label class="form-label">ชื่อร้านที่สั่งซื้อ :</label>
+                                        <input type="text" name="shop_name" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</button>
+                                    <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-location-arrow"></i> สั่งซื้ออะไหล่</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">

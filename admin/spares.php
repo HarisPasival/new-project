@@ -147,7 +147,7 @@
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <h4>ข้อมูลอะไหล่</h4>
-                    <a href="add_spares.php" class="btn btn-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูล</a>
+                    <a href="add_spares.php" class="btn btn-outline-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลอะไหล่</a>
                 </div>
             </div>
             <div class="row">
@@ -163,7 +163,6 @@
                                         <tr>
                                             <th>ลำดับ</th>
                                             <th>ชื่ออะไหล่</th>
-                                            <th>รุ่นฝาสูบ</th>
                                             <th>จำนวน</th>
                                             <th>ราคา</th>
                                             <th>จัดการ</th>
@@ -182,7 +181,6 @@
                                             <tr>
                                                 <td><?= $i++ ?></td>
                                                 <td><?= $row['spare_name']; ?></td>
-                                                <td><?= $row['model_name']; ?></td>
                                                 <td><?= $row['spare_quanlity']; ?></td>
                                                 <td><?= $row['spare_price']; ?></td>
                                                 <td>

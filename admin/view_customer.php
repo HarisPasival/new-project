@@ -180,7 +180,7 @@
                             <span style="font-weight: 700; font-size:large">อีเมล</span> : <span style="font-size:large;"><?php echo $result['email_ct']; ?></span><br>
                             <span style="font-weight: 700; font-size:large">ที่อยู่</span> : <span style="font-size:large;"><?php echo $result['address_ct']; ?></span><br>
                             <div class="mb-3 mt-2">
-                                <a href="customer.php" class="btn btn-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
+                                <a href="customer.php" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
                             </div>
                             <!-- <form action="crud.php" method="POST" class="row g-3">
                                 <input type="hidden" name="customer_id" value="<?= $result['customer_id'] ?>">

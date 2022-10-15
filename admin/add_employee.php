@@ -200,8 +200,8 @@
                                     <input type="text" name="address_emp" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="add_emp" class="btn btn-success btn-sm"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
-                                    <a href="employee.php" class="btn btn-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
+                                    <button type="submit" name="add_emp" class="btn btn-outline-success btn-sm"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
+                                    <a href="employee.php" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
                                 </div>
                             </form>
                         </div>

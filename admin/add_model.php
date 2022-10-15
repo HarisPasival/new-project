@@ -166,8 +166,8 @@
                                     <input type="text" name="model_name" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="add_model" class="btn btn-success btn-sm"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
-                                    <a href="model.php" class="btn btn-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
+                                    <button type="submit" name="add_model" class="btn btn-outline-success btn-sm"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
+                                    <a href="model.php" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
                                 </div>
                             </form>
                         </div>

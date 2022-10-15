@@ -147,7 +147,7 @@
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <h4>ข้อมูลพนักงาน</h4>
-                    <a href="add_employee.php" class="btn btn-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูล</a>
+                    <a href="add_employee.php" class="btn btn-outline-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลพนักงาน</a>
                 </div>
             </div>
             <div class="row">
