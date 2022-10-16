@@ -171,9 +171,9 @@
                                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                                 $u_role = $result['u_role'];
                                 if ($u_role == 1) {
-                                    echo  "<b style = 'color:green' >แอดมิน</b>";
+                                    echo  "<b style = 'background-color: green;border-radius: 5px;padding: 4px;color:white' >เจ้าของร้าน</b>";
                                 } else if ($u_role == 2) {
-                                    echo "<b style = 'color:red' >ช่างซ่อม</b>";
+                                    echo "<b style = 'background-color: red;border-radius: 5px;padding: 4px;color:white' >พนักงาน</b>";
                                 }
                             }
                             ?><br>
