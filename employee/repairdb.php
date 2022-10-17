@@ -3,15 +3,17 @@
 <?php
 require '../config/connect.php';
 if (isset($_POST['add_repair'])) {
-    $repair_cname = $_POST['repair_cname'];
+    $repair_name = $_POST['repair_name'];
+    $repair_surname = $_POST['repair_surname'];
     $details = $_POST['details'];
     $emp_id = $_POST['employee_id'];
     $repair_price = $_POST['repair_price'];
     $repair_status = $_POST['repair_status'];
-    $query = "INSERT INTO repair(repair_cname,details,employee_id,repair_price,repair_status) VALUES (:repair_cname,:details,:employee_id,:repair_price,:repair_status)";
+    $query = "INSERT INTO repair(repair_name,repair_surname,details,employee_id,repair_price,repair_status) VALUES (:repair_name,:repair_surname,:details,:employee_id,:repair_price,:repair_status)";
     $query_run = $conn->prepare($query);
     $data = [
-        ':repair_cname' => $repair_cname,
+        ':repair_name' => $repair_name,
+        ':repair_surname' => $repair_surname,
         ':details' => $details,
         ':employee_id' => $emp_id,
         ':repair_price' => $repair_price,
@@ -50,17 +52,19 @@ if (isset($_POST['add_repair'])) {
 }
 if (isset($_POST['update_repair'])) {
     $repair_id = $_POST['repair_id'];
-    $repair_cname = $_POST['repair_cname'];
+    $repair_name = $_POST['repair_name'];
+    $repair_surname = $_POST['repair_surname'];
     $details = $_POST['details'];
     $emp_id = $_POST['employee_id'];
     $repair_price = $_POST['repair_price'];
     $repair_status = $_POST['repair_status'];
     try {
-        $query = "UPDATE repair SET repair_cname = :repair_cname,details = :details,employee_id = :employee_id,repair_price = :repair_price,repair_status = :repair_status WHERE repair_id = :repair_id";
+        $query = "UPDATE repair SET repair_name = :repair_name,repair_surname = :repair_surname,details = :details,employee_id = :employee_id,repair_price = :repair_price,repair_status = :repair_status WHERE repair_id = :repair_id";
         $stmt = $conn->prepare($query);
 
         $data = [
-            ':repair_cname' => $repair_cname,
+            ':repair_name' => $repair_name,
+            ':repair_surname' => $repair_surname,
             ':details' => $details,
             ':employee_id' => $emp_id,
             ':repair_price' => $repair_price,

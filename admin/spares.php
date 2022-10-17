@@ -147,7 +147,56 @@
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <h4>ข้อมูลอะไหล่</h4>
-                    <a href="add_spares.php" class="btn btn-outline-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลอะไหล่</a>
+                    <!-- <a href="add_spares.php" class="btn btn-outline-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลอะไหล่</a> -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addspareModal">
+                        <i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลอะไหล่
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="addspareModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลอะไหล่</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="crud.php" method="POST" class="row g-3">
+                                        <div class="col-md-6 mb-3">
+                                            <label>ชื่ออะไหล่:</label>
+                                            <input type="text" name="spare_name" class="form-control" />
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>รุ่นฝาสูบ</label>
+                                            <select name="model_id" class="form-select">
+                                                <?php
+                                                require '../config/connect.php';
+                                                $stmt = $conn->query("SELECT model_id,model_name FROM model");
+                                                $stmt->execute();
+                                                while ($row = $stmt->fetch()) {
+                                                ?>
+                                                    <option value="<?= $row['model_id']; ?>"><?= $row['model_name']; ?></option>
+                                                <?php }  ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>จำนวน:</label>
+                                            <input type="number" name="spare_quanlity" min="1" class="form-control" />
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>ราคา:</label>
+                                            <input type="text" name="spare_price" class="form-control" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <button type="submit" name="add_spare" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
+                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">

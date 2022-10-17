@@ -147,7 +147,34 @@
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <h4>ข้อมูลประเภทฝาสูบ</h4>
-                    <a href="add_model.php" class="btn btn-outline-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลรุ่นฝาสูบ</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addmodelModal">
+                        <i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลรุ่นฝาสูบ
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="addmodelModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลรุ่นฝาสูบ</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="crud.php" method="POST">
+                                        <div class="mb-3">
+                                            <label>ชื่อรุ่นฝาสูบ</label>
+                                            <input type="text" name="model_name" class="form-control" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <button type="submit" name="add_model" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
+                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">

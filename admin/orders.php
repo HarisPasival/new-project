@@ -162,45 +162,45 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="col">
-                                        <label class="form-label">ชื่อร้านที่สั่งซื้อ :</label>
-                                        <input type="text" name="shop_name" class="form-control" />
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>เลือก</th>
-                                                    <th>ชื่ออะไหล่</th>
-                                                    <th>ราคา</th>
-                                                    <th>จำนวนที่สั่งซื้อ</th>
-                                                    <th>รวม</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                require '../config/connect.php';
-                                                $sql = "SELECT sp.spare_id, sp.spare_name, sp.spare_price, sp.spare_quanlity, md.model_id, md.model_name
+                                    <form action="ordersDB.php" method="POST">
+                                        <div class="col">
+                                            <label class="form-label">ชื่อร้านที่สั่งซื้อ :</label>
+                                            <input type="text" name="shop_name" class="form-control" />
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>เลือก</th>
+                                                        <th>ชื่ออะไหล่</th>
+                                                        <th>ราคา</th>
+                                                        <th>จำนวนที่สั่งซื้อ</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    require '../config/connect.php';
+                                                    $sql = "SELECT sp.spare_id, sp.spare_name, sp.spare_price, sp.spare_quanlity, md.model_id, md.model_name
                                                 FROM spare sp
                                                 LEFT JOIN model md ON sp.model_id = md.model_id";
-                                                $stmt = $conn->query($sql);
-                                                while ($row = $stmt->fetch()) {
-                                                ?>
-                                                    <tr>
-                                                        <td><input class="form-check-input" type="checkbox"></td>
-                                                        <td><?=$row['spare_name']?></td>
-                                                        <td><?=$row['spare_price']?></td>
-                                                        <td><input type="number" name="" min="1" class="form-control"></td>
-                                                        <td><input type="number" name="" class="form-control"></td>
-                                                    </tr>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="mt-2">
-                                        <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-location-arrow"></i> สั่งซื้ออะไหล่</button>
-                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</button>
-                                    </div>
+                                                    $stmt = $conn->query($sql);
+                                                    while ($row = $stmt->fetch()) {
+                                                    ?>
+                                                        <tr>
+                                                            <td><input class="form-check-input" type="checkbox"></td>
+                                                            <td><?= $row['spare_name'] ?></td>
+                                                            <td><?= $row['spare_price'] ?></td>
+                                                            <td><input type="number" name="order_quanlity" min="1" class="form-control"></td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="mt-2">
+                                            <button type="button" name="confirm_orders" class="btn btn-outline-success"><i class="fa-solid fa-location-arrow"></i> สั่งซื้ออะไหล่</button>
+                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -224,7 +224,7 @@
                                             <th>จำนวนที่สั่งซื้อ</th>
                                             <th>วันที่สั่งซื้อ</th>
                                             <th>สถานะ</th>
-                                            <th>จัดการ</th>
+                                            <th>อัพเดตสถานะ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -239,20 +239,21 @@
                                         ?>
                                             <tr>
                                                 <td><input class="form-check-input" type="checkbox"></td>
-                                                <td><?=$row['shop_name']?></td>
-                                                <td><?=$row['spare_name']?></td>
-                                                <td><?=$row['order_quanlity']?></td>
-                                                <td><?=$row['order_date']?></td>
+                                                <td><?= $row['shop_name'] ?></td>
+                                                <td><?= $row['spare_name'] ?></td>
+                                                <td><?= $row['order_quanlity'] ?></td>
+                                                <td><?= $row['order_date'] ?></td>
                                                 <td>
                                                     <?php
-                                                    if($orders_status == 1){
+                                                    if ($orders_status == 1) {
                                                         echo "<b style = 'background-color: yellow;border-radius: 5px;padding: 5px;color:white' >สั่งซื้อแล้ว</b>";
-                                                    }else if($orders_status == 2){
+                                                    } else if ($orders_status == 2) {
                                                         echo "<b style = 'background-color: green;border-radius: 5px;padding: 5px;color:white' >รับเข้าแล้ว</b>";
                                                     }
                                                     ?>
                                                 </td>
                                                 <td>
+                                                <a href="update_ststus.php?order_id=<?= $row['order_id'] ?>" class="btn btn-warning btn-sm text-white"><i class="fa-solid fa-square-pen"></i> ปรับสถานะ</a>
                                                     <!-- <form action="crud.php" method="POST">
                                                         <a href="view_customer.php?customer_id=<?= $row['customer_id'] ?>" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
                                                         <a href="update_customer.php?customer_id=<?= $row['customer_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>

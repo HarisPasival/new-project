@@ -148,9 +148,13 @@ session_start();
                                         }
                                         ?>
                                         <input type="hidden" name="employee_id" value="<?= $row['employee_id'] ?>">
-                                        <div class="col-12">
-                                            <label class="form-label">ชื่อลูกค้าที่มาซ่อม :</label>
-                                            <input type="text" name="repair_cname" class="form-control" />
+                                        <div class="col-6">
+                                            <label class="form-label">ชื่อลูกค้า :</label>
+                                            <input type="text" name="repair_name" class="form-control" />
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label">นามสกุล :</label>
+                                            <input type="text" name="repair_surname" class="form-control" />
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label">สาเหตุที่เสีย :</label>
@@ -162,8 +166,8 @@ session_start();
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">สถานะการซ่อม :</label>
-                                            <select name="repair_status" class="form-select text-danger" disabled>
-                                                <option selected value="1">รอยืนยันการซ่อม</option>
+                                            <select name="repair_status" class="form-select text-danger">
+                                                <option value="1">รอยืนยันการซ่อม</option>
                                                 <option value="2">ยืนยันแล้ว</option>
                                                 <option value="3">กำลังซ่อม</option>
                                                 <option value="4">ซ่อมเสร็จแล้ว</option>
@@ -208,7 +212,7 @@ session_start();
                                         require '../config/connect.php';
                                         if (isset($_SESSION['Emp_login'])) {
                                             $emp_id = $_SESSION['Emp_login'];
-                                            $sql = "SELECT re.repair_id, re.repair_date, re.repair_cname, re.details, re.repair_status, em.employee_id, em.name_emp, em.surname_emp
+                                            $sql = "SELECT re.repair_id, re.repair_date, re.repair_name, re.repair_surname, re.details, re.repair_status, em.employee_id, em.name_emp, em.surname_emp
                                         FROM repair re
                                         left JOIN employee em ON re.employee_id = em.employee_id
                                         WHERE em.employee_id = $emp_id";
@@ -220,7 +224,7 @@ session_start();
                                             <tr>
                                                 <td><?= $i++ ?></td>
                                                 <td><?= $row['repair_date']; ?></td>
-                                                <td><?= $row['repair_cname']; ?></td>
+                                                <td><?= $row['repair_name'] . ' ' . $row['repair_surname']; ?></td>
                                                 <td><?= $row['details']; ?></td>
                                                 <td><?= $row['name_emp'] . ' ' . $row['surname_emp']; ?></td>
                                                 <td>

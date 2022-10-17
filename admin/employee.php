@@ -183,8 +183,8 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label">ตำแหน่ง :</label>
-                                            <select name="u_role" class="form-control text-danger text-center" required>
-                                                <option selected>-- เลือกสิทธิ์ --</option>
+                                            <select name="u_role" class="form-select" required>
+                                                <option selected>เลือกสิทธิ์</option>
                                                 <option value="1">เจ้าของร้าน</option>
                                                 <option value="2">พนักงาน</option>
                                             </select>

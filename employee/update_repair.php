@@ -152,9 +152,13 @@ session_start();
                                     <label class="form-label">วันที่แจ้งซ่อม :</label>
                                     <input type="datetime-local" name="repair_date" value="<?= $result['repair_date'] ?>" class="form-control" readonly />
                                 </div>
-                                <div class="col-12">
-                                    <label class="form-label">ชื่อลูกค้าที่มาซ่อม :</label>
-                                    <input type="text" name="repair_cname" value="<?= $result['repair_cname'] ?>" class="form-control" />
+                                <div class="col-4">
+                                    <label class="form-label">ชื่อลูกค้า :</label>
+                                    <input type="text" name="repair_name" value="<?= $result['repair_name'] ?>" class="form-control" />
+                                </div>
+                                <div class="col-4">
+                                    <label class="form-label">นามสกุล :</label>
+                                    <input type="text" name="repair_surname" value="<?= $result['repair_surname'] ?>" class="form-control" />
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">สาเหตุที่เสีย :</label>
@@ -179,7 +183,7 @@ session_start();
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">สถานะการซ่อม :</label>
-                                    <select name="repair_status" class="form-control">
+                                    <select name="repair_status" class="form-select">
                                         <option value="1" <?php if ($result['repair_status'] == 1) { ?> selected="selected" <?php } ?>>รอยืนยันการซ่อม</option>
                                         <option value="2" <?php if ($result['repair_status'] == 2) { ?> selected="selected" <?php } ?>>ยืนยันแล้ว</option>
                                         <option value="3" <?php if ($result['repair_status'] == 3) { ?> selected="selected" <?php } ?>>กำลังซ่อม</option>
