@@ -163,42 +163,29 @@
                                 </div>
                                 <div class="modal-body">
                                     <form action="ordersDB.php" method="POST">
-                                        <div class="col">
-                                            <label class="form-label">ชื่อร้านที่สั่งซื้อ :</label>
-                                            <input type="text" name="shop_name" class="form-control" />
-                                        </div>
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>เลือก</th>
-                                                        <th>ชื่ออะไหล่</th>
-                                                        <th>ราคา</th>
-                                                        <th>จำนวนที่สั่งซื้อ</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>ชื่ออะไหล่:</label>
+                                                <select name="spare_id" class="form-select">
                                                     <?php
                                                     require '../config/connect.php';
-                                                    $sql = "SELECT sp.spare_id, sp.spare_name, sp.spare_price, sp.spare_quanlity, md.model_id, md.model_name
-                                                FROM spare sp
-                                                LEFT JOIN model md ON sp.model_id = md.model_id";
-                                                    $stmt = $conn->query($sql);
+                                                    $stmt = $conn->query("SELECT spare_id,spare_name FROM spare");
+                                                    $stmt->execute();
                                                     while ($row = $stmt->fetch()) {
                                                     ?>
-                                                        <tr>
-                                                            <td><input class="form-check-input" type="checkbox"></td>
-                                                            <td><?= $row['spare_name'] ?></td>
-                                                            <td><?= $row['spare_price'] ?></td>
-                                                            <td><input type="number" name="order_quanlity" min="1" class="form-control"></td>
-                                                        </tr>
-                                                    <?php } ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="mt-2">
-                                            <button type="button" name="confirm_orders" class="btn btn-outline-success"><i class="fa-solid fa-location-arrow"></i> สั่งซื้ออะไหล่</button>
-                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</button>
+                                                        <option value="<?= $row['spare_id']; ?>"><?= $row['spare_name']; ?></option>
+                                                    <?php }  ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>จำนวนที่สั่งซื้อ</label>
+                                                <input type="number" name="order_quanlity" min="1" class="form-control">
+                                            </div>
+                                            <input type="hidden" name="orders_status" value="1">
+                                            <div class="mb-3 mt-2">
+                                                <button class="btn btn-outline-success" name="add_orders"><i class="fa-solid fa-location-arrow"></i> เพิ่มรายการสั่งซื้อ</button>
+                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -219,7 +206,6 @@
                                     <thead>
                                         <tr>
                                             <th>เลือก</th>
-                                            <th>ชื่อร้านที่สั่งซื้อ</th>
                                             <th>ชื่ออะไหล่</th>
                                             <th>จำนวนที่สั่งซื้อ</th>
                                             <th>วันที่สั่งซื้อ</th>
@@ -230,7 +216,7 @@
                                     <tbody>
                                         <?php
                                         require '../config/connect.php';
-                                        $sql = "SELECT od.order_id, od.shop_name, od.order_quanlity, od.order_date,od.orders_status, sp.spare_id, sp.spare_name 
+                                        $sql = "SELECT od.order_id, od.order_quanlity, od.order_date,od.orders_status, sp.spare_id, sp.spare_name 
                                         FROM orders od 
                                         LEFT JOIN spare sp ON od.spare_id = sp.spare_id";
                                         $stmt = $conn->query($sql);
@@ -239,7 +225,6 @@
                                         ?>
                                             <tr>
                                                 <td><input class="form-check-input" type="checkbox"></td>
-                                                <td><?= $row['shop_name'] ?></td>
                                                 <td><?= $row['spare_name'] ?></td>
                                                 <td><?= $row['order_quanlity'] ?></td>
                                                 <td><?= $row['order_date'] ?></td>
@@ -253,7 +238,7 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                <a href="update_ststus.php?order_id=<?= $row['order_id'] ?>" class="btn btn-warning btn-sm text-white"><i class="fa-solid fa-square-pen"></i> ปรับสถานะ</a>
+                                                    <a href="update_ststus.php?order_id=<?= $row['order_id'] ?>" class="btn btn-warning btn-sm text-white"><i class="fa-solid fa-square-pen"></i> ปรับสถานะ</a>
                                                     <!-- <form action="crud.php" method="POST">
                                                         <a href="view_customer.php?customer_id=<?= $row['customer_id'] ?>" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
                                                         <a href="update_customer.php?customer_id=<?= $row['customer_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
