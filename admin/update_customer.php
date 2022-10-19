@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/form.css" />
     <title>แก้ไขข้อมูลลูกค้า</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');

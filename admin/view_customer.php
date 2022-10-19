@@ -182,42 +182,6 @@
                             <div class="mb-3 mt-2">
                                 <a href="customer.php" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
                             </div>
-                            <!-- <form action="crud.php" method="POST" class="row g-3">
-                                <input type="hidden" name="customer_id" value="<?= $result['customer_id'] ?>">
-                                <div class="col-md-6">
-                                    <label class="form-label">ชื่อ :</label>
-                                    <input type="text" name="name_ct" value="<?= $result['name_ct'] ?>" class="form-control" />
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">นามสกุล :</label>
-                                    <input type="text" name="surname_ct" value="<?= $result['surname_ct'] ?>" class="form-control" />
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">ชื่อผู้ใช้ :</label>
-                                    <input type="text" name="username_ct" value="<?= $result['username_ct'] ?>" class="form-control" readonly />
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">รหัสผ่าน :</label>
-                                    <input type="password" name="password_ct" id="myPassword" value="<?= $result['password_ct'] ?>" class="form-control" />
-                                    <input type="checkbox" onclick="passShow()">
-                                    <label>แสดงรหัสผ่าน</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">เบอร์โทรศัพท์:</label>
-                                    <input type="text" name="phone_ct" value="<?= $result['phone_ct'] ?>" class="form-control" />
-                                </div>
-                                <div class="col-md-8">
-                                    <label class="form-label">อีเมล:</label>
-                                    <input type="email" name="email_ct" value="<?= $result['email_ct'] ?>" class="form-control" />
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label">ที่อยู่:</label>
-                                    <input type="text" name="address_ct" value="<?= $result['address_ct'] ?>" class="form-control" />
-                                </div>
-                                <div class="mb-3">
-                                    <a href="customer.php" class="btn btn-danger">ย้อนกลับ</a>
-                                </div>
-                            </form> -->
                         </div>
                     </div>
                 </div>

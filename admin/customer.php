@@ -152,7 +152,7 @@
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addcustomerModal">
                         <i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลลูกค้า</a>
                     </button>
-                    <!-- Modal -->
+                    <!-- Modal add customer-->
                     <div class="modal fade" id="addcustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -164,33 +164,33 @@
                                     <form action="crud.php" method="POST" class="row g-3">
                                         <div class="col-md-6">
                                             <label class="form-label">ชื่อ :</label>
-                                            <input type="text" name="name_ct" class="form-control" required/>
+                                            <input type="text" name="name_ct" class="form-control" required />
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">นามสกุล :</label>
-                                            <input type="text" name="surname_ct" class="form-control" required/>
+                                            <input type="text" name="surname_ct" class="form-control" required />
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">ชื่อผู้ใช้ :</label>
-                                            <input type="text" name="username_ct" class="form-control" required/>
+                                            <input type="text" name="username_ct" class="form-control" required />
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">รหัสผ่าน :</label>
-                                            <input type="password" name="password_ct" id="myPassword" maxlength="6" class="form-control" required/>
+                                            <input type="password" name="password_ct" id="myPassword" maxlength="6" class="form-control" required />
                                             <input type="checkbox" onclick="passShow()">
                                             <label>แสดงรหัสผ่าน</label>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label">เบอร์โทรศัพท์:</label>
-                                            <input type="text" name="phone_ct"  maxlength="10" class="form-control" required/>
+                                            <input type="text" name="phone_ct" maxlength="10" class="form-control" required />
                                         </div>
                                         <div class="col-md-8">
                                             <label class="form-label">อีเมล:</label>
-                                            <input type="email" name="email_ct" class="form-control" required/>
+                                            <input type="email" name="email_ct" class="form-control" required />
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label">ที่อยู่:</label>
-                                            <input type="text" name="address_ct" class="form-control" required/>
+                                            <input type="text" name="address_ct" class="form-control" required />
                                         </div>
                                         <div class="mb-3">
                                             <button type="submit" name="add_cus" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
@@ -239,12 +239,23 @@
                                                 <td><?= $row['email_ct']; ?></td>
                                                 <td><?= $row['address_ct']; ?></td>
                                                 <td>
+                                                    <div>
+                                                        <button data-bs-toggle="modal" data-bs-target="#edit_customerModal<?= $row['customer_id']; ?>" type="button" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></button>
+                                                        <button type="submit" name="delete_cus" value="<?= $row['customer_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                                    </div>
+                                                </td>
+
+                                                <!-- include crud modal -->
+                                                <?php require 'edit_cus.php' ?>
+                                                <!-- include crud modal -->
+
+                                                <!-- <td>
                                                     <form action="crud.php" method="POST">
                                                         <a href="view_customer.php?customer_id=<?= $row['customer_id'] ?>" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
                                                         <a href="update_customer.php?customer_id=<?= $row['customer_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
                                                         <button type="submit" name="delete_cus" value="<?= $row['customer_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                                                     </form>
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         <?php } ?>
                                     </tbody>
