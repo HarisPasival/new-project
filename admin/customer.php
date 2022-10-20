@@ -246,7 +246,7 @@
                                                 </td>
 
                                                 <!-- include crud modal -->
-                                                <?php require 'edit_cus.php' ?>
+                                                <?php require 'popup/edit_cus.php' ?>
                                                 <!-- include crud modal -->
 
                                                 <!-- <td>

@@ -169,7 +169,7 @@
                                                 <select name="spare_id" class="form-select">
                                                     <?php
                                                     require '../config/connect.php';
-                                                    $stmt = $conn->query("SELECT spare_id,spare_name FROM spare");
+                                                    $stmt = $conn->query("SELECT * FROM spare");
                                                     $stmt->execute();
                                                     while ($row = $stmt->fetch()) {
                                                     ?>
@@ -198,53 +198,56 @@
                 <div class="col-md-12 mb-3 mt-2">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> ตารางข้อมูลการสั่งซื้อ</span>
+                            <span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> ตารางข้อมูลการสั่งซื้อทั้งหมด</span>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example" class="table table-hover dt-responsive nowrap data-table" style="width: 100%">
                                     <thead>
                                         <tr>
-                                            <th>เลือก</th>
-                                            <th>ชื่ออะไหล่</th>
-                                            <th>จำนวนที่สั่งซื้อ</th>
-                                            <th>วันที่สั่งซื้อ</th>
-                                            <th>สถานะ</th>
-                                            <th>อัพเดตสถานะ</th>
+                                            <th class="text-center">ลำดับ</th>
+                                            <th class="text-center">ชื่ออะไหล่</th>
+                                            <th class="text-center">ราคา</th>
+                                            <th class="text-center">จำนวนที่สั่งซื้อ</th>
+                                            <th class="text-center">วันที่สั่งซื้อ</th>
+                                            <th class="text-center">สถานะ</th>
+                                            <th class="text-center">อัพเดตสถานะ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
+                                        $i = 1;
                                         require '../config/connect.php';
-                                        $sql = "SELECT od.order_id, od.order_quanlity, od.order_date,od.orders_status, sp.spare_id, sp.spare_name 
-                                        FROM orders od 
-                                        LEFT JOIN spare sp ON od.spare_id = sp.spare_id";
+                                        $sql = "SELECT od.order_id, od.order_quanlity, od.order_date, od.orders_status, sp.spare_id, sp.spare_name, sp.spare_price
+                                                FROM orders od
+                                                LEFT JOIN spare sp ON od.spare_id = sp.spare_id";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
                                             $orders_status = $row['orders_status'];
                                         ?>
                                             <tr>
-                                                <td><input class="form-check-input" type="checkbox"></td>
-                                                <td><?= $row['spare_name'] ?></td>
-                                                <td><?= $row['order_quanlity'] ?></td>
-                                                <td><?= $row['order_date'] ?></td>
-                                                <td>
+                                                <td class="text-center"><?= $i++ ?></td>
+                                                <td class="text-center"><?= $row['spare_name'] ?></td>
+                                                <td class="text-center"><?= $row['spare_price'] ?></td>
+                                                <td class="text-center"><?= $row['order_quanlity'] ?></td>
+                                                <td class="text-center"><?= $row['order_date'] ?></td>
+                                                <td class="text-center">
                                                     <?php
                                                     if ($orders_status == 1) {
-                                                        echo "<b style = 'background-color: yellow;border-radius: 5px;padding: 5px;color:white' >สั่งซื้อแล้ว</b>";
+                                                        echo "<b style = 'color:gold' >สั่งซื้อแล้ว</b>";
                                                     } else if ($orders_status == 2) {
-                                                        echo "<b style = 'background-color: green;border-radius: 5px;padding: 5px;color:white' >รับเข้าแล้ว</b>";
+                                                        echo "<b style = 'color:green' >รับเข้าแล้ว</b>";
                                                     }
                                                     ?>
                                                 </td>
-                                                <td>
-                                                    <a href="update_ststus.php?order_id=<?= $row['order_id'] ?>" class="btn btn-warning btn-sm text-white"><i class="fa-solid fa-square-pen"></i> ปรับสถานะ</a>
-                                                    <!-- <form action="crud.php" method="POST">
-                                                        <a href="view_customer.php?customer_id=<?= $row['customer_id'] ?>" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
-                                                        <a href="update_customer.php?customer_id=<?= $row['customer_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
-                                                        <button type="submit" name="delete_cus" value="<?= $row['customer_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                                                    </form> -->
+                                                <td class="text-center">
+                                                    <div>
+                                                        <button data-bs-toggle="modal" data-bs-target="#edit_orderModal<?= $row['order_id']; ?>" type="button" class="btn btn-warning btn-sm text-white"><i class="fa-solid fa-square-pen"></i> ปรับสถานะ</button>
+                                                    </div>
                                                 </td>
+                                                <!-- include crud modal -->
+                                                <?php require 'popup/edit_orders.php' ?>
+                                                <!-- include crud modal -->
                                             </tr>
                                         <?php } ?>
                                     </tbody>
