@@ -56,12 +56,6 @@ session_start();
                         </div>
                     </li>
                     <li>
-                        <a href="add_repair.php" class="nav-link active px-3">
-                            <span class="me-2"><i class="fa-solid fa-screwdriver-wrench"></i></span>
-                            <span>แบบฟอร์มการแจ้งซ่อม</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="repair.php" class="nav-link px-3">
                             <span class="me-2"><i class="fa-solid fa-toolbox"></i></span>
                             <span>รายการซ่อมทั้งหมด</span>
@@ -154,15 +148,15 @@ session_start();
                                 </div>
                                 <div class="col-4">
                                     <label class="form-label">ชื่อลูกค้า :</label>
-                                    <input type="text" name="repair_name" value="<?= $result['repair_name'] ?>" class="form-control" />
+                                    <input type="text" name="repair_name" value="<?= $result['repair_name'] ?>" class="form-control" readonly/>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-label">นามสกุล :</label>
-                                    <input type="text" name="repair_surname" value="<?= $result['repair_surname'] ?>" class="form-control" />
+                                    <input type="text" name="repair_surname" value="<?= $result['repair_surname'] ?>" class="form-control" readonly/>
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">สาเหตุที่เสีย :</label>
-                                    <input type="text" name="details" value="<?= $result['details'] ?>" class="form-control"></input>
+                                    <input type="text" name="details" value="<?= $result['details'] ?>" class="form-control" readonly/>
                                 </div>
                                 <div class="col-12">
                                     <?php
@@ -175,11 +169,11 @@ session_start();
                                     }
                                     ?>
                                     <label class="form-label">ผู้รับซ่อม :</label>
-                                    <input type="text" name="employee_id" value="<?= $row['employee_id'] . ' : ' . $row['name_emp'] . ' ' . $row['surname_emp']; ?>" class="form-control">
+                                    <input type="text" name="employee_id" value="<?= $row['employee_id'] . ' : ' . $row['name_emp'] . ' ' . $row['surname_emp']; ?>" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">ราคาค่าซ่อม:</label>
-                                    <input type="number" min="1" name="repair_price" value="<?= $result['repair_price'] ?>" class="form-control" />
+                                    <input type="number" min="1" name="repair_price" value="<?= $result['repair_price'] ?>" class="form-control" readonly/>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">สถานะการซ่อม :</label>
@@ -193,8 +187,8 @@ session_start();
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="update_repair" class="btn btn-warning">แก้ไขรายการซ่อม</button>
-                                    <a href="repair.php" class="btn btn-danger">ย้อนกลับ</a>
+                                    <button type="submit" name="update_repair" class="btn btn-outline-warning"><i class="fa-solid fa-circle-check"></i> ปรับสถานะการซ่อม</button>
+                                    <a href="repair.php" class="btn btn-outline-danger"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</a>
                                 </div>
                             </form>
                         </div>

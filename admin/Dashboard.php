@@ -24,125 +24,10 @@ session_start();
 
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasExample">
-                <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
-            </button>
-            <a class="navbar-brand me-auto ms-lg-0 ms-3 fw-bold" href="#">Khawna Phasoob</a>
-        </div>
-    </nav>
+    <?php include '../navbarsideter/navbar.php' ?>
     <!-- navbar -->
     <!-- sidebar -->
-    <div class="offcanvas offcanvas-start sidebar-nav bg-dark" tabindex="-1" id="sidebar">
-        <div class="offcanvas-body p-0">
-            <nav class="navbar-dark">
-                <ul class="navbar-nav">
-                    <li class="mt-3">
-                        <div class="text-muted small fw-bold px-3">
-                            แดชบอร์ด
-                        </div>
-                    </li>
-                    <li>
-                        <a href="Dashboard.php" class="nav-link active px-3 mt-3 my-3">
-                            <span class="me-2"><i class="fa-solid fa-table-columns"></i></span>
-                            <span>หน้าหลัก</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold px-3 mb-3">
-                            ข้อมูลผู้ใช้ระบบ
-                        </div>
-                    </li>
-                    <li>
-                        <a href="employee.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-user-tie"></i></span>
-                            <span>ข้อมูลพนักงาน</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="customer.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-user"></i></span>
-                            <span>ข้อมูลลูกค้า</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            ข้อมูลพื้นฐาน
-                        </div>
-                    </li>
-                    <li>
-                        <a href="spares.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-car-rear"></i></span>
-                            <span>ข้อมูลอะไหล่</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="model.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-car-side"></i></span>
-                            <span>ข้อมูลประเภทฝาสูบ</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            ข้อมูลการสั่งซื้อ
-                        </div>
-                    </li>
-                    <li>
-                        <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts">
-                            <span class="me-2"><i class="fa-solid fa-cart-shopping"></i></span>
-                            <span>สั่งซื้ออะไหล่</span>
-                            <span class="ms-auto">
-                                <span class="right-icon">
-                                    <i class="fa-solid fa-sort-down"></i>
-                                </span>
-                            </span>
-                        </a>
-                        <div class="collapse" id="layouts">
-                            <ul class="navbar-nav ps-3">
-                                <li>
-                                    <a href="orders.php" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa-solid fa-cart-plus"></i></span>
-                                        <span>รายการที่ทำการสั่งซื้อ</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span>
-                                        <span>รายการที่ทำการรับเข้าแล้ว</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            รายงาน
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-flag"></i></span>
-                            <span>รายงานการสั่งซื้ออะไหล่</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-flag"></i></span>
-                            <span>รายงานการรับเข้าอะไหล่</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../Logout.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-right-from-bracket" style="color: red;"></i></span>
-                            <span>ออกจากระบบ</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </nav>
-        </div>
-    </div>
+    <?php include '../navbarsideter/sidebar.php' ?>
     <!-- sidebar -->
     <!-- content -->
     <main class="mt-5 pt-3">
@@ -178,7 +63,7 @@ session_start();
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-white"><i class="fa-solid fa-toolbox"></i> รายการซ่อมทั้งหมด</span> 
+                            <span class="text-white"><i class="fa-solid fa-toolbox"></i> รายการซ่อมทั้งหมด</span>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -191,7 +76,6 @@ session_start();
                                             <th>สาเหตุที่เสีย</th>
                                             <th>ผู้รับซ่อม</th>
                                             <th>สถานะ</th>
-                                            <th>จัดการ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -203,7 +87,7 @@ session_start();
                                         left JOIN employee em ON re.employee_id = em.employee_id";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
-                                        $repair_status = $row['repair_status'];
+                                            $repair_status = $row['repair_status'];
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
@@ -229,12 +113,6 @@ session_start();
                                                     }
                                                     ?>
                                                 </td>
-                                                <td>
-                                                    <form action="repairdb.php.php" method="POST">
-                                                        <a href="../employee/view_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
-                                                        <a href="../employee/update_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
-                                                    </form>
-                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -245,6 +123,7 @@ session_start();
                 </div>
             </div>
         </div>
+        <?php include '../navbarsideter/footer.php' ?>
     </main>
     <!-- end content -->
     <script src="../js/bootstrap.bundle.min.js"></script>

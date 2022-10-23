@@ -18,6 +18,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -179,16 +180,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>รุ่นฝาสูบ</label>
-                                    <select name="model_id" class="form-control">
-                                        <?php
-                                        require '../config/connect.php';
-                                        $stmt = $conn->query("SELECT model_id,model_name FROM model");
-                                        $stmt->execute();
-                                        while ($row = $stmt->fetch()) {
-                                        ?>
-                                            <option value="<?= $row['model_id']; ?>"><?= $row['model_name'];?></option>
-                                        <?php }  ?>
-                                    </select>
+                                    <input type="text" name="model_name" class="form-control" />
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>จำนวน:</label>

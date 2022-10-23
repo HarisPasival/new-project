@@ -1,6 +1,6 @@
     <!-- Modal update customer-->
     <div class="modal fade" id="edit_customerModal<?= $row['customer_id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูลลูกค้า</h5>
@@ -23,16 +23,10 @@
                                 <input type="text" name="username_ct" value="<?= $row['username_ct'] ?>" class="form-control" readonly />
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">รหัสผ่าน :</label>
-                                <input type="password" name="password_ct" id="myPassword" maxlength="6" value="<?= $row['password_ct'] ?>" class="form-control" />
-                                <input type="checkbox" onclick="passShow()">
-                                <label>แสดงรหัสผ่าน</label>
-                            </div>
-                            <div class="col-md-4">
                                 <label class="form-label">เบอร์โทรศัพท์:</label>
-                                <input type="text" name="phone_ct" value="<?= $row['phone_ct'] ?>" class="form-control" />
+                                <input type="text" name="phone_ct" value="<?= $row['phone_ct'] ?>" maxlength="10" class="form-control" />
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-12">
                                 <label class="form-label">อีเมล:</label>
                                 <input type="email" name="email_ct" value="<?= $row['email_ct'] ?>" class="form-control" />
                             </div>

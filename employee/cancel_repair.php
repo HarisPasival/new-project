@@ -35,14 +35,22 @@ session_start();
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-2">
-                    <h4>รายการซ่อมที่ส่งมอบแล้ว</h4>
+                    <h4>รายการซ่อมที่ยกเลิก</h4>
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addrepairModal">
+                        <i class="fa-solid fa-list-check"></i>
+                        <a href="repair.php" class="btn btn-dark"> รายการซ่อมทั้งหมด</a>
+                        <a href="wait_repair.php" class="btn btn-warning"> รายการซ่อมที่รอยืนยัน</a>
+                        <a href="confirm_repair.php" class="btn btn-primary"> รายการซ่อมที่ยืนยันแล้ว</a>
+                        <a href="ecxecute_repair.php" class="btn btn-info"> รายการซ่อมที่กำลังซ่อม</a>
+                        <a href="cancel_repair.php" class="btn btn-danger"> รายการซ่อมที่ยกเลิก</a>
+                    </button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3 mt-2">
                     <div class="card">
-                        <div class="card-header bg-primary">
-                            <span class="text-light"><i class="fa-solid fa-toolbox"></i> ตารางรายการซ่อมที่ส่งมอบแล้ว</span>
+                        <div class="card-header bg-danger">
+                            <span class="text-light"><i class="fa-solid fa-toolbox"></i> ตารางายการซ่อมที่ยกเลิก</span>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -53,7 +61,7 @@ session_start();
                                             <th>วันที่แจ้งซ่อม</th>
                                             <th>ชื่อลูกค้าที่มาซ่อม</th>
                                             <th>สาเหตุที่เสีย</th>
-                                            <th>ผู้ส่งมอบ</th>
+                                            <th>ผู้แจ้งซ่อม</th>
                                             <th>สถานะ</th>
                                         </tr>
                                     </thead>
@@ -66,7 +74,7 @@ session_start();
                                             $sql = "SELECT re.repair_id, re.repair_date, re.repair_name, re.repair_surname, re.details, re.repair_status, em.employee_id, em.name_emp, em.surname_emp
                                         FROM repair re
                                         LEFT JOIN employee em ON re.employee_id = em.employee_id
-                                        WHERE em.employee_id = $emp_id AND re.repair_status = 5";
+                                        WHERE em.employee_id = $emp_id AND re.repair_status = 6";
                                             $stmt = $conn->query($sql);
                                         }
                                         while ($row = $stmt->fetch()) {
@@ -92,7 +100,6 @@ session_start();
                                                         echo "<b style = 'background-color: DodgerBlue;border-radius: 5px;padding: 5px;color:black' >ส่งมอบเรียบร้อย</b>";
                                                     } else if ($repair_status == 6) {
                                                         echo "<b style = 'background-color: red;border-radius: 5px;padding: 5px;color:black' >ยกเลิก</b>";
-                                                        // echo "<b style = 'color:red' >ยกเลิก</b>";
                                                     }
                                                     ?>
                                                 </td>

@@ -30,8 +30,17 @@
     <main class="mt-5 pt-3">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    <h4>หน้าแรก</h4>
+                <div class="col-12">
+                    <h4>ติดตามสถานะการซ่อม</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control">
+                        <span class="text-success">* กรอกรหัสใบแจ้งซ่อมที่ทางร้านให้มาเพื่อติดตามสถานะการซ่อม</span>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" name="Search for" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i> ติดตามสถานะการซ่อม</button>
+                    </div>
                 </div>
             </div>
         </div>

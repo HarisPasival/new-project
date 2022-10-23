@@ -25,80 +25,10 @@ session_start();
 
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasExample">
-                <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
-            </button>
-            <a class="navbar-brand me-auto ms-lg-0 ms-3 fw-bold" href="#">Khawna Phasoob</a>
-        </div>
-    </nav>
+    <?php include '../navcus/navbar.php' ?>
     <!-- navbar -->
     <!-- sidebar -->
-    <div class="offcanvas offcanvas-start sidebar-nav bg-dark" tabindex="-1" id="sidebar">
-        <div class="offcanvas-body p-0">
-            <nav class="navbar-dark">
-                <ul class="navbar-nav">
-                    <li class="mt-3">
-                        <div class="text-muted small fw-bold px-3">
-                            แดชบอร์ด
-                        </div>
-                    </li>
-                    <li>
-                        <a href="Home_Customer.php" class="nav-link px-3 mt-3 my-3">
-                            <span class="me-2"><i class="fa-solid fa-table-columns"></i></span>
-                            <span>หน้าหลัก</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold px-3 mb-3">
-                            การซ่อม
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-signal"></i></span>
-                            <span>ติดตามสถานะการซ่อม</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-calendar-week"></i></span>
-                            <span>ดูรายละเอียดการซ่อม</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            ชำระเงิน
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-regular fa-credit-card"></i></span>
-                            <span>รายการชำระเงิน</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            โปรไฟล์
-                        </div>
-                    </li>
-                    <li>
-                        <a href="profile_cus.php" class="nav-link active px-3">
-                            <span class="me-2"><i class="fa-solid fa-user-pen"></i></span>
-                            <span>แก้ไขข้อมูลส่วนตัว</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../Logout.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-right-from-bracket" style="color: red;"></i></span>
-                            <span>ออกจากระบบ</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
+    <?php include '../navcus/sidebar.php' ?>
     <!-- sidebar -->
     <!-- content -->
     <main class="mt-5 pt-3">
@@ -118,19 +48,19 @@ session_start();
                             <span class="text-light">แก้ไขข้อมูลส่วนตัว</span>
                         </div>
                         <div class="card-body">
-                        <?php
+                            <?php
                             require '../config/connect.php';
                             if (isset($_SESSION['login_cus'])) {
                                 $customer_id = $_SESSION['login_cus'];
                                 $query = "SELECT * FROM customer WHERE customer_id =:customer_id";
                                 $stmt = $conn->prepare($query);
                                 $data = [':customer_id' => $customer_id];
-                                $stmt->execute($data); 
+                                $stmt->execute($data);
                                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                             }
                             ?>
                             <form action="procusdb.php" method="POST" class="row g-3">
-                            <input type="hidden" name="customer_id" value="<?= $row['customer_id'] ?>">
+                                <input type="hidden" name="customer_id" value="<?= $row['customer_id'] ?>">
                                 <div class="col-md-6">
                                     <label class="form-label">ชื่อ :</label>
                                     <input type="text" name="name_ct" value="<?= $row['name_ct'] ?>" class="form-control" />
@@ -141,7 +71,7 @@ session_start();
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">ชื่อผู้ใช้ :</label>
-                                    <input type="text" name="username_ct" value="<?= $row['username_ct'] ?>" class="form-control" readonly/>
+                                    <input type="text" name="username_ct" value="<?= $row['username_ct'] ?>" class="form-control" readonly />
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">รหัสผ่าน :</label>
@@ -170,6 +100,7 @@ session_start();
                 </div>
             </div>
         </div>
+        <?php include '../navcus/footer.php' ?>
     </main>
     <!-- content -->
     <script src="../js/bootstrap.bundle.min.js"></script>

@@ -25,97 +25,10 @@ session_start();
 
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasExample">
-                <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
-            </button>
-            <a class="navbar-brand me-auto ms-lg-0 ms-3 fw-bold" href="#">Khawna Phasoob</a>
-        </div>
-    </nav>
+    <?php include '../navemp/navbar.php' ?>
     <!-- navbar -->
     <!-- sidebar -->
-    <div class="offcanvas offcanvas-start sidebar-nav bg-dark" tabindex="-1" id="sidebar">
-        <div class="offcanvas-body p-0">
-            <nav class="navbar-dark">
-                <ul class="navbar-nav">
-                    <li class="mt-3">
-                        <div class="text-muted small fw-bold px-3">
-                            แดชบอร์ด
-                        </div>
-                    </li>
-                    <li>
-                        <a href="Home_Employee.php" class="nav-link px-3 mt-3 my-3">
-                            <span class="me-2"><i class="fa-solid fa-table-columns"></i></span>
-                            <span>หน้าหลัก</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold px-3 mb-3">
-                            จัดการรับซ่อม
-                        </div>
-                    </li>
-                    <li>
-                        <a href="add_repair.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-screwdriver-wrench"></i></span>
-                            <span>แบบฟอร์มการแจ้งซ่อม</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="repair.php" class="nav-link active px-3">
-                            <span class="me-2"><i class="fa-solid fa-toolbox"></i></span>
-                            <span>รายการซ่อมทั้งหมด</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            ข้อมูลรายการส่งมอบ
-                        </div>
-                    </li>
-                    <li>
-                        <a href="return_repair.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-rotate-left"></i></span>
-                            <span>รายการที่ส่งมอบแล้ว</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            โปรไฟล์
-                        </div>
-                    </li>
-                    <li>
-                        <a href="profile_emp.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-user-pen"></i></span>
-                            <span>แก้ไขข้อมูลส่วนตัว</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                            รายงาน
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-flag"></i></span>
-                            <span>รายงานการรับซ่อม</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-flag"></i></span>
-                            <span>รายงานการส่งมอบฝาสูบ</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-right-from-bracket" style="color: red;"></i></span>
-                            <span>ออกจากระบบ</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
+    <?php include '../navemp/sidebar.php' ?>
     <!-- sidebar -->
     <!-- content -->
     <main class="mt-5 pt-3">
@@ -126,8 +39,11 @@ session_start();
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addrepairModal">
                         <i class="fa-solid fa-folder-plus"></i> แบบฟอร์มการแจ้งซ่อม
+                        <a href="wait_repair.php" class="btn btn-warning"> รายการซ่อมที่รอยืนยัน</a>
+                        <a href="confirm_repair.php" class="btn btn-primary"> รายการซ่อมที่ยืนยันแล้ว</a>
+                        <a href="ecxecute_repair.php" class="btn btn-info"> รายการซ่อมที่กำลังซ่อม</a>
+                        <a href="cancel_repair.php" class="btn btn-danger"> รายการซ่อมที่ยกเลิก</a>
                     </button>
-
                     <!-- Modal -->
                     <div class="modal fade" id="addrepairModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -175,9 +91,63 @@ session_start();
                                                 <option value="6">ยกเลิก</option>
                                             </select>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 text-center">
                                             <button type="submit" name="add_repair" class="btn btn-outline-success"><i class="fa-solid fa-circle-check"></i> ยืนยันการแจ้งซ่อม</button>
                                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal add spare -->
+                    <div class="modal fade" id="addspareModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">ระบุอะไหล่ที่ใช้ในการซ่อม</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="sparedb.php" method="POST" class="row g-3">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="example" class="table table-borderless dt-responsive nowrap" style="width: 100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>ชื่ออะไหล่</th>
+                                                            <th>รุ่น</th>
+                                                            <th>ราคา</th>
+                                                            <th>จำนวนสั่งซื้อ</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $i = 1;
+                                                        require '../config/connect.php';
+                                                        $sql = "SELECT * FROM spare";
+                                                        $stmt = $conn->query($sql);
+                                                        while ($row = $stmt->fetch()) {
+                                                        ?>
+                                                            <tr>
+                                                                <td><input class="form-check-input" type="checkbox" value=""></td>
+                                                                <td><input name="spare_name" class="form-control" value="<?= $row['spare_name']; ?>" readonly /></td>
+                                                                <td><input name="model_name" class="form-control" value="<?= $row['model_name']; ?>" readonly /></td>
+                                                                <td><input name="spare_price" class="form-control" value="<?= $row['spare_price']; ?>" readonly /></td>
+                                                                <td><input name="order_quanlity" type="number" class="form-control text-center" min="1"></td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                                <div class="text-center">
+                                                    <span>ราคารวม : </span><span>บาท</span>
+                                                </div>
+                                                <div class="mb-3 text-center mt-2">
+                                                    <button type="submit" name="addsparedetail" class="btn btn-outline-success"><i class="fa-solid fa-circle-check"></i> บันทึก</button>
+                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -214,7 +184,7 @@ session_start();
                                             $emp_id = $_SESSION['Emp_login'];
                                             $sql = "SELECT re.repair_id, re.repair_date, re.repair_name, re.repair_surname, re.details, re.repair_status, em.employee_id, em.name_emp, em.surname_emp
                                         FROM repair re
-                                        left JOIN employee em ON re.employee_id = em.employee_id
+                                        LEFT JOIN employee em ON re.employee_id = em.employee_id
                                         WHERE em.employee_id = $emp_id";
                                             $stmt = $conn->query($sql);
                                         }
@@ -241,14 +211,14 @@ session_start();
                                                         echo "<b style = 'background-color: DodgerBlue;border-radius: 5px;padding: 5px;color:black' >ส่งมอบเรียบร้อย</b>";
                                                     } else if ($repair_status == 6) {
                                                         echo "<b style = 'background-color: red;border-radius: 5px;padding: 5px;color:black' >ยกเลิก</b>";
-                                                        // echo "<b style = 'color:red' >ยกเลิก</b>";
                                                     }
                                                     ?>
                                                 </td>
                                                 <td>
                                                     <form action="repairdb.php.php" method="POST">
+                                                        <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#addspareModal"><i class="fa-solid fa-folder-plus"></i></button>
                                                         <a href="view_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
-                                                        <a href="update_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
+                                                        <a href="update_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-warning btn-sm text-white"><i class="fa-solid fa-square-pen"> ปรับสถานะการซ่อม</i></a>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -261,6 +231,7 @@ session_start();
                 </div>
             </div>
         </div>
+        <?php include '../navemp/footer.php' ?>
     </main>
     <!-- content -->
     <script src="../js/bootstrap.bundle.min.js"></script>
