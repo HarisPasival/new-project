@@ -180,7 +180,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>รุ่นฝาสูบ</label>
-                                    <input type="text" name="model_name" class="form-control" />
+                                    <input type="text" name="model_name" value="<?= $result['model_name']; ?>" class="form-control" />
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label>จำนวน:</label>
@@ -191,8 +191,8 @@
                                     <input type="text" name="spare_price" value="<?= $result['spare_price']; ?>" class="form-control" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="update_spare" class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> แก้ไขข้อมูล</button>
-                                    <a href="spares.php" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
+                                    <button type="submit" name="update_spare" class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i> แก้ไขข้อมูล</button>
+                                    <a href="spares.php" class="btn btn-outline-danger"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
                                 </div>
                             </form>
                         </div>

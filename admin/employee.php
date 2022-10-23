@@ -140,23 +140,14 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <div>
+                                                    <form action="crud.php" method="POST">
                                                         <button data-bs-toggle="modal" data-bs-target="#edit_employeeModal<?= $row['employee_id']; ?>" type="button" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></button>
                                                         <button type="submit" name="delete_emp" value="<?= $row['employee_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                                                    </div>
+                                                    </form>
                                                 </td>
-
                                                 <!-- include crud modal -->
                                                 <?php require 'popup/edit_emp.php' ?>
                                                 <!-- include crud modal -->
-
-                                                <!-- <td>
-                                                    <form action="crud.php" method="POST">
-                                                        <a href="view_employee.php?employee_id=<?= $row['employee_id'] ?>" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i></a>
-                                                        <a href="update_employee.php?employee_id=<?= $row['employee_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
-                                                        <button type="submit" name="delete_emp" value="<?= $row['employee_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                                                    </form>
-                                                </td> -->
                                             </tr>
                                         <?php } ?>
                                     </tbody>

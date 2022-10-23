@@ -135,7 +135,7 @@ session_start();
                                                                 <td><input name="spare_name" class="form-control" value="<?= $row['spare_name']; ?>" readonly /></td>
                                                                 <td><input name="model_name" class="form-control" value="<?= $row['model_name']; ?>" readonly /></td>
                                                                 <td><input name="spare_price" class="form-control" value="<?= $row['spare_price']; ?>" readonly /></td>
-                                                                <td><input name="order_quanlity" type="number" class="form-control text-center" min="1"></td>
+                                                                <td><input type="number" name="order_quanlity" min="1" class="form-control text-center" ></td>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>

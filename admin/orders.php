@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <!-- <link rel="stylesheet" href="../css/form.css" /> -->
-    <title>ข้อมูลลูกค้า</title>
+    <title>ข้อมูลการสั่งซื้อ</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -69,7 +69,7 @@
                                             <input type="hidden" name="orders_status" value="1">
                                             <div class="mb-3 mt-2">
                                                 <button class="btn btn-outline-success" name="add_orders"><i class="fa-solid fa-location-arrow"></i> เพิ่มรายการสั่งซื้อ</button>
-                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
+                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ย้อนกลับ</button>
                                             </div>
                                         </div>
                                     </form>
@@ -104,11 +104,11 @@
                                         $i = 1;
                                         require '../config/connect.php';
                                         $sql = "SELECT od.order_id, od.order_quanlity, od.order_date, od.orders_status, sp.spare_id, sp.spare_name, sp.spare_price 
-                                        FROM orders od 
-                                        LEFT JOIN spare sp ON od.spare_id = sp.spare_id";
+                                                FROM orders od 
+                                                LEFT JOIN spare sp ON od.spare_id = sp.spare_id";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
-                                            $orders_status = $row['orders_status'];
+                                        $orders_status = $row['orders_status'];
                                         ?>
                                             <tr>
                                                 <td class="text-center"><?= $i++ ?></td>
@@ -119,9 +119,11 @@
                                                 <td class="text-center">
                                                     <?php
                                                     if ($orders_status == 1) {
-                                                        echo "<b style = 'color:gold' >สั่งซื้อแล้ว</b>";
+                                                        echo "<b style = 'color:gold' >รอสั่งซื้อ</b>";
                                                     } else if ($orders_status == 2) {
-                                                        echo "<b style = 'color:green' >รับเข้าแล้ว</b>";
+                                                        echo "<b style = 'color:green' >สั่งซื้อแล้ว</b>";
+                                                    } else if($orders_status == 3){
+                                                        echo "<b style = 'color:blue' >รับเข้าแล้ว</b>";
                                                     }
                                                     ?>
                                                 </td>

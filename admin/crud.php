@@ -454,3 +454,134 @@ if (isset($_POST['delete_spare'])) {
     }
 }
 // ---เพิ่ม ลบ แก้ไข อะไหล่---//
+
+// เพิ่ม ลบ แก้ไข ยี่ห้อฝาสูบ 
+if (isset($_POST['add_brand'])) {
+    $brand_name = $_POST['brand_name'];
+
+    $query = "INSERT INTO brand (brand_name) VALUES (:brand_name)";
+    $query_run = $conn->prepare($query);
+
+    $data = [
+        ':brand_name' => $brand_name,
+    ];
+    $query_execute = $query_run->execute($data);
+
+    if ($query_execute) {
+        echo "<script>
+        $(document).ready(function(){
+            Swal.fire({
+                title: 'success',
+                text: 'เพิ่มข้อมูลสำเร็จ',
+                icon: 'success',
+                timer : 1500,
+                showConfirmButton: false
+            });
+        });
+        </script>";
+        header('refresh:1; url = brand.php');
+        exit(0);
+    } else {
+        echo "<script>
+        $(document).ready(function(){
+            Swal.fire({
+                title: 'warning',
+                text: 'เพิ่มข้อมูลไม่สำเร็จ',
+                icon: 'warning',
+                timer : 1500,
+                showConfirmButton: false
+            });
+        });
+        </script>";
+        header('refresh:1; url = brand.php');
+        exit(0);
+    }
+}
+
+if (isset($_POST['edit_brand'])) {
+    $brand_id = $_POST['brand_id'];
+    $brand_name = $_POST['brand_name'];
+
+    $query = "UPDATE brand SET brand_name = :brand_name WHERE brand_id = :brand_id";
+    $query_run = $conn->prepare($query);
+
+    $data = [
+        ':brand_name' => $brand_name,
+        ':brand_id' => $brand_id
+    ];
+    $query_execute = $query_run->execute($data);
+
+    if ($query_execute) {
+        echo "<script>
+        $(document).ready(function(){
+            Swal.fire({
+                title: 'success',
+                text: 'แก้ไขข้อมูลสำเร็จ',
+                icon: 'success',
+                timer : 1500,
+                showConfirmButton: false
+            });
+        });
+        </script>";
+        header('refresh:1; url = brand.php');
+        exit(0);
+    } else {
+        echo "<script>
+        $(document).ready(function(){
+            Swal.fire({
+                title: 'warning',
+                text: 'แก้ไขข้อมูลไม่สำเร็จ',
+                icon: 'warning',
+                timer : 1500,
+                showConfirmButton: false
+            });
+        });
+        </script>";
+        header('refresh:1; url = brand.php');
+        exit(0);
+    }
+}
+
+if (isset($_POST['delete_brand'])) {
+    $brand_id = $_POST['delete_brand'];
+    try {
+        $query = "DELETE FROM brand WHERE brand_id = :brand_id";
+        $stmt = $conn->prepare($query);
+
+        $data = [
+            ':brand_id' => $brand_id
+        ];
+        $query_execute = $stmt->execute($data);
+        if ($query_execute) {
+            echo "<script>
+            $(document).ready(function(){
+                Swal.fire({
+                    title: 'success',
+                    text: 'ลบข้อมูลสำเร็จ',
+                    icon: 'success',
+                    timer : 1500,
+                    showConfirmButton: false
+                });
+            });
+        </script>";
+            header('refresh:1; url = brand.php');
+            exit(0);
+        } else {
+            echo "<script>
+            $(document).ready(function(){
+                Swal.fire({
+                    title: 'warning',
+                    text: 'ลบข้อมูลไม่สำเร็จ',
+                    icon: 'warning',
+                    timer : 1500,
+                    showConfirmButton: false
+                });
+            });
+            </script>";
+            header('refresh:1; url = brand.php');
+            exit(0);
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}

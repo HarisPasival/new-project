@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <title>ข้อมูลอะไหล่</title>
+    <title>ข้อมูลยี่ห้อฝาสูบ</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -31,11 +31,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-2">
-                    <h4>ข้อมูลอะไหล่</h4>
+                    <h4>ข้อมูลยี่ห้อฝาสูบ</h4>
                     <!-- <a href="add_spares.php" class="btn btn-outline-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลอะไหล่</a> -->
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addspareModal">
-                        <i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลอะไหล่
+                        <i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลยี่ห้อฝาสูบ
                     </button>
 
                     <!-- Modal -->
@@ -43,30 +43,18 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลอะไหล่</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลยี่ห้อฝาสูบ</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form action="crud.php" method="POST" class="row g-3">
-                                        <div class="col-md-6 mb-3">
-                                            <label>ชื่ออะไหล่:</label>
-                                            <input type="text" name="spare_name" class="form-control" />
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>รุ่นฝาสูบ</label>
-                                            <input type="text" name="model_name" class="form-control" />
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>จำนวน:</label>
-                                            <input type="number" name="spare_quanlity" min="1" class="form-control" />
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>ราคา:</label>
-                                            <input type="text" name="spare_price" class="form-control" />
+                                        <div class="col-12">
+                                            <label>ชื่อยี่ห้อฝาสูบ:</label>
+                                            <input type="text" name="brand_name" class="form-control" />
                                         </div>
                                         <div class="mb-3">
-                                            <button type="submit" name="add_spare" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
-                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
+                                            <button type="submit" name="add_brand" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
+                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</button>
                                         </div>
                                     </form>
                                 </div>
@@ -79,7 +67,7 @@
                 <div class="col-md-12 mb-3 mt-2">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light"><i class="fa-solid fa-car-rear"></i> ตารางข้อมูลอะไหล่</span>
+                            <span class="text-light"><i class="fa-solid fa-car-rear"></i> ตารางข้อมูลยี่ห้อฝาสูบ</span>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -87,10 +75,7 @@
                                     <thead>
                                         <tr>
                                             <th>ลำดับ</th>
-                                            <th>ชื่ออะไหล่</th>
-                                            <th>รุ่นฝาสูบ</th>
-                                            <th>จำนวน</th>
-                                            <th>ราคา</th>
+                                            <th>ยี่ห้อฝาสูบ</th>
                                             <th>จัดการ</th>
                                         </tr>
                                     </thead>
@@ -98,23 +83,20 @@
                                         <?php
                                         $i = 1;
                                         require '../config/connect.php';
-                                        $sql = "SELECT * FROM spare";
+                                        $sql = "SELECT * FROM brand";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
-                                                <td><?= $row['spare_name']; ?></td>
-                                                <td><?= $row['model_name'] ?></td>
-                                                <td><?= $row['spare_quanlity']; ?></td>
-                                                <td><?= $row['spare_price']; ?></td>
+                                                <td><?= $row['brand_name']; ?></td>
                                                 <td>
                                                     <form action="crud.php" method="POST">
-                                                        <button data-bs-toggle="modal" data-bs-target="#edit_spareModal<?= $row['spare_id']; ?>" type="button" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></button>
-                                                        <button type="submit" name="delete_spare" value="<?= $row['spare_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                                        <button data-bs-toggle="modal" data-bs-target="#edit_brandModal<?= $row['brand_id']; ?>" type="button" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></button>
+                                                        <button type="submit" name="delete_brand" value="<?= $row['brand_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                                                     </form>
                                                     <!-- include crud modal -->
-                                                    <?php require 'popup/edit_spare.php' ?>
+                                                    <?php require 'popup/edit_brand.php' ?>
                                                     <!-- include crud modal -->
                                                 </td>
                                             </tr>

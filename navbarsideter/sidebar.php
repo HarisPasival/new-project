@@ -23,8 +23,14 @@
                 </li>
                 <li>
                     <a href="spares.php" class="nav-link px-3">
-                        <span class="me-2"><i class="fa-solid fa-car-rear"></i></span>
+                        <span class="me-2"><i class="fa-solid fa-square-share-nodes"></i></span>
                         <span>ข้อมูลอะไหล่</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="brand.php" class="nav-link px-3">
+                        <span class="me-2"><i class="fa-solid fa-car-rear"></i></span>
+                        <span>ข้อมูลยี่ห้อฝาสูบ</span>
                     </a>
                 </li>
                 <li>
