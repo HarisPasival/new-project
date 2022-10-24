@@ -34,20 +34,15 @@
                     </a>
                 </li>
                 <li>
-                    <div class="text-muted small fw-bold px-3 mb-3 my-3">
-                        ข้อมูลการสั่งซื้อ
-                    </div>
-                </li>
-                <li>
                     <a href="orders.php" class="nav-link px-3">
                         <span class="me-2"><i class="fa-solid fa-cart-plus"></i></span>
-                        <span>รายการที่ทำการสั่งซื้อ</span>
+                        <span>จัดการข้อมูลสั่งซื้อ</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link px-3">
+                    <a href="accept.php" class="nav-link px-3">
                         <span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span>
-                        <span>รายการที่ทำการรับเข้าแล้ว</span>
+                        <span>จัดการการรับเข้าอะไหล่</span>
                     </a>
                 </li>
                 <li>

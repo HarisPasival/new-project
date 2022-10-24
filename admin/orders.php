@@ -40,7 +40,7 @@
                     </button>
                     <!-- Modal -->
                     <div class="modal fade" id="addordersModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">ฟอร์มสั่งซื้ออะไหล่</h5>
@@ -49,8 +49,8 @@
                                 <div class="modal-body">
                                     <form action="ordersDB.php" method="POST">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>ชื่ออะไหล่:</label>
+                                            <div class="col-md-6 mt-2">
+                                                <label class="form-label">ชื่ออะไหล่ :</label>
                                                 <select name="spare_id" class="form-select">
                                                     <?php
                                                     require '../config/connect.php';
@@ -62,12 +62,29 @@
                                                     <?php }  ?>
                                                 </select>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label>จำนวนที่สั่งซื้อ</label>
+                                            <div class="col-md-6 mt-2">
+                                                <label class="form-label">ยี่ห้อ :</label>
+                                                <select name="brand_id" class="form-select">
+                                                    <?php
+                                                    require '../config/connect.php';
+                                                    $stmt = $conn->query("SELECT * FROM brand");
+                                                    $stmt->execute();
+                                                    while ($row = $stmt->fetch()) {
+                                                    ?>
+                                                        <option value="<?= $row['brand_id']; ?>"><?= $row['brand_name']; ?></option>
+                                                    <?php }  ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mt-2">
+                                                <label class="form-label">รุ่น</label>
+                                                <input type="text" name="model" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 mt-2">
+                                                <label class="form-label">จำนวนที่สั่งซื้อ</label>
                                                 <input type="number" name="order_quanlity" min="1" class="form-control">
                                             </div>
                                             <input type="hidden" name="orders_status" value="1">
-                                            <div class="mb-3 mt-2">
+                                            <div class="mb-3 mt-3">
                                                 <button class="btn btn-outline-success" name="add_orders"><i class="fa-solid fa-location-arrow"></i> เพิ่มรายการสั่งซื้อ</button>
                                                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ย้อนกลับ</button>
                                             </div>
@@ -90,51 +107,51 @@
                                 <table id="example" class="table table-hover dt-responsive nowrap data-table" style="width: 100%">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">ลำดับ</th>
-                                            <th class="text-center">ชื่ออะไหล่</th>
-                                            <th class="text-center">ราคา</th>
-                                            <th class="text-center">จำนวนที่สั่งซื้อ</th>
-                                            <th class="text-center">วันที่สั่งซื้อ</th>
-                                            <th class="text-center">สถานะ</th>
-                                            <th class="text-center">อัพเดตสถานะ</th>
+                                            <th>ลำดับ</th>
+                                            <th>ชื่ออะไหล่</th>
+                                            <th>ยี่ห้อ</th>
+                                            <th>รุ่น</th>
+                                            <th>ราคา</th>
+                                            <th>จำนวนที่สั่งซื้อ</th>
+                                            <th>วันที่สั่งซื้อ</th>
+                                            <th>สถานะ</th>
+                                            <th>อัพเดตสถานะ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $i = 1;
                                         require '../config/connect.php';
-                                        $sql = "SELECT od.order_id, od.order_quanlity, od.order_date, od.orders_status, sp.spare_id, sp.spare_name, sp.spare_price 
-                                                FROM orders od 
-                                                LEFT JOIN spare sp ON od.spare_id = sp.spare_id";
+                                        $sql = "SELECT * FROM orders
+                                                LEFT JOIN spare ON orders.spare_id  =  spare.spare_id
+                                                LEFT JOIN brand ON orders.brand_id = brand.brand_id
+                                                ORDER BY order_id DESC";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
-                                        $orders_status = $row['orders_status'];
+                                            $orders_status = $row['orders_status'];
                                         ?>
                                             <tr>
-                                                <td class="text-center"><?= $i++ ?></td>
-                                                <td class="text-center"><?= $row['spare_name'] ?></td>
-                                                <td class="text-center"><?= $row['spare_price'] ?></td>
-                                                <td class="text-center"><?= $row['order_quanlity'] ?></td>
-                                                <td class="text-center"><?= $row['order_date'] ?></td>
-                                                <td class="text-center">
+                                                <td><?= $i++ ?></td>
+                                                <td><?= $row['spare_name'] ?></td>
+                                                <td><?= $row['brand_name'] ?></td>
+                                                <td><?= $row['model'] ?></td>
+                                                <td><?= $row['spare_price'] ?></td>
+                                                <td><?= $row['order_quanlity'] ?></td>
+                                                <td><?= $row['order_date'] ?></td>
+                                                <td>
                                                     <?php
                                                     if ($orders_status == 1) {
                                                         echo "<b style = 'color:gold' >รอสั่งซื้อ</b>";
                                                     } else if ($orders_status == 2) {
                                                         echo "<b style = 'color:green' >สั่งซื้อแล้ว</b>";
-                                                    } else if($orders_status == 3){
-                                                        echo "<b style = 'color:blue' >รับเข้าแล้ว</b>";
                                                     }
                                                     ?>
                                                 </td>
-                                                <td class="text-center">
+                                                <td>
                                                     <div>
                                                         <button data-bs-toggle="modal" data-bs-target="#edit_orderModal<?= $row['order_id']; ?>" type="button" class="btn btn-warning btn-sm text-white"><i class="fa-solid fa-square-pen"></i> ปรับสถานะ</button>
                                                     </div>
                                                 </td>
-                                                <!-- include crud modal -->
-                                                <?php require 'popup/edit_orders.php' ?>
-                                                <!-- include crud modal -->
                                             </tr>
                                         <?php } ?>
                                     </tbody>

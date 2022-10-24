@@ -9,7 +9,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="Home_Employee.php" class="nav-link active px-3 mt-3 my-3">
+                    <a href="Home_Employee.php" class="nav-link px-3 mt-3 my-3">
                         <span class="me-2"><i class="fa-solid fa-table-columns"></i></span>
                         <span>หน้าหลัก</span>
                     </a>

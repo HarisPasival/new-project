@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <title>ข้อมูลอะไหล่</title>
+    <title>ข้อมูลรับเข้าอะไหล่</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -32,14 +32,13 @@
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <h4>ข้อมูลอะไหล่</h4>
-                    <a href="add_spares.php" class="btn btn-outline-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลอะไหล่</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3 mt-2">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light"><i class="fa-solid fa-share-nodes"></i> ตารางข้อมูลอะไหล่</span>
+                            <span class="text-light"><i class="fa-solid fa-car-rear"></i> ตารางข้อมูลอะไหล่</span>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -52,7 +51,7 @@
                                             <th>รุ่น</th>
                                             <th>จำนวน</th>
                                             <th>ราคา</th>
-                                            <th>จัดการ</th>
+                                            <th class="text-center">จัดการ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -70,13 +69,10 @@
                                                 <td><?= $row['spare_name']; ?></td>
                                                 <td><?= $row['brand_name']; ?></td>
                                                 <td><?= $row['model']; ?></td>
-                                                <td><?= $row['spare_quanlity'] ?></td>
-                                                <td><?= $row['spare_price'] ?></td>
-                                                <td>
-                                                    <form action="crud.php" method="POST">
-                                                    <a href="update_spare.php?spare_id=<?= $row['spare_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
-                                                        <button type="submit" name="delete_spare" value="<?= $row['spare_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                                                    </form>
+                                                <td><?= $row['spare_quanlity']; ?></td>
+                                                <td><?= $row['spare_price']; ?></td>
+                                                <td class="text-center">
+                                                    <a href="stock.php?spare_id=<?= $row['spare_id'] ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-circle-plus"></i> รับเข้าอะไหล่</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

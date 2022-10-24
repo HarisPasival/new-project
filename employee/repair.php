@@ -102,7 +102,7 @@ session_start();
                     </div>
                     <!-- modal add spare -->
                     <div class="modal fade" id="addspareModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
+                        <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">ระบุอะไหล่ที่ใช้ในการซ่อม</h5>
@@ -126,16 +126,18 @@ session_start();
                                                         <?php
                                                         $i = 1;
                                                         require '../config/connect.php';
-                                                        $sql = "SELECT * FROM spare";
+                                                        $sql = "SELECT * FROM spare
+                                                                LEFT JOIN brand ON spare.brand_id = brand.brand_id";
                                                         $stmt = $conn->query($sql);
                                                         while ($row = $stmt->fetch()) {
                                                         ?>
                                                             <tr>
                                                                 <td><input class="form-check-input" type="checkbox" value=""></td>
                                                                 <td><input name="spare_name" class="form-control" value="<?= $row['spare_name']; ?>" readonly /></td>
-                                                                <td><input name="model_name" class="form-control" value="<?= $row['model_name']; ?>" readonly /></td>
+                                                                <td><input name="brand_name" class="form-control" value="<?= $row['brand_name']; ?>" readonly /></td>
+                                                                <td><input name="model" class="form-control" value="<?= $row['model']; ?>" readonly /></td>
                                                                 <td><input name="spare_price" class="form-control" value="<?= $row['spare_price']; ?>" readonly /></td>
-                                                                <td><input type="number" name="order_quanlity" min="1" class="form-control text-center" ></td>
+                                                                <td><input type="number" name="order_quanlity" min="1" class="form-control text-center"></td>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
