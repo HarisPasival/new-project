@@ -30,16 +30,65 @@
     <main class="mt-5 pt-3">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 mt-3">
                     <h4>ติดตามสถานะการซ่อม</h4>
                 </div>
                 <div class="row">
-                    <div class="col-md-8">
-                        <input type="text" class="form-control">
-                        <span class="text-success">* กรอกรหัสใบแจ้งซ่อมที่ทางร้านให้มาเพื่อติดตามสถานะการซ่อม</span>
-                    </div>
-                    <div class="col-md-4">
-                        <button type="submit" name="Search for" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i> ติดตามสถานะการซ่อม</button>
+                    <div>
+                        <form action="" method="GET">
+                            <input type="search" name="search" required class="form-control" placeholder="กรอกรหัสใบแจ้งซ่อมที่ทางร้านให้มาเพื่อติดตามสถานะการซ่อม"> <br>
+                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> ติดตามสถานะการซ่อม</button>
+                            <a href="follow_status.php" class="btn btn-warning text-white">เคลียร์ข้อมูล</a>
+                        </form>
+                        <?php
+                        //ถ้ามีการส่ง $_GET['search'] 
+                        if (isset($_GET['search'])) {
+                            //คิวรี่ข้อมูลมาแสดงในตาราง
+                            require_once '../config/connect.php';
+                            //ประกาศตัวแปรรับค่าจากฟอร์ม
+                            $search = "{$_GET['search']}";
+                            $stmt = $conn->prepare("SELECT * FROM repair WHERE repair_id LIKE ?");
+                            $stmt->execute([$search]);
+                            $result = $stmt->fetchAll(); //แสดงข้อมูลทั้งหมด
+                            //ถ้าเจอข้อมูลมากกว่า 0
+                            if ($stmt->rowCount() > 0) {
+                        ?>
+                                <br>
+                                <h3>รายการที่แสดง </h3>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table id="example" class="table table-borderless dt-responsive nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th width="50%">ชื่อลูกค้า</th>
+                                                    <th width="30%">สถานะ</th>
+                                                    <th whidth="20"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($result as $row) {
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $row['repair_name'] . ' ' . $row['repair_surname']; ?></td>
+                                                        <td><?= $row['repair_status']; ?></td>
+                                                        <td>
+                                                            <form action="crud.php" method="POST">
+                                                                <a href="view_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-info text-white"><i class="fa-solid fa-square-pen"></i> ดูรายละเอียด</a>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br>
+                        <?php } // if ($stmt->rowCount() > 0) {
+                            else {
+                                echo '<center> ไม่พบรายการการซ่อมที่ค้นหา !!! </center>';
+                            }
+                        } //isset 
+                        ?>
                     </div>
                 </div>
             </div>

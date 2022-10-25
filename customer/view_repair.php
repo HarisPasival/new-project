@@ -13,7 +13,7 @@ session_start();
     <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/form.css">
-    <title>แก้ไขรายการซ่อม</title>
+    <title>ดูรายละเอียดการซ่อม</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -25,23 +25,22 @@ session_start();
 
 <body>
     <!-- navbar -->
-    <?php include '../navemp/navbar.php' ?>
+    <?php include '../navcus/navbar.php' ?>
     <!-- navbar -->
     <!-- sidebar -->
-    <?php include '../navemp/sidebar.php' ?>
+    <?php include '../navcus/sidebar.php' ?>
     <!-- sidebar -->
     <!-- content -->
     <main class="mt-5 pt-3">
         <div class="container-fluid">
             <div class="row mt-2">
                 <div class="col-md-12">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">จัดการรับซ่อม</li>
-                        <li class="breadcrumb-item active text-primary">แก้ไขรายการซ่อม</li>
-                    </ol>
+                    <div class="alert alert-info" role="alert">
+                        <h4>รายละเอียดการซ่อม</h4>
+                    </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header bg-dark">
@@ -96,7 +95,7 @@ session_start();
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">สถานะการซ่อม :</label>
-                                    <select name="repair_status" class="form-select">
+                                    <select name="repair_status" class="form-select" disabled>
                                         <option value="1" <?php if ($result['repair_status'] == 1) { ?> selected="selected" <?php } ?>>รอยืนยันการซ่อม</option>
                                         <option value="2" <?php if ($result['repair_status'] == 2) { ?> selected="selected" <?php } ?>>ยืนยันแล้ว</option>
                                         <option value="3" <?php if ($result['repair_status'] == 3) { ?> selected="selected" <?php } ?>>กำลังซ่อม</option>
@@ -105,9 +104,8 @@ session_start();
                                         <option value="6" <?php if ($result['repair_status'] == 6) { ?> selected="selected" <?php } ?>>ยกเลิก</option>
                                     </select>
                                 </div>
-                                <div class="mb-3">
-                                    <button type="submit" name="update_repair" class="btn btn-outline-warning"><i class="fa-solid fa-circle-check"></i> ปรับสถานะการซ่อม</button>
-                                    <a href="repair.php" class="btn btn-outline-danger"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</a>
+                                <div class="mb-3 text-center">
+                                    <button type="submit" name="upload_slip" class="btn btn-outline-secondary"><i class="fa-solid fa-circle-check"></i> ชำระเงิน</button>
                                 </div>
                             </form>
                         </div>

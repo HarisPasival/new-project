@@ -2,21 +2,30 @@
 <script src="../js/sweetalert2.all.min.js"></script>
 <?php
 require '../config/connect.php';
+// echo "<pre>";
+// print_r($_POST);
+// echo "<pre>";
 if (isset($_POST['add_repair'])) {
     $repair_name = $_POST['repair_name'];
     $repair_surname = $_POST['repair_surname'];
+    $repair_brand = $_POST['repair_brand'];
+    $repair_model = $_POST['repair_model'];
+    $repair_phone = $_POST['repair_phone'];
+    $repair_address = $_POST['repair_address'];
     $details = $_POST['details'];
     $emp_id = $_POST['employee_id'];
-    $repair_price = $_POST['repair_price'];
     $repair_status = $_POST['repair_status'];
-    $query = "INSERT INTO repair(repair_name,repair_surname,details,employee_id,repair_price,repair_status) VALUES (:repair_name,:repair_surname,:details,:employee_id,:repair_price,:repair_status)";
+    $query = "INSERT INTO repair(repair_name,repair_surname,repair_brand,repair_model,repair_phone,repair_address,details,employee_id,repair_status) VALUES (:repair_name,:repair_surname,:repair_brand,:repair_model,:repair_phone,:repair_address,:details,:employee_id,:repair_status)";
     $query_run = $conn->prepare($query);
     $data = [
         ':repair_name' => $repair_name,
         ':repair_surname' => $repair_surname,
+        ':repair_brand' => $repair_brand,
+        ':repair_model' => $repair_model,
+        ':repair_phone' => $repair_phone,
+        ':repair_address' => $repair_address,
         ':details' => $details,
         ':employee_id' => $emp_id,
-        ':repair_price' => $repair_price,
         ':repair_status' => $repair_status
     ];
     $query_execute = $query_run->execute($data);

@@ -25,10 +25,10 @@ require '../config/connect.php';
 
 <body>
   <!-- navbar -->
-    <?php include '../navemp/navbar.php'?>
+  <?php include '../navemp/navbar.php' ?>
   <!-- navbar -->
   <!-- sidebar -->
-  <?php include '../navemp/sidebar.php'?>
+  <?php include '../navemp/sidebar.php' ?>
   <!-- sidebar -->
   <!-- content -->
   <main class="mt-5 pt-3">
@@ -69,7 +69,7 @@ require '../config/connect.php';
         </div>
       </div>
     </div>
-    <?php include '../navemp/footer.php'?>
+    <?php include '../navemp/footer.php' ?>
   </main>
   <!-- content -->
   <script src="../js/bootstrap.bundle.min.js"></script>

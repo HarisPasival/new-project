@@ -10,6 +10,11 @@
                     </a>
                 </li>
                 <li>
+                    <div class="text-muted small fw-bold px-3 mb-3 my-3">
+                        ข้อมูลพื้นฐาน
+                    </div>
+                </li>
+                <li>
                     <a href="employee.php" class="nav-link px-3">
                         <span class="me-2"><i class="fa-solid fa-user-tie"></i></span>
                         <span>ข้อมูลพนักงาน</span>
@@ -34,15 +39,36 @@
                     </a>
                 </li>
                 <li>
+                    <div class="text-muted small fw-bold px-3 mb-3 my-3">
+                        การสั่งซื้อ
+                    </div>
+                </li>
+                <li>
                     <a href="orders.php" class="nav-link px-3">
                         <span class="me-2"><i class="fa-solid fa-cart-plus"></i></span>
                         <span>จัดการข้อมูลสั่งซื้อ</span>
                     </a>
                 </li>
                 <li>
+                    <div class="text-muted small fw-bold px-3 mb-3 my-3">
+                        รับเข้าอะไหล่
+                    </div>
+                </li>
+                <li>
                     <a href="accept.php" class="nav-link px-3">
                         <span class="me-2"><i class="fa-solid fa-cart-arrow-down"></i></span>
                         <span>จัดการการรับเข้าอะไหล่</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="text-muted small fw-bold px-3 mb-3 my-3">
+                        ชำระเงิน
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-3">
+                        <span class="me-2"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                        <span>จัดการข้อมูลชำระเงิน</span>
                     </a>
                 </li>
                 <li>

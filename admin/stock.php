@@ -76,7 +76,7 @@ include '../config/connect.php';
                                     <input type="number" name="stock_up" min="1" class="form-control text-center" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="submit" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มสต็อกอะไหล่</button>
+                                    <button type="submit" name="submit" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> บันทึก</button>
                                     <a href="accept.php" class="btn btn-outline-danger"><i class="fa-solid fa-caret-left"></i> ยกเลิก</a>
                                 </div>
                             </form>

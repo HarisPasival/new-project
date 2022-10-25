@@ -36,14 +36,11 @@ session_start();
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <h4>รายการซ่อมที่ยกเลิก</h4>
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addrepairModal">
-                        <i class="fa-solid fa-list-check"></i>
-                        <a href="repair.php" class="btn btn-dark"> รายการซ่อมทั้งหมด</a>
-                        <a href="wait_repair.php" class="btn btn-warning"> รายการซ่อมที่รอยืนยัน</a>
-                        <a href="confirm_repair.php" class="btn btn-primary"> รายการซ่อมที่ยืนยันแล้ว</a>
-                        <a href="ecxecute_repair.php" class="btn btn-info"> รายการซ่อมที่กำลังซ่อม</a>
-                        <a href="cancel_repair.php" class="btn btn-danger"> รายการซ่อมที่ยกเลิก</a>
-                    </button>
+                    <a href="repair.php" class="btn btn-dark"> รายการซ่อมทั้งหมด</a>
+                    <a href="wait_repair.php" class="btn btn-warning"> รายการซ่อมที่รอยืนยัน</a>
+                    <a href="confirm_repair.php" class="btn btn-primary"> รายการซ่อมที่ยืนยันแล้ว</a>
+                    <a href="ecxecute_repair.php" class="btn btn-info"> รายการซ่อมที่กำลังซ่อม</a>
+                    <a href="cancel_repair.php" class="btn btn-danger"> รายการซ่อมที่ยกเลิก</a>
                 </div>
             </div>
             <div class="row">

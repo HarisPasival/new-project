@@ -28,7 +28,7 @@
                     <li>
                         <a href="#" class="nav-link px-3">
                             <span class="me-2"><i class="fa-solid fa-calendar-week"></i></span>
-                            <span>ดูรายละเอียดการซ่อม</span>
+                            <span>รายละเอียดการซ่อม</span>
                         </a>
                     </li>
                     <li>

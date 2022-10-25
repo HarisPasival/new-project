@@ -127,7 +127,7 @@
                                                 LEFT JOIN brand ON orders.brand_id = brand.brand_id
                                                 ORDER BY order_id DESC";
                                         $stmt = $conn->query($sql);
-                                        while ($row = $stmt->fetch()) {
+                                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                             $orders_status = $row['orders_status'];
                                         ?>
                                             <tr>

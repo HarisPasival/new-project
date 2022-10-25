@@ -81,7 +81,7 @@ session_start();
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">ตำแหน่ง :</label>
-                                    <select name="u_role" class="form-control">
+                                    <select name="u_role" class="form-control" disabled>
                                         <option value="2" <?php if ($row['u_role'] == '2') { ?> selected="selected" <?php } ?>>ช่างซ่อม</option>
                                     </select>
                                 </div>

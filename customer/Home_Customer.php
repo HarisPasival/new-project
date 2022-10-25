@@ -1,3 +1,7 @@
+<?php
+session_start();
+require '../config/connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,9 +33,19 @@
     <!-- content -->
     <main class="mt-5 pt-3">
         <div class="container-fluid">
+            <?php
+            if (isset($_SESSION['login_cus'])) {
+                $cus_id = $_SESSION['login_cus'];
+                $stmt = $conn->query("SELECT * FROM customer WHERE customer_id = $cus_id");
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            ?>
             <div class="row">
                 <div class="col-md-12">
-                    <h4>หน้าแรก</h4>
+                    <h4>
+                        <h4>Dashboard : <?php echo $row['name_ct'] . ' ' . $row['surname_ct'] ?></h4>
+                    </h4>
                 </div>
             </div>
         </div>
