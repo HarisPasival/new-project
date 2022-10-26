@@ -41,6 +41,64 @@ session_start();
                     </ol>
                 </div>
             </div>
+            <!-- modal add spare -->
+            <div class="modal fade" id="addspareModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">เพิ่มอะไหล่ที่ใช้ในการซ่อม</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="detailsDB.php" method="POST">
+                                <div class="row">
+                                    <div class="col-md-6 mt-2">
+                                        <label class="form-label">ชื่ออะไหล่ :</label>
+                                        <select name="spare_id" class="form-select">
+                                            <?php
+                                            require '../config/connect.php';
+                                            $stmt = $conn->query("SELECT * FROM spare");
+                                            $stmt->execute();
+                                            while ($row = $stmt->fetch()) {
+                                            ?>
+                                                <option value="<?= $row['spare_id']; ?>"><?= $row['spare_name']; ?></option>
+                                            <?php }  ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label class="form-label">ยี่ห้อ :</label>
+                                        <select name="brand_id" class="form-select">
+                                            <?php
+                                            require '../config/connect.php';
+                                            $stmt = $conn->query("SELECT * FROM brand");
+                                            $stmt->execute();
+                                            while ($row = $stmt->fetch()) {
+                                            ?>
+                                                <option value="<?= $row['brand_id']; ?>"><?= $row['brand_name']; ?></option>
+                                            <?php }  ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label class="form-label">จำนวนที่ใช้</label>
+                                        <input type="number" name="details_quanlity" min="1" class="form-control text-center">
+                                    </div>
+                                    <?php
+                                    $repair_id = $_GET['repair_id'];
+                                    $stmt = $conn->query("SELECT * FROM repair WHERE repair_id = $repair_id");
+                                    $stmt->execute();
+                                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                    ?>
+                                    <input type="hidden" name="repair_id" value="<?= $row['repair_id'] ?>">
+                                    <div class="mb-3 mt-3">
+                                        <button class="btn btn-outline-success" name="add_details"><i class="fa-solid fa-location-arrow"></i> เพิ่มอะไหล่ที่ใช้</button>
+                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ย้อนกลับ</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <div class="card">
@@ -106,6 +164,7 @@ session_start();
                                     </select>
                                 </div>
                                 <div class="mb-3">
+                                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addspareModal">ระบุอะไหล่ที่ใช้</button>
                                     <button type="submit" name="update_repair" class="btn btn-outline-warning"><i class="fa-solid fa-circle-check"></i> ปรับสถานะการซ่อม</button>
                                     <a href="repair.php" class="btn btn-outline-danger"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</a>
                                 </div>

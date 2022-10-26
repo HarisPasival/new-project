@@ -1,3 +1,7 @@
+<?php
+session_start();
+include '../config/connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +13,7 @@
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <title>ข้อมูลยี่ห้อฝาสูบ</title>
+    <title>อะไหล่ที่ใช้ในการซ่อม</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -21,25 +25,24 @@
 
 <body>
     <!-- navbar -->
-    <?php include '../navbarsideter/navbar.php' ?>
+    <?php include '../navemp/navbar.php' ?>
     <!-- navbar -->
     <!-- sidebar -->
-    <?php include '../navbarsideter/sidebar.php' ?>
+    <?php include '../navemp/sidebar.php' ?>
     <!-- sidebar -->
     <!-- content -->
     <main class="mt-5 pt-3">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-2">
-                    <h4>ข้อมูลยี่ห้อฝาสูบ</h4>
-                    <a href="add_brand.php" class="btn btn-outline-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลยี่ห้อฝาสูบ</a>
+                    <h4>รายละเอียดการซ่อม</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3 mt-2">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light"><i class="fa-solid fa-car-side"></i> ตารางข้อมูลยี่ห้อฝาสูบ</span>
+                            <span class="text-light"><i class="fa-solid fa-toolbox"></i> อะไหล่ที่ใช้ในการซ่อม</span>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -47,25 +50,34 @@
                                     <thead>
                                         <tr>
                                             <th>ลำดับ</th>
-                                            <th>ชื่อรุ่นฝาสูบ</th>
+                                            <th>รหัสรับซ่อม</th>
+                                            <th>ชื่ออะไหล่</th>
+                                            <th>ยี่ห้อ</th>
+                                            <th>รุ่น</th>
                                             <th>จัดการ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $i = 1;
-                                        require '../config/connect.php';
-                                        $sql = "SELECT * FROM brand";
+                                        $repair_id = $_GET['repair_id'];
+                                        $sql = "SELECT * FROM repair_details 
+                                        LEFT JOIN spare ON repair_details.spare_id = spare.spare_id
+                                        LEFT JOIN brand ON repair_details.brand_id = brand.brand_id
+                                        LEFT JOIN repair ON repair_details.repair_id = repair.repair_id
+                                        WHERE repair_details.repair_id = $repair_id";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
+                                                <td><?= $row['repair_id']; ?></td>
+                                                <td><?= $row['spare_name']; ?></td>
                                                 <td><?= $row['brand_name']; ?></td>
+                                                <td><?= $row['model']; ?></td>
                                                 <td>
-                                                    <form action="crud.php" method="POST">
-                                                        <a href="update_brand.php?brand_id=<?= $row['brand_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
-                                                        <button type="submit" name="delete_brand" value="<?= $row['brand_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                                    <form action="deldetails.php.php" method="POST">
+                                                        <button class="btn btn-danger btn-sm">ลบ</button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -78,9 +90,10 @@
                 </div>
             </div>
         </div>
-        <?php include '../navbarsideter/footer.php' ?>
+        </div>
+        <?php include '../navemp/footer.php' ?>
     </main>
-    <!-- end content -->
+    <!-- content -->
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="../js/jquery-3.5.1.js"></script>

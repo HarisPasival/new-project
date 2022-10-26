@@ -66,7 +66,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#" class="nav-link px-3">
+                    <a href="confirm_payment.php" class="nav-link px-3">
                         <span class="me-2"><i class="fa-solid fa-file-invoice-dollar"></i></span>
                         <span>จัดการข้อมูลชำระเงิน</span>
                     </a>

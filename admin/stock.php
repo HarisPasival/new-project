@@ -34,7 +34,7 @@ include '../config/connect.php';
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mb-3 mt-2">
-                    <h4>เพิ่มสต็อกอะไหล่</h4>
+                    <h4>รับเข้าอะไหล่</h4>
                     <div class="card">
                         <div class="card-body">
                             <?php
@@ -60,7 +60,7 @@ include '../config/connect.php';
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">ยี่ห้อฝาสูบ :</label>
-                                    <select name="brand_id" class="form-select">
+                                    <select name="brand_id" class="form-select" disabled>
                                         <?php
                                         require '../config/connect.php';
                                         $stmt = $conn->query("SELECT * FROM brand");
@@ -76,7 +76,7 @@ include '../config/connect.php';
                                     <input type="number" name="stock_up" min="1" class="form-control text-center" />
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="submit" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> บันทึก</button>
+                                    <button type="submit" name="submit" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> บันทึกการรับเข้า</button>
                                     <a href="accept.php" class="btn btn-outline-danger"><i class="fa-solid fa-caret-left"></i> ยกเลิก</a>
                                 </div>
                             </form>

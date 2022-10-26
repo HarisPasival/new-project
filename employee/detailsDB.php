@@ -5,19 +5,17 @@ require '../config/connect.php';
 if (isset($_POST['add_details'])) {
     $spare_id = $_POST['spare_id'];
     $brand_id = $_POST['brand_id'];
-    $model = $_POST['model'];
-    $order_quanlity = $_POST['order_quanlity'];
-    $orders_status = $_POST['orders_status'];
+    $repair_id = $_POST['repair_id'];
+    $details_quanlity = $_POST['details_quanlity'];
 
-    $query = "INSERT INTO orders (spare_id,brand_id,model,order_quanlity,orders_status) VALUES (:spare_id,:brand_id,:model,:order_quanlity,:orders_status)";
+    $query = "INSERT INTO repair_details (spare_id,brand_id,repair_id,details_quanlity) VALUES (:spare_id,:brand_id,:repair_id,:details_quanlity)";
     $query_run = $conn->prepare($query);
 
     $data = [
         ':spare_id' => $spare_id,
         ':brand_id' => $brand_id,
-        ':model' => $model,
-        ':order_quanlity' => $order_quanlity,
-        ':orders_status' => $orders_status
+        ':repair_id' => $repair_id,
+        ':details_quanlity' => $details_quanlity
     ];
     $query_execute = $query_run->execute($data);
 
@@ -26,14 +24,14 @@ if (isset($_POST['add_details'])) {
         $(document).ready(function(){
             Swal.fire({
                 title: 'success',
-                text: 'รายการถูกเพิ่มเรียบร้อยแล้ว',
+                text: 'เพิ่มอะไหล่เรียบร้อยแล้ว',
                 icon: 'success',
                 timer : 1500,
                 showConfirmButton: false
             });
         });
         </script>";
-        header('refresh:1; url = orders.php');
+        header('refresh:1; url = view_details.php');
         exit(0);
     } else {
         echo "<script>
@@ -47,8 +45,7 @@ if (isset($_POST['add_details'])) {
             });
         });
         </script>";
-        header('refresh:1; url = orders.php');
+        header('refresh:1; url = view_details.php');
         exit(0);
     }
 }
-?>

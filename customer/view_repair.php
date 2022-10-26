@@ -44,7 +44,7 @@ session_start();
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light">แก้ไขรายการซ่อม</span>
+                            <span class="text-light">รายละเอียดการซ่อม</span>
                         </div>
                         <div class="card-body">
                             <?php
@@ -58,7 +58,7 @@ session_start();
                                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                             }
                             ?>
-                            <form action="repairdb.php" method="POST" class="row g-3">
+                            <form class="row g-3">
                                 <input type="hidden" name="repair_id" value="<?= $result['repair_id'] ?>">
                                 <div class="col-md-4">
                                     <label class="form-label">วันที่แจ้งซ่อม :</label>
@@ -72,22 +72,25 @@ session_start();
                                     <label class="form-label">นามสกุล :</label>
                                     <input type="text" name="repair_surname" value="<?= $result['repair_surname'] ?>" class="form-control" readonly />
                                 </div>
+                                <div class="col-4">
+                                    <label class="form-label">ยี่ห้อ :</label>
+                                    <input type="text" name="repair_brand" value="<?= $result['repair_brand'] ?>" class="form-control" readonly />
+                                </div>
+                                <div class="col-4">
+                                    <label class="form-label">รุ่น :</label>
+                                    <input type="text" name="repair_model" value="<?= $result['repair_model'] ?>" class="form-control" readonly />
+                                </div>
+                                <div class="col-4">
+                                    <label class="form-label">เบอร์โทรศัพท์ :</label>
+                                    <input type="text" name="repair_phone" value="<?= $result['repair_phone'] ?>" class="form-control" readonly />
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">ที่อยู่ :</label>
+                                    <input type="text" name="repair_address" value="<?= $result['repair_address'] ?>" class="form-control" readonly />
+                                </div>
                                 <div class="col-12">
                                     <label class="form-label">สาเหตุที่เสีย :</label>
                                     <input type="text" name="details" value="<?= $result['details'] ?>" class="form-control" readonly />
-                                </div>
-                                <div class="col-12">
-                                    <?php
-                                    require '../config/connect.php';
-                                    if (isset($_SESSION['Emp_login'])) {
-                                        $emp_id = $_SESSION['Emp_login'];
-                                        $stmt = $conn->query("SELECT employee_id,name_emp,surname_emp FROM employee WHERE employee_id = $emp_id");
-                                        $stmt->execute();
-                                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                                    }
-                                    ?>
-                                    <label class="form-label">ผู้รับซ่อม :</label>
-                                    <input type="text" name="employee_id" value="<?= $row['employee_id'] . ' : ' . $row['name_emp'] . ' ' . $row['surname_emp']; ?>" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">ราคาค่าซ่อม:</label>
@@ -104,8 +107,14 @@ session_start();
                                         <option value="6" <?php if ($result['repair_status'] == 6) { ?> selected="selected" <?php } ?>>ยกเลิก</option>
                                     </select>
                                 </div>
-                                <div class="mb-3 text-center">
-                                    <button type="submit" name="upload_slip" class="btn btn-outline-secondary"><i class="fa-solid fa-circle-check"></i> ชำระเงิน</button>
+                                <div class="col-12">
+                                    <label class="form-label">อัพโหลดหลักฐานการชำระเงิน :</label>
+                                    <input type="file" name="slip" class="form-control" />
+                                </div>
+                                <div class="mb-3">
+                                    <form action="payment.php" method="POST">
+                                        <button type="submit" name="payment" class="btn btn-outline-success"><i class="fa-solid fa-circle-check"></i> อัปโหลดหลักฐานชำระเงิน</button>
+                                    </form>
                                 </div>
                             </form>
                         </div>

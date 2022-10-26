@@ -115,7 +115,7 @@
                                             <th>จำนวนที่สั่งซื้อ</th>
                                             <th>วันที่สั่งซื้อ</th>
                                             <th>สถานะ</th>
-                                            <th>อัพเดตสถานะ</th>
+                                            <!-- <th>อัพเดตสถานะ</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -147,11 +147,11 @@
                                                     }
                                                     ?>
                                                 </td>
-                                                <td>
+                                                <!-- <td>
                                                     <div>
                                                         <button data-bs-toggle="modal" data-bs-target="#edit_orderModal<?= $row['order_id']; ?>" type="button" class="btn btn-warning btn-sm text-white"><i class="fa-solid fa-square-pen"></i> ปรับสถานะ</button>
                                                     </div>
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         <?php } ?>
                                     </tbody>

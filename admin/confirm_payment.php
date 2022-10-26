@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <title>ข้อมูลยี่ห้อฝาสูบ</title>
+    <title>ข้อมูลการชำระเงิน</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -31,15 +31,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-2">
-                    <h4>ข้อมูลยี่ห้อฝาสูบ</h4>
-                    <a href="add_brand.php" class="btn btn-outline-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลยี่ห้อฝาสูบ</a>
+                    <h4>ตรวจสอบการชำระเงิน</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3 mt-2">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light"><i class="fa-solid fa-car-side"></i> ตารางข้อมูลยี่ห้อฝาสูบ</span>
+                            <span class="text-light"><i class="fa-solid fa-user"></i> ตารางการชำระเงิน</span>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -47,25 +46,33 @@
                                     <thead>
                                         <tr>
                                             <th>ลำดับ</th>
-                                            <th>ชื่อรุ่นฝาสูบ</th>
-                                            <th>จัดการ</th>
+                                            <th>รหัสการซ่อม</th>
+                                            <th>ชื่อลูกค้า</th>
+                                            <th>เบอร์โทรศัพท์</th>
+                                            <th>หลักฐานการชำระเงิน</th>
+                                            <th>สถานะ</th>
+                                            <th>ปรับสถานะ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $i = 1;
                                         require '../config/connect.php';
-                                        $sql = "SELECT * FROM brand";
+                                        $sql = "SELECT pm.*, rm.repair_price FROM payment pm 
+                                        LEFT JOIN repair rm ON pm.Repair_id=rm.repair_id";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
-                                                <td><?= $row['brand_name']; ?></td>
+                                                <td><?= $row['repair_id']; ?></td>
+                                                <td><?= $row['repair_name']; ?></td>
+                                                <td><?= $row['repair_price']; ?></td>
+                                                <td><?= $row['slip']; ?></td>
+                                                <td><?= $row['payment_status']; ?></td>
                                                 <td>
-                                                    <form action="crud.php" method="POST">
-                                                        <a href="update_brand.php?brand_id=<?= $row['brand_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
-                                                        <button type="submit" name="delete_brand" value="<?= $row['brand_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                                    <form action="#" method="POST">
+                                                        <a href="updatepay_status.php?payment_id=<?= $row['payment_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -87,6 +94,7 @@
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/dataTables.bootstrap5.min.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/sheet.js"></script>
 </body>
 
 </html>

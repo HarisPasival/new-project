@@ -54,7 +54,6 @@
                             if ($stmt->rowCount() > 0) {
                         ?>
                                 <br>
-                                <h3>รายการที่แสดง </h3>
                                 <div class="card">
                                     <div class="card-body">
                                         <table id="example" class="table table-borderless dt-responsive nowrap">
