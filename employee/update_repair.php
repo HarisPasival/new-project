@@ -174,6 +174,62 @@ session_start();
                 </div>
             </div>
         </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <h4>อะไหล่ที่ใช้ในการซ่อม</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3 mt-2">
+                    <div class="card">
+                        <div class="card-header bg-dark">
+                            <span class="text-light"><i class="fa-solid fa-toolbox"></i> อะไหล่ที่ใช้ในการซ่อม</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table table-hover dt-responsive nowrap data-table" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>ลำดับ</th>
+                                            <th>ชื่ออะไหล่</th>
+                                            <th>ยี่ห้อ/รุ่นฝาสูบ</th>
+                                            <th>จำนวนที่ใช้</th>
+                                            <th>จัดการ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 1;
+                                        $repair_id = $_GET['repair_id'];
+                                        $sql = "SELECT * FROM repair_details 
+                                        LEFT JOIN spare ON repair_details.spare_id = spare.spare_id
+                                        LEFT JOIN brand ON repair_details.brand_id = brand.brand_id
+                                        LEFT JOIN repair ON repair_details.repair_id = repair.repair_id
+                                        WHERE repair_details.repair_id = $repair_id";
+                                        $stmt = $conn->query($sql);
+                                        while ($row = $stmt->fetch()) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $i++ ?></td>
+                                                <td><?= $row['spare_name']; ?></td>
+                                                <td><?= $row['brand_name']; ?></td>
+                                                <td><?= $row['details_quanlity']; ?></td>
+                                                <td>
+                                                    <form action="detailsDB.php" method="POST">
+                                                        <button type="submit" name="delspare" value="<?= $row['repair_details_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php include '../navemp/footer.php' ?>
     </main>
     <!-- content -->

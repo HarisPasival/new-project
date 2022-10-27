@@ -50,15 +50,11 @@ include '../config/connect.php';
                             ?>
                             <form action="up_stock.php" method="POST" class="row g-3">
                                 <input type="hidden" name="spare_id" value="<?= $row['spare_id']; ?>">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <label class="form-label">ชื่ออะไหล่:</label>
                                     <input type="text" name="spare_name" value="<?= $row['spare_name']; ?>" class="form-control" readonly />
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">รุ่นฝาสูบ</label>
-                                    <input type="text" name="model" value="<?= $row['model']; ?>" class="form-control" readonly />
-                                </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <label class="form-label">ยี่ห้อฝาสูบ :</label>
                                     <select name="brand_id" class="form-select" disabled>
                                         <?php
@@ -71,7 +67,7 @@ include '../config/connect.php';
                                         <?php }  ?>
                                     </select>
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <label class="form-label">จำนวนที่เพิ่ม:</label>
                                     <input type="number" name="stock_up" min="1" class="form-control text-center" />
                                 </div>

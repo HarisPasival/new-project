@@ -52,8 +52,8 @@ include '../config/connect.php';
                                             <th>ลำดับ</th>
                                             <th>รหัสรับซ่อม</th>
                                             <th>ชื่ออะไหล่</th>
-                                            <th>ยี่ห้อ</th>
-                                            <th>รุ่น</th>
+                                            <th>ยี่ห้อ/รุ่นฝาสูบ</th>
+                                            <th>จำนวนที่ใช้</th>
                                             <th>จัดการ</th>
                                         </tr>
                                     </thead>
@@ -74,7 +74,7 @@ include '../config/connect.php';
                                                 <td><?= $row['repair_id']; ?></td>
                                                 <td><?= $row['spare_name']; ?></td>
                                                 <td><?= $row['brand_name']; ?></td>
-                                                <td><?= $row['model']; ?></td>
+                                                <td><?=$row['details_quanlity'];?></td>
                                                 <td>
                                                     <form action="deldetails.php.php" method="POST">
                                                         <button class="btn btn-danger btn-sm">ลบ</button>

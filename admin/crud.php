@@ -315,16 +315,14 @@ if (isset($_POST['delete_cus'])) {
 if (isset($_POST['add_spare'])) {
     $spare_name = $_POST['spare_name'];
     $brand_id = $_POST['brand_id'];
-    $model = $_POST['model'];
     $spare_price = $_POST['spare_price'];
 
-    $query = "INSERT INTO spare (spare_name,brand_id,model,spare_price) VALUES(:spare_name,:brand_id,:model,:spare_price)";
+    $query = "INSERT INTO spare (spare_name,brand_id,spare_price) VALUES(:spare_name,:brand_id,:spare_price)";
     $query_run = $conn->prepare($query);
 
     $data = [
         ':spare_name' => $spare_name,
         ':brand_id' => $brand_id,
-        ':model' => $model,
         ':spare_price' => $spare_price
     ];
     $query_execute = $query_run->execute($data);
@@ -364,16 +362,14 @@ if (isset($_POST['update_spare'])) {
     $spare_id = $_POST['spare_id'];
     $spare_name = $_POST['spare_name'];
     $brand_id = $_POST['brand_id'];
-    $model = $_POST['model'];
     $spare_price = $_POST['spare_price'];
 
-    $query = "UPDATE spare SET spare_name = :spare_name, brand_id = :brand_id, model = :model, spare_price = :spare_price WHERE spare_id = :spare_id";
+    $query = "UPDATE spare SET spare_name = :spare_name, brand_id = :brand_id, spare_price = :spare_price WHERE spare_id = :spare_id";
     $query_run = $conn->prepare($query);
 
     $data = [
         ':spare_name' => $spare_name,
         ':brand_id' => $brand_id,
-        ':model' => $model,
         ':spare_price' => $spare_price,
         ':spare_id' => $spare_id
     ];

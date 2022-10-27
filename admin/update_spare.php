@@ -58,17 +58,15 @@
                             ?>
                             <form action="crud.php" method="POST" class="row g-3">
                                 <input type="hidden" name="spare_id" value="<?= $result['spare_id'] ?>">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">ชื่ออะไหล่ :</label>
-                                    <input type="text" name="spare_name" value="<?= $result['spare_name'] ?>" class="form-control" />
+                                <div class="form-floating mb-3 col-md-4">
+                                    <input type="text" name="spare_name" value="<?= $result['spare_name'] ?>" class="form-control" id="floatingInput" placeholder="spare_name">
+                                    <label for="floatingInput">ชื่ออะไหล่</label>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">ยี่ห้อฝาสูบ :</label>
-                                    <select name="brand_id" class="form-select" required>
+                                <div class="form-floating col-md-4 mb-3">
+                                    <select name="brand_id" class="form-select" id="floatingSelect" aria-label="Floating label select example">
                                         <?php
                                         require '../config/connect.php';
-                                        $query = "SELECT * FROM brand";
-                                        $stmt = $conn->prepare($query);
+                                        $stmt = $conn->query("SELECT * FROM brand");
                                         $stmt->execute();
                                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         ?>
@@ -76,14 +74,11 @@
                                                 <?= $row['brand_name']; ?></option>
                                         <?php }  ?>
                                     </select>
+                                    <label for="floatingSelect">ยี่ห้อฝาสูบ/รุ่น</label>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">รุ่น :</label>
-                                    <input type="text" name="model" value="<?= $result['model'] ?>" class="form-control" />
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">ราคา :</label>
-                                    <input type="text" name="spare_price" value="<?= $result['spare_price'] ?>" class="form-control" />
+                                <div class="form-floating mb-3 col-md-4">
+                                    <input type="text" name="spare_price" value="<?= $result['spare_price'] ?>" class="form-control" id="floatingInput" placeholder="spare_price">
+                                    <label for="floatingInput">ราคา</label>
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit" name="update_spare" class="btn btn-outline-warning"><i class="fa-solid fa-circle-plus"></i> แก้ไขข้อมูล</button>

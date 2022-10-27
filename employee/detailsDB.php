@@ -31,7 +31,7 @@ if (isset($_POST['add_details'])) {
             });
         });
         </script>";
-        header('refresh:1; url = view_details.php');
+        header('refresh:1; url = update_repair.php');
         exit(0);
     } else {
         echo "<script>
@@ -45,7 +45,50 @@ if (isset($_POST['add_details'])) {
             });
         });
         </script>";
-        header('refresh:1; url = view_details.php');
+        header('refresh:1; url = update_repair.php');
         exit(0);
+    }
+}
+if (isset($_POST['delspare'])) {
+    $repair_details_id = $_POST['delspare'];
+    try {
+        $query = "DELETE FROM repair_details WHERE repair_details_id = :repair_details_id";
+        $stmt = $conn->prepare($query);
+
+        $data = [
+            ':repair_details_id' => $repair_details_id
+        ];
+        $query_execute = $stmt->execute($data);
+        if ($query_execute) {
+            echo "<script>
+            $(document).ready(function(){
+                Swal.fire({
+                    title: 'success',
+                    text: 'ลบข้อมูลสำเร็จ',
+                    icon: 'success',
+                    timer : 1500,
+                    showConfirmButton: false
+                });
+            });
+        </script>";
+            header('refresh:1; url = update_repair.php');
+            exit(0);
+        } else {
+            echo "<script>
+            $(document).ready(function(){
+                Swal.fire({
+                    title: 'warning',
+                    text: 'ลบข้อมูลไม่สำเร็จ',
+                    icon: 'warning',
+                    timer : 1500,
+                    showConfirmButton: false
+                });
+            });
+            </script>";
+            header('refresh:1; url = update_repair.php');
+            exit(0);
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
     }
 }

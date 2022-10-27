@@ -49,7 +49,7 @@
                                 <div class="modal-body">
                                     <form action="ordersDB.php" method="POST">
                                         <div class="row">
-                                            <div class="col-md-6 mt-2">
+                                            <div class="col-md-4 mt-2">
                                                 <label class="form-label">ชื่ออะไหล่ :</label>
                                                 <select name="spare_id" class="form-select">
                                                     <?php
@@ -62,8 +62,8 @@
                                                     <?php }  ?>
                                                 </select>
                                             </div>
-                                            <div class="col-md-6 mt-2">
-                                                <label class="form-label">ยี่ห้อ :</label>
+                                            <div class="col-md-4 mt-2">
+                                                <label class="form-label">ยี่ห้อ/รุ่นฝาสูบ :</label>
                                                 <select name="brand_id" class="form-select">
                                                     <?php
                                                     require '../config/connect.php';
@@ -75,11 +75,7 @@
                                                     <?php }  ?>
                                                 </select>
                                             </div>
-                                            <div class="col-md-6 mt-2">
-                                                <label class="form-label">รุ่น</label>
-                                                <input type="text" name="model" class="form-control">
-                                            </div>
-                                            <div class="col-md-6 mt-2">
+                                            <div class="col-md-4 mt-2">
                                                 <label class="form-label">จำนวนที่สั่งซื้อ</label>
                                                 <input type="number" name="order_quanlity" min="1" class="form-control">
                                             </div>
@@ -109,8 +105,7 @@
                                         <tr>
                                             <th>ลำดับ</th>
                                             <th>ชื่ออะไหล่</th>
-                                            <th>ยี่ห้อ</th>
-                                            <th>รุ่น</th>
+                                            <th>ยี่ห้อ/รุ่นฝาสูบ</th>
                                             <th>ราคา</th>
                                             <th>จำนวนที่สั่งซื้อ</th>
                                             <th>วันที่สั่งซื้อ</th>
@@ -134,7 +129,6 @@
                                                 <td><?= $i++ ?></td>
                                                 <td><?= $row['spare_name'] ?></td>
                                                 <td><?= $row['brand_name'] ?></td>
-                                                <td><?= $row['model'] ?></td>
                                                 <td><?= $row['spare_price'] ?></td>
                                                 <td><?= $row['order_quanlity'] ?></td>
                                                 <td><?= $row['order_date'] ?></td>

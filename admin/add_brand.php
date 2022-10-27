@@ -33,8 +33,8 @@
                 <div class="col-md-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">ข้อมูลพื้นฐาน</li>
-                        <li class="breadcrumb-item">ข้อมูลยี่ห้อฝาสูบ</li>
-                        <li class="breadcrumb-item active text-primary">เพิ่มข้อมูลยี่ห้อฝาสูบ</li>
+                        <li class="breadcrumb-item">ข้อมูลยี่ห้อ/รุ่นฝาสูบ</li>
+                        <li class="breadcrumb-item active text-primary">เพิ่มข้อมูลยี่ห้อ/รุ่นฝาสูบ</li>
                     </ol>
                 </div>
             </div>
@@ -42,17 +42,17 @@
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light">เพิ่มข้อมูลยี่ห้อฝาสูบ</span>
+                            <span class="text-light">เพิ่มข้อมูลยี่ห้อ/รุ่นฝาสูบ</span>
                         </div>
                         <div class="card-body">
                             <form action="crud.php" method="POST">
-                                <div class="mb-3">
-                                    <label>ชื่อยี่ห้อฝาสูบ</label>
-                                    <input type="text" name="brand_name" class="form-control" />
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="brand_name" class="form-control" id="floatingInput" placeholder="brand_name">
+                                    <label for="floatingInput">ชื่อยี่ห้อ/รุ่นฝาสูบ</label>
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="add_brand" class="btn btn-outline-success btn-sm"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
-                                    <a href="brand.php" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
+                                    <button type="submit" name="add_brand" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
+                                    <a href="brand.php" class="btn btn-outline-danger"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
                                 </div>
                             </form>
                         </div>

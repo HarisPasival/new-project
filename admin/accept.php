@@ -47,8 +47,7 @@
                                         <tr>
                                             <th>ลำดับ</th>
                                             <th>ชื่ออะไหล่</th>
-                                            <th>ยี่ห้อ</th>
-                                            <th>รุ่น</th>
+                                            <th>ยี่ห้อ/รุ่นฝาสูบ</th>
                                             <th>จำนวน</th>
                                             <th>ราคา</th>
                                             <th class="text-center">จัดการ</th>
@@ -58,7 +57,7 @@
                                         <?php
                                         $i = 1;
                                         require '../config/connect.php';
-                                        $sql = "SELECT s.spare_id, s.spare_name, s.model, s.spare_price, s.spare_quanlity, b.brand_id, b.brand_name 
+                                        $sql = "SELECT s.spare_id, s.spare_name, s.spare_price, s.spare_quanlity, b.brand_id, b.brand_name 
                                         FROM spare s 
                                         LEFT JOIN brand b ON s.brand_id = b.brand_id";
                                         $stmt = $conn->query($sql);
@@ -68,7 +67,6 @@
                                                 <td><?= $i++ ?></td>
                                                 <td><?= $row['spare_name']; ?></td>
                                                 <td><?= $row['brand_name']; ?></td>
-                                                <td><?= $row['model']; ?></td>
                                                 <td><?= $row['spare_quanlity']; ?></td>
                                                 <td><?= $row['spare_price']; ?></td>
                                                 <td class="text-center">

@@ -2,20 +2,18 @@
 <script src="../js/sweetalert2.all.min.js"></script>
 <?php
 require '../config/connect.php';
-if (isset($_POST['add_details'])) {
+if (isset($_POST['add_orders'])) {
     $spare_id = $_POST['spare_id'];
     $brand_id = $_POST['brand_id'];
-    $model = $_POST['model'];
     $order_quanlity = $_POST['order_quanlity'];
     $orders_status = $_POST['orders_status'];
 
-    $query = "INSERT INTO orders (spare_id,brand_id,model,order_quanlity,orders_status) VALUES (:spare_id,:brand_id,:model,:order_quanlity,:orders_status)";
+    $query = "INSERT INTO orders (spare_id,brand_id,order_quanlity,orders_status) VALUES (:spare_id,:brand_id,:order_quanlity,:orders_status)";
     $query_run = $conn->prepare($query);
 
     $data = [
         ':spare_id' => $spare_id,
         ':brand_id' => $brand_id,
-        ':model' => $model,
         ':order_quanlity' => $order_quanlity,
         ':orders_status' => $orders_status
     ];

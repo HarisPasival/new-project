@@ -31,15 +31,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-2">
-                    <h4>ข้อมูลยี่ห้อฝาสูบ</h4>
-                    <a href="add_brand.php" class="btn btn-outline-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลยี่ห้อฝาสูบ</a>
+                    <h4>ข้อมูลยี่ห้อ/รุ่นฝาสูบ</h4>
+                    <a href="add_brand.php" class="btn btn-outline-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มข้อมูลยี่ห้อ/รุ่นฝาสูบ</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3 mt-2">
                     <div class="card">
                         <div class="card-header bg-dark">
-                            <span class="text-light"><i class="fa-solid fa-car-side"></i> ตารางข้อมูลยี่ห้อฝาสูบ</span>
+                            <span class="text-light"><i class="fa-solid fa-car-side"></i> ตารางข้อมูลยี่ห้อ/รุ่นฝาสูบ</span>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -47,7 +47,7 @@
                                     <thead>
                                         <tr>
                                             <th>ลำดับ</th>
-                                            <th>ชื่อรุ่นฝาสูบ</th>
+                                            <th>ชื่อยี่ห้อ/รุ่นฝาสูบ</th>
                                             <th>จัดการ</th>
                                         </tr>
                                     </thead>

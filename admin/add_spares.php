@@ -46,13 +46,12 @@
                         </div>
                         <div class="card-body">
                             <form action="crud.php" method="POST" class="row g-3">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">ชื่ออะไหล่ :</label>
-                                    <input type="text" name="spare_name" class="form-control" />
+                                <div class="form-floating mb-3 col-md-4">
+                                    <input type="text" name="spare_name" class="form-control" id="floatingInput" placeholder="spare_name">
+                                    <label for="floatingInput">ชื่ออะไหล่</label>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">ยี่ห้อฝาสูบ :</label>
-                                    <select name="brand_id" class="form-select">
+                                <div class="form-floating col-md-4 mb-3">
+                                    <select name="brand_id" class="form-select" id="floatingSelect" aria-label="Floating label select example">
                                         <?php
                                         require '../config/connect.php';
                                         $stmt = $conn->query("SELECT * FROM brand");
@@ -62,14 +61,11 @@
                                             <option value="<?= $row['brand_id']; ?>"><?= $row['brand_name']; ?></option>
                                         <?php }  ?>
                                     </select>
+                                    <label for="floatingSelect">ยี่ห้อฝาสูบ/รุ่น</label>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">รุ่น :</label>
-                                    <input type="text" name="model" class="form-control" />
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">ราคา :</label>
-                                    <input type="text" name="spare_price" class="form-control" />
+                                <div class="form-floating mb-3 col-md-4">
+                                    <input type="text" name="spare_price" class="form-control" id="floatingInput" placeholder="spare_price">
+                                    <label for="floatingInput">ราคา</label>
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit" name="add_spare" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
