@@ -33,11 +33,13 @@
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <h4>ข้อมูลการสั่งซื้อ</h4>
+                    <a href="bill_orders.php" class="btn btn-outline-primary"><i class="fa-regular fa-folder-open"></i> ไปที่หน้าออกใบเสร็จสั่งซื้ออะไหล่</a>
                     <!-- <a href="#" class="btn btn-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มรายการสั่งซื้อ</a> -->
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addordersModal">
                         <i class="fa-solid fa-folder-plus"></i> เพิ่มรายการสั่งซื้อ</a>
                     </button>
+
                     <!-- Modal -->
                     <div class="modal fade" id="addordersModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -80,7 +82,7 @@
                                                 <input type="number" name="order_quanlity" min="1" class="form-control">
                                             </div>
                                             <input type="hidden" name="orders_status" value="1">
-                                            <div class="mb-3 mt-3">
+                                            <div class="mb-3 mt-3 text-center">
                                                 <button class="btn btn-outline-success" name="add_orders"><i class="fa-solid fa-location-arrow"></i> เพิ่มรายการสั่งซื้อ</button>
                                                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ย้อนกลับ</button>
                                             </div>
@@ -108,14 +110,15 @@
                                             <th>ยี่ห้อ/รุ่นฝาสูบ</th>
                                             <th>ราคา</th>
                                             <th>จำนวนที่สั่งซื้อ</th>
+                                            <th>ราคารวม</th>
                                             <th>วันที่สั่งซื้อ</th>
-                                            <th>สถานะ</th>
-                                            <!-- <th>อัพเดตสถานะ</th> -->
+                                            <th>ลบ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $i = 1;
+                                        $total = 0;
                                         require '../config/connect.php';
                                         $sql = "SELECT * FROM orders
                                                 LEFT JOIN spare ON orders.spare_id  =  spare.spare_id
@@ -123,29 +126,22 @@
                                                 ORDER BY order_id DESC";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                            $orders_status = $row['orders_status'];
+                                            $sum_price = ($row['spare_price'] * $row['order_quanlity']);
+                                            $total += $sum_price;
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
                                                 <td><?= $row['spare_name'] ?></td>
                                                 <td><?= $row['brand_name'] ?></td>
-                                                <td><?= $row['spare_price'] ?></td>
+                                                <td><?= number_format($row['spare_price'], 2) ?></td>
                                                 <td><?= $row['order_quanlity'] ?></td>
+                                                <td><?= number_format($sum_price, 2) ?></td>
                                                 <td><?= $row['order_date'] ?></td>
                                                 <td>
-                                                    <?php
-                                                    if ($orders_status == 1) {
-                                                        echo "<b style = 'color:gold' >รอสั่งซื้อ</b>";
-                                                    } else if ($orders_status == 2) {
-                                                        echo "<b style = 'color:green' >สั่งซื้อแล้ว</b>";
-                                                    }
-                                                    ?>
+                                                    <form action="ordersDB.php" method="POST">
+                                                        <button type="submit" name="delorders" value="<?= $row['order_id'] ?>" class="btn btn-danger btn-sm"><i class="fa-solid fa-delete-left"></i></button>
+                                                    </form>
                                                 </td>
-                                                <!-- <td>
-                                                    <div>
-                                                        <button data-bs-toggle="modal" data-bs-target="#edit_orderModal<?= $row['order_id']; ?>" type="button" class="btn btn-warning btn-sm text-white"><i class="fa-solid fa-square-pen"></i> ปรับสถานะ</button>
-                                                    </div>
-                                                </td> -->
                                             </tr>
                                         <?php } ?>
                                     </tbody>

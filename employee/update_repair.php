@@ -194,7 +194,9 @@ session_start();
                                             <th>ลำดับ</th>
                                             <th>ชื่ออะไหล่</th>
                                             <th>ยี่ห้อ/รุ่นฝาสูบ</th>
+                                            <th>ราคา</th>
                                             <th>จำนวนที่ใช้</th>
+                                            <th>ราคารวม</th>
                                             <th>จัดการ</th>
                                         </tr>
                                     </thead>
@@ -209,12 +211,15 @@ session_start();
                                         WHERE repair_details.repair_id = $repair_id";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
+                                            $sum_price = ($row['spare_price'] * $row['details_quanlity']);
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
                                                 <td><?= $row['spare_name']; ?></td>
                                                 <td><?= $row['brand_name']; ?></td>
+                                                <td><?= number_format($row['spare_price'], 2); ?></td>
                                                 <td><?= $row['details_quanlity']; ?></td>
+                                                <td><?= number_format($sum_price, 2) ?></td>
                                                 <td>
                                                     <form action="detailsDB.php" method="POST">
                                                         <button type="submit" name="delspare" value="<?= $row['repair_details_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>

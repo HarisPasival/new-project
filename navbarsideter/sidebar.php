@@ -77,7 +77,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#" class="nav-link px-3">
+                    <a href="report_orders.php" class="nav-link px-3">
                         <span class="me-2"><i class="fa-solid fa-flag"></i></span>
                         <span>รายงานการสั่งซื้ออะไหล่</span>
                     </a>
