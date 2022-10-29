@@ -59,23 +59,27 @@ session_start();
                                 }
                                 ?>
                                 <input type="hidden" name="employee_id" value="<?= $row['employee_id'] ?>">
-                                <div class="col-6">
+                                <div class="col-md-4">
+                                    <label class="form-label">วันที่แจ้งซ่อม :</label>
+                                    <input type="date" name="repair_date" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
                                     <label class="form-label">ชื่อลูกค้า :</label>
                                     <input type="text" name="repair_name" class="form-control" />
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-4">
                                     <label class="form-label">นามสกุล :</label>
                                     <input type="text" name="repair_surname" class="form-control" />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label class="form-label">ยี่ห้อ :</label>
                                     <input type="text" name="repair_brand" class="form-control" />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label class="form-label">รุ่น :</label>
                                     <input type="text" name="repair_model" class="form-control" />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label class="form-label">เบอร์โทรศัพท์ :</label>
                                     <input type="text" name="repair_phone" class="form-control" />
                                 </div>
@@ -83,11 +87,16 @@ session_start();
                                     <label class="form-label">ที่อยู่ :</label>
                                     <input type="text" name="repair_address" class="form-control" />
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-8">
                                     <label class="form-label">สาเหตุที่เสีย :</label>
                                     <input type="text" name="details" class="form-control" />
                                 </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">ราคาค่าซ่อม :</label>
+                                    <input type="number" name="repair_price" class="form-control" />
+                                </div>
                                 <input type="hidden" name="repair_status" value="1">
+                                <input type="hidden" name="payment_status" value="1">
                                 <div class="mb-3">
                                     <button type="submit" name="add_repair" class="btn btn-outline-success"><i class="fa-solid fa-circle-check"></i> เพิ่มรายการซ่อม</button>
                                     <a href="repair.php" class="btn btn-outline-danger"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</a>

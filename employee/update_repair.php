@@ -121,13 +121,13 @@ session_start();
                                 <input type="hidden" name="repair_id" value="<?= $result['repair_id'] ?>">
                                 <div class="col-md-4">
                                     <label class="form-label">วันที่แจ้งซ่อม :</label>
-                                    <input type="datetime-local" name="repair_date" value="<?= $result['repair_date'] ?>" class="form-control" readonly />
+                                    <input type="date" name="repair_date" value="<?= $result['repair_date'] ?>" class="form-control" readonly />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label class="form-label">ชื่อลูกค้า :</label>
                                     <input type="text" name="repair_name" value="<?= $result['repair_name'] ?>" class="form-control" readonly />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label class="form-label">นามสกุล :</label>
                                     <input type="text" name="repair_surname" value="<?= $result['repair_surname'] ?>" class="form-control" readonly />
                                 </div>

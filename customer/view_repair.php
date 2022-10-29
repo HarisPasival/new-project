@@ -62,7 +62,7 @@ session_start();
                                 <input type="hidden" name="repair_id" value="<?= $result['repair_id'] ?>">
                                 <div class="col-md-4">
                                     <label class="form-label">วันที่แจ้งซ่อม :</label>
-                                    <input type="datetime-local" name="repair_date" value="<?= $result['repair_date'] ?>" class="form-control" readonly />
+                                    <input type="date" name="repair_date" value="<?= $result['repair_date'] ?>" class="form-control" readonly />
                                 </div>
                                 <div class="col-4">
                                     <label class="form-label">ชื่อลูกค้า :</label>
@@ -108,15 +108,72 @@ session_start();
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label class="form-label">อัพโหลดหลักฐานการชำระเงิน :</label>
-                                    <input type="file" name="slip" class="form-control" />
-                                </div>
-                                <div class="mb-3">
-                                    <form action="payment.php" method="POST">
-                                        <button type="submit" name="payment" class="btn btn-outline-success"><i class="fa-solid fa-circle-check"></i> อัปโหลดหลักฐานชำระเงิน</button>
+                                    <form action="up_slip.php" method="$_POST">
+                                        <div>
+                                            <label class="form-label">อัพโหลดหลักฐานการชำระเงิน :</label>
+                                            <input type="file" name="slip_payment" class="form-control" />
+                                        </div>
+                                        <div class="mt-2">
+                                            <button type="submit" name="payment" class="btn btn-outline-success"><i class="fa-solid fa-circle-check"></i> อัปโหลดหลักฐานชำระเงิน</button>
+                                        </div>
                                     </form>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <h4>อะไหล่ที่ใช้ในการซ่อม</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3 mt-2">
+                    <div class="card">
+                        <div class="card-header bg-dark">
+                            <span class="text-light"><i class="fa-solid fa-toolbox"></i> อะไหล่ที่ใช้ในการซ่อม</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table table-hover dt-responsive nowrap data-table" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>ลำดับ</th>
+                                            <th>ชื่ออะไหล่</th>
+                                            <th>ยี่ห้อ/รุ่นฝาสูบ</th>
+                                            <th>ราคา</th>
+                                            <th>จำนวนที่ใช้</th>
+                                            <th>ราคารวม</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 1;
+                                        $repair_id = $_GET['repair_id'];
+                                        $sql = "SELECT * FROM repair_details 
+                                        LEFT JOIN spare ON repair_details.spare_id = spare.spare_id
+                                        LEFT JOIN brand ON repair_details.brand_id = brand.brand_id
+                                        LEFT JOIN repair ON repair_details.repair_id = repair.repair_id
+                                        WHERE repair_details.repair_id = $repair_id";
+                                        $stmt = $conn->query($sql);
+                                        while ($row = $stmt->fetch()) {
+                                            $sum_price = ($row['spare_price'] * $row['details_quanlity']);
+                                        ?>
+                                            <tr>
+                                                <td><?= $i++ ?></td>
+                                                <td><?= $row['spare_name']; ?></td>
+                                                <td><?= $row['brand_name']; ?></td>
+                                                <td><?= number_format($row['spare_price'], 2); ?></td>
+                                                <td><?= $row['details_quanlity']; ?></td>
+                                                <td><?= number_format($sum_price, 2) ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -46,34 +46,42 @@
                                     <thead>
                                         <tr>
                                             <th>ลำดับ</th>
-                                            <th>รหัสการซ่อม</th>
-                                            <th>ชื่อลูกค้า</th>
-                                            <th>เบอร์โทรศัพท์</th>
-                                            <th>หลักฐานการชำระเงิน</th>
+                                            <th>วันที่แจ้งซ่อม</th>
+                                            <th>ชื่อลูกค้าที่มาซ่อม</th>
+                                            <th>ผู้รับซ่อม</th>
+                                            <th>สลิป</th>
                                             <th>สถานะ</th>
-                                            <th>ปรับสถานะ</th>
+                                            <th>จัดการ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $i = 1;
                                         require '../config/connect.php';
-                                        $sql = "SELECT pm.*, rm.repair_price FROM payment pm 
-                                        LEFT JOIN repair rm ON pm.Repair_id=rm.repair_id";
+                                        $sql = "SELECT re.repair_id, re.repair_date, re.repair_name, re.repair_surname, re.details, re.payment_status, re.slip_payment, em.employee_id, em.name_emp, em.surname_emp
+                                        FROM repair re
+                                        left JOIN employee em ON re.employee_id = em.employee_id";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
+                                            $payment_status = $row['payment_status'];
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
-                                                <td><?= $row['repair_id']; ?></td>
-                                                <td><?= $row['repair_name']; ?></td>
-                                                <td><?= $row['repair_price']; ?></td>
-                                                <td><?= $row['slip']; ?></td>
-                                                <td><?= $row['payment_status']; ?></td>
+                                                <td><?= $row['repair_date']; ?></td>
+                                                <td><?= $row['repair_name'] . ' ' . $row['repair_surname']; ?></td>
+                                                <td><?= $row['name_emp'] . ' ' . $row['surname_emp']; ?></td>
+                                                <td><?= $row['slip_payment'] ?></td>
                                                 <td>
-                                                    <form action="#" method="POST">
-                                                        <a href="updatepay_status.php?payment_id=<?= $row['payment_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
-                                                    </form>
+                                                    <?php
+                                                    if ($payment_status == 1) {
+                                                        echo "<b style = 'background-color: yellow;border-radius: 5px;padding: 5px;color:black; font-size: 15px' >ค้างชำระเงิน</b>";
+                                                    } else if ($payment_status == 2) {
+                                                        echo "<b style = 'background-color: lime;border-radius: 5px;padding: 5px;color:black; font-size: 15px' >ชำระเงินเรียบร้อยแล้ว</b>";
+                                                    }
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-outline-warning btn-sm">ปรับสถานะ</button>
                                                 </td>
                                             </tr>
                                         <?php } ?>

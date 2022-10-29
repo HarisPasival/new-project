@@ -73,7 +73,8 @@ session_start();
                                             $sql = "SELECT re.repair_id, re.repair_date, re.repair_name, re.repair_surname, re.details, re.repair_status, em.employee_id, em.name_emp, em.surname_emp
                                         FROM repair re
                                         LEFT JOIN employee em ON re.employee_id = em.employee_id
-                                        WHERE em.employee_id = $emp_id";
+                                        WHERE em.employee_id = $emp_id
+                                        ORDER BY re.repair_id DESC";
                                             $stmt = $conn->query($sql);
                                         }
                                         while ($row = $stmt->fetch()) {
@@ -104,8 +105,7 @@ session_start();
                                                 </td>
                                                 <td>
                                                     <form action="repairdb.php.php" method="POST">
-                                                        <a href="view_details.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-info btn-sm">ดูรายละเอียด</a>
-                                                        <a href="update_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-warning btn-sm text-white">ปรับสถานะการซ่อม</i></a>
+                                                        <a href="update_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-warning btn-sm text-white">ดูรายละเอียดการซ่อม</a>
                                                     </form>
                                                 </td>
                                             </tr>

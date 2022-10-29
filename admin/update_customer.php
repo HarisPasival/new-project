@@ -58,39 +58,43 @@
                             ?>
                             <form action="crud.php" method="POST" class="row g-3">
                                 <input type="hidden" name="customer_id" value="<?= $result['customer_id'] ?>">
-                                <div class="col-md-6">
-                                    <label class="form-label">ชื่อ :</label>
-                                    <input type="text" name="name_ct" value="<?= $result['name_ct'] ?>" class="form-control" />
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="text" name="name_ct" class="form-control" value="<?= $result['name_ct'] ?>" id="floatingInput" placeholder="name_ct">
+                                    <label for="floatingInput">ชื่อ</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">นามสกุล :</label>
-                                    <input type="text" name="surname_ct" value="<?= $result['surname_ct'] ?>" class="form-control" />
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="text" name="surname_ct" class="form-control" value="<?= $result['surname_ct'] ?>" id="floatingInput" placeholder="surname_ct">
+                                    <label for="floatingInput">นามสกุล</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">ชื่อผู้ใช้ :</label>
-                                    <input type="text" name="username_ct" value="<?= $result['username_ct'] ?>" class="form-control" readonly />
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="text" name="username_ct" class="form-control" value="<?= $result['username_ct'] ?>" id="floatingInput" placeholder="username_ct">
+                                    <label for="floatingInput">ชื่อผู้ใช้</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">รหัสผ่าน :</label>
-                                    <input type="password" name="password_ct" id="myPassword" value="<?= $result['password_ct'] ?>" class="form-control" />
-                                    <input type="checkbox" onclick="passShow()">
-                                    <label>แสดงรหัสผ่าน</label>
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="password" name="password_ct" id="myPassword" value="<?= $result['password_ct'] ?>" class="form-control" id="floatingInput" placeholder="password_ct">
+                                    <label for="floatingInput">รหัสผ่าน</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">เบอร์โทรศัพท์:</label>
-                                    <input type="text" name="phone_ct" value="<?= $result['phone_ct'] ?>" class="form-control" />
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="text" name="phone_ct" maxlength="10" value="<?= $result['phone_ct'] ?>" class="form-control" id="floatingInput" placeholder="phone_ct">
+                                    <label for="floatingInput">เบอร์โทรศัพท์</label>
                                 </div>
-                                <div class="col-md-8">
-                                    <label class="form-label">อีเมล:</label>
-                                    <input type="email" name="email_ct" value="<?= $result['email_ct'] ?>" class="form-control" />
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="email" name="email_ct" class="form-control" value="<?= $result['email_ct'] ?>" id="floatingInput" placeholder="email_ct">
+                                    <label for="floatingInput">อีเมล</label>
                                 </div>
-                                <div class="col-12">
-                                    <label class="form-label">ที่อยู่:</label>
-                                    <input type="text" name="address_ct" value="<?= $result['address_ct'] ?>" class="form-control" />
+                                <div class="form-floating col-12 mb-3">
+                                    <input type="text" name="address_ct" class="form-control" value="<?= $result['address_ct'] ?>" id="floatingInput" placeholder="address_ct">
+                                    <label for="floatingInput">ที่อยู่</label>
+                                </div>
+                                <div class="form-floating col-12 mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" onclick="passShow()">
+                                        <label>แสดงรหัสผ่าน</label>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="update_cus" class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> แก้ไขข้อมูล</button>
-                                    <a href="customer.php" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
+                                    <button type="submit" name="update_cus" class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i> แก้ไขข้อมูล</button>
+                                    <a href="customer.php" class="btn btn-outline-danger"><i class="fa-solid fa-caret-left"></i> ยกเลิก</a>
                                 </div>
                             </form>
                         </div>
