@@ -35,8 +35,10 @@ session_start();
         <div class="container-fluid">
             <div class="row mt-2">
                 <div class="col-md-12">
-                    <div class="alert alert-info" role="alert">
-                        <h4>รายละเอียดการซ่อม</h4>
+                    <div class="card bg-dark">
+                        <div class="card-body">
+                            <h3 class="text-white">รายละเอียดการซ่อม</h3>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,7 +112,7 @@ session_start();
                                         <label class="form-label">อัพโหลดหลักฐานการชำระเงิน :</label>
                                         <input type="file" name="slip_payment" class="form-control" />
                                     </div>
-                                    <input type="hidden" name="repair_id" value="<?= $result['repair_id']?>">
+                                    <input type="hidden" name="repair_id" value="<?= $result['repair_id'] ?>">
                                     <div class="mt-2">
                                         <button type="submit" name="payment" class="btn btn-outline-success"><i class="fa-solid fa-circle-check"></i> อัปโหลดหลักฐานชำระเงิน</button>
                                     </div>
@@ -124,59 +126,80 @@ session_start();
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-2">
-                    <h4>อะไหล่ที่ใช้ในการซ่อม</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mb-3 mt-2">
-                    <div class="card">
-                        <div class="card-header bg-dark">
-                            <span class="text-light"><i class="fa-solid fa-toolbox"></i> อะไหล่ที่ใช้ในการซ่อม</span>
-                        </div>
+                    <div class="card bg-dark">
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table table-hover dt-responsive nowrap data-table" style="width: 100%">
-                                    <thead>
-                                        <tr>
-                                            <th>ลำดับ</th>
-                                            <th>ชื่ออะไหล่</th>
-                                            <th>ยี่ห้อ/รุ่นฝาสูบ</th>
-                                            <th>ราคา</th>
-                                            <th>จำนวนที่ใช้</th>
-                                            <th>ราคารวม</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $i = 1;
-                                        $repair_id = $_GET['repair_id'];
-                                        $sql = "SELECT * FROM repair_details 
+                            <h5 class="text-white">อะไหล่ที่ใช้ในการซ่อม</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 mb-3 mt-2">
+                            <div class="card">
+                                <div class="card-header bg-dark">
+                                    <span class="text-light"><i class="fa-solid fa-toolbox"></i> อะไหล่ที่ใช้ในการซ่อม</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="example" class="table table-hover dt-responsive nowrap data-table" style="width: 100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>ลำดับ</th>
+                                                    <th>ชื่ออะไหล่</th>
+                                                    <th>ยี่ห้อ/รุ่นฝาสูบ</th>
+                                                    <th>ราคา</th>
+                                                    <th>จำนวนที่ใช้</th>
+                                                    <th>ราคารวม</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $i = 1;
+                                                $total = 0;
+                                                $resultAll = 0;
+                                                $repair_id = $_GET['repair_id'];
+                                                $sql = "SELECT * FROM repair_details 
                                         LEFT JOIN spare ON repair_details.spare_id = spare.spare_id
                                         LEFT JOIN brand ON repair_details.brand_id = brand.brand_id
                                         LEFT JOIN repair ON repair_details.repair_id = repair.repair_id
                                         WHERE repair_details.repair_id = $repair_id";
-                                        $stmt = $conn->query($sql);
-                                        while ($row = $stmt->fetch()) {
-                                            $sum_price = ($row['spare_price'] * $row['details_quanlity']);
-                                        ?>
-                                            <tr>
-                                                <td><?= $i++ ?></td>
-                                                <td><?= $row['spare_name']; ?></td>
-                                                <td><?= $row['brand_name']; ?></td>
-                                                <td><?= number_format($row['spare_price'], 2); ?></td>
-                                                <td><?= $row['details_quanlity']; ?></td>
-                                                <td><?= number_format($sum_price, 2) ?></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+                                                $stmt = $conn->query($sql);
+                                                while ($row = $stmt->fetch()) {
+                                                    $sum_price = ($row['spare_price'] * $row['details_quanlity']);
+                                                    $total += $sum_price;
+                                                    $resultAll = $total + ($row['repair_price']);
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $i++ ?></td>
+                                                        <td><?= $row['spare_name']; ?></td>
+                                                        <td><?= $row['brand_name']; ?></td>
+                                                        <td><?= number_format($row['spare_price'], 2); ?></td>
+                                                        <td><?= $row['details_quanlity']; ?></td>
+                                                        <td><?= number_format($sum_price, 2) ?></td>
+                                                    </tr>
+                                                <?php } ?>
+                                                <tr>
+                                                    <td colspan="5" class="text-center">ราคาค่าอะไหล่ที่ใช้</td>
+                                                    <td><?= number_format($total, 2); ?></td>
+                                                    <td>บาท</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="table-info">
+                                                    <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด(ราคาค่าอะไหล่ที่ใช้ + ราคาค่าซ่อม)</td>
+                                                    <td><?= number_format($resultAll, 2); ?></td>
+                                                    <td>บาท</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <?php include '../navemp/footer.php' ?>
+            <?php include '../navemp/footer.php' ?>
     </main>
     <!-- content -->
     <script src="../js/bootstrap.bundle.min.js"></script>

@@ -34,19 +34,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-3">
-                    <h2>ออกใบเสร็จการสั่งซื้ออะไหล่ตามช่วงเวลา</h2>
+                    <h2>ออกใบเสร็จการสั่งซื้ออะไหล่</h2>
                     <form action="" method="GET">
                         <div class="row g-3 mt-3">
                             <div class="form-floating col-md-4 mb-3">
-                                <input type="date" name="start_date" data-date-format="dd-mm-Y" class="form-control" id="floatingInput" placeholder="start_date" required>
-                                <label for="floatingInput">วันที่เริ่มต้น</label>
-                            </div>
-                            <div class="col-auto">
-                                <label class="form-label">ถึง</label>
-                            </div>
-                            <div class="form-floating col-md-4 mb-3">
-                                <input type="date" name="final_date" data-date-format="dd-mm-Y" class="form-control" id="floatingInput" placeholder="final_date" required>
-                                <label for="floatingInput">วันที่สิ้นสุด</label>
+                                <input type="date" name="bill_date" data-date-format="dd-mm-Y" class="form-control" id="floatingInput" placeholder="start_date" required>
+                                <label for="floatingInput">วันที่สั่งซื้อ</label>
                             </div>
                             <div class="col-auto">
                                 <button type="submit" class="btn btn-outline-info">ค้นหา</button>
@@ -54,19 +47,19 @@
                         </div>
                     </form>
                     <?php
-                    if (isset($_GET['start_date']) && isset($_GET['final_date'])) {
+                    if (isset($_GET['bill_date'])) {
                         require_once '../config/connect.php';
                         $stmt = $conn->prepare("SELECT * FROM orders
                         LEFT JOIN spare ON orders.spare_id  =  spare.spare_id
                         LEFT JOIN brand ON orders.brand_id = brand.brand_id
-                        WHERE order_date BETWEEN ? AND ?");
-                        $stmt->execute(array($_GET['start_date'], $_GET['final_date']));
+                        WHERE order_date = ?");
+                        $stmt->execute(([$_GET['bill_date']]));
                         $result = $stmt->fetchAll();
 
                         if ($stmt->rowCount() > 0) {
                     ?>
                             <br>
-                            <h4>รายงานการสั่งซื้อวันที่ : <?= date('d/m/Y', strtotime($_GET['start_date'])); ?> ถึง <?= date('d/m/Y', strtotime($_GET['final_date'])); ?></h4>
+                            <h4>รายงานการสั่งซื้อวันที่ : <?= date('d/m/Y',strtotime($_GET['bill_date']));?></h4>
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">
