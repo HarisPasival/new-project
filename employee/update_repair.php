@@ -203,6 +203,8 @@ session_start();
                                     <tbody>
                                         <?php
                                         $i = 1;
+                                        $total = 0;
+                                        $resultAll = 0;
                                         $repair_id = $_GET['repair_id'];
                                         $sql = "SELECT * FROM repair_details 
                                         LEFT JOIN spare ON repair_details.spare_id = spare.spare_id
@@ -212,6 +214,8 @@ session_start();
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
                                             $sum_price = ($row['spare_price'] * $row['details_quanlity']);
+                                            $total += $sum_price;
+                                            $resultAll = $total+($row['repair_price']);
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
@@ -227,6 +231,18 @@ session_start();
                                                 </td>
                                             </tr>
                                         <?php } ?>
+                                        <tr>
+                                            <td colspan="5" class="text-center">ราคาค่าอะไหล่ที่ใช้</td>
+                                            <td><?= number_format($total, 2); ?></td>
+                                            <td>บาท</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="table-info">
+                                            <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด(ราคาค่าอะไหล่ที่ใช้ + ราคาค่าซ่อม)</td>
+                                            <td><?= number_format( $resultAll, 2); ?></td>
+                                            <td>บาท</td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

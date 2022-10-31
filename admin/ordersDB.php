@@ -6,16 +6,16 @@ if (isset($_POST['add_orders'])) {
     $spare_id = $_POST['spare_id'];
     $brand_id = $_POST['brand_id'];
     $order_quanlity = $_POST['order_quanlity'];
-    $orders_status = $_POST['orders_status'];
+    $order_date = $_POST['order_date'];
 
-    $query = "INSERT INTO orders (spare_id,brand_id,order_quanlity,orders_status) VALUES (:spare_id,:brand_id,:order_quanlity,:orders_status)";
+    $query = "INSERT INTO orders (spare_id,brand_id,order_quanlity,order_date) VALUES (:spare_id,:brand_id,:order_quanlity,:order_date)";
     $query_run = $conn->prepare($query);
 
     $data = [
         ':spare_id' => $spare_id,
         ':brand_id' => $brand_id,
         ':order_quanlity' => $order_quanlity,
-        ':orders_status' => $orders_status
+        ':order_date' => $order_date
     ];
     $query_execute = $query_run->execute($data);
 

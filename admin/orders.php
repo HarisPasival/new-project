@@ -34,7 +34,6 @@
                 <div class="col-md-12 mt-2">
                     <h4>ข้อมูลการสั่งซื้อ</h4>
                     <a href="bill_orders.php" class="btn btn-outline-primary"><i class="fa-regular fa-folder-open"></i> ไปที่หน้าออกใบเสร็จสั่งซื้ออะไหล่</a>
-                    <!-- <a href="#" class="btn btn-success"><i class="fa-solid fa-folder-plus"></i> เพิ่มรายการสั่งซื้อ</a> -->
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addordersModal">
                         <i class="fa-solid fa-folder-plus"></i> เพิ่มรายการสั่งซื้อ</a>
@@ -51,7 +50,7 @@
                                 <div class="modal-body">
                                     <form action="ordersDB.php" method="POST">
                                         <div class="row">
-                                            <div class="col-md-4 mt-2">
+                                            <div class="col-md-6 mt-2">
                                                 <label class="form-label">ชื่ออะไหล่ :</label>
                                                 <select name="spare_id" class="form-select">
                                                     <?php
@@ -64,7 +63,7 @@
                                                     <?php }  ?>
                                                 </select>
                                             </div>
-                                            <div class="col-md-4 mt-2">
+                                            <div class="col-md-6 mt-2">
                                                 <label class="form-label">ยี่ห้อ/รุ่นฝาสูบ :</label>
                                                 <select name="brand_id" class="form-select">
                                                     <?php
@@ -77,11 +76,14 @@
                                                     <?php }  ?>
                                                 </select>
                                             </div>
-                                            <div class="col-md-4 mt-2">
+                                            <div class="col-md-6 mt-2">
                                                 <label class="form-label">จำนวนที่สั่งซื้อ</label>
                                                 <input type="number" name="order_quanlity" min="1" class="form-control">
                                             </div>
-                                            <input type="hidden" name="orders_status" value="1">
+                                            <div class="col-md-6 mt-2">
+                                                <label class="form-label">วันที่สั่งซื้อ</label>
+                                                <input type="date" name="order_date" class="form-control">
+                                            </div>
                                             <div class="mb-3 mt-3 text-center">
                                                 <button class="btn btn-outline-success" name="add_orders"><i class="fa-solid fa-location-arrow"></i> เพิ่มรายการสั่งซื้อ</button>
                                                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ย้อนกลับ</button>
@@ -144,6 +146,12 @@
                                                 </td>
                                             </tr>
                                         <?php } ?>
+                                        <tr class="table-info">
+                                            <td colspan="5" class="text-center">ราคารวม</td>
+                                            <td><?= number_format($total, 2); ?></td>
+                                            <td>บาท</td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

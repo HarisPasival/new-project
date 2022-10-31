@@ -10,7 +10,6 @@ if (isset($_POST['add_repair'])) {
     $repair_name = $_POST['repair_name'];
     $repair_surname = $_POST['repair_surname'];
     $repair_brand = $_POST['repair_brand'];
-    $repair_model = $_POST['repair_model'];
     $repair_phone = $_POST['repair_phone'];
     $repair_address = $_POST['repair_address'];
     $details = $_POST['details'];
@@ -18,14 +17,13 @@ if (isset($_POST['add_repair'])) {
     $emp_id = $_POST['employee_id'];
     $repair_status = $_POST['repair_status'];
     $payment_status = $_POST['payment_status'];
-    $query = "INSERT INTO repair(repair_date,repair_name,repair_surname,repair_brand,repair_model,repair_phone,repair_address,details,repair_price,employee_id,repair_status,payment_status) VALUES (:repair_date,:repair_name,:repair_surname,:repair_brand,:repair_model,:repair_phone,:repair_address,:details,:repair_price,:employee_id,:repair_status,:payment_status)";
+    $query = "INSERT INTO repair(repair_date,repair_name,repair_surname,repair_brand,repair_phone,repair_address,details,repair_price,employee_id,repair_status,payment_status) VALUES (:repair_date,:repair_name,:repair_surname,:repair_brand,:repair_phone,:repair_address,:details,:repair_price,:employee_id,:repair_status,:payment_status)";
     $query_run = $conn->prepare($query);
     $data = [
         ':repair_date' => $repair_date,
         ':repair_name' => $repair_name,
         ':repair_surname' => $repair_surname,
         ':repair_brand' => $repair_brand,
-        ':repair_model' => $repair_model,
         ':repair_phone' => $repair_phone,
         ':repair_address' => $repair_address,
         ':details' => $details,

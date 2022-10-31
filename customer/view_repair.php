@@ -103,18 +103,19 @@ session_start();
                                         <option value="6" <?php if ($result['repair_status'] == 6) { ?> selected="selected" <?php } ?>>ยกเลิก</option>
                                     </select>
                                 </div>
-                                <div class="col-12">
-                                    <form action="up_slip.php" method="$_POST">
-                                        <div>
-                                            <label class="form-label">อัพโหลดหลักฐานการชำระเงิน :</label>
-                                            <input type="file" name="slip_payment" class="form-control" />
-                                        </div>
-                                        <div class="mt-2">
-                                            <button type="submit" name="payment" class="btn btn-outline-success"><i class="fa-solid fa-circle-check"></i> อัปโหลดหลักฐานชำระเงิน</button>
-                                        </div>
-                                    </form>
-                                </div>
                             </form>
+                            <div class="col-12 mt-2">
+                                <form action="up_slip.php" method="POST" enctype="multipart/form-data">
+                                    <div>
+                                        <label class="form-label">อัพโหลดหลักฐานการชำระเงิน :</label>
+                                        <input type="file" name="slip_payment" class="form-control" />
+                                    </div>
+                                    <input type="hidden" name="repair_id" value="<?= $result['repair_id']?>">
+                                    <div class="mt-2">
+                                        <button type="submit" name="payment" class="btn btn-outline-success"><i class="fa-solid fa-circle-check"></i> อัปโหลดหลักฐานชำระเงิน</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

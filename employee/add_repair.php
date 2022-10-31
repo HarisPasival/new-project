@@ -71,15 +71,11 @@ session_start();
                                     <label class="form-label">นามสกุล :</label>
                                     <input type="text" name="repair_surname" class="form-control" />
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label class="form-label">ยี่ห้อ :</label>
                                     <input type="text" name="repair_brand" class="form-control" />
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">รุ่น :</label>
-                                    <input type="text" name="repair_model" class="form-control" />
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label class="form-label">เบอร์โทรศัพท์ :</label>
                                     <input type="text" name="repair_phone" class="form-control" />
                                 </div>

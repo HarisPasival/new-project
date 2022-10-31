@@ -49,7 +49,7 @@
                                             <th>วันที่แจ้งซ่อม</th>
                                             <th>ชื่อลูกค้าที่มาซ่อม</th>
                                             <th>ผู้รับซ่อม</th>
-                                            <th>สลิป</th>
+                                            <th class="text-center">สลิป</th>
                                             <th>สถานะ</th>
                                             <th>จัดการ</th>
                                         </tr>
@@ -70,7 +70,7 @@
                                                 <td><?= $row['repair_date']; ?></td>
                                                 <td><?= $row['repair_name'] . ' ' . $row['repair_surname']; ?></td>
                                                 <td><?= $row['name_emp'] . ' ' . $row['surname_emp']; ?></td>
-                                                <td><?= $row['slip_payment'] ?></td>
+                                                <td class="text-center"><img style="width: 120px;" src="<?= '../slip/' . $row['slip_payment'] ?>"></td>
                                                 <td>
                                                     <?php
                                                     if ($payment_status == 1) {

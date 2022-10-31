@@ -65,12 +65,11 @@
                                 <div class="form-floating col-md-4 mb-3">
                                     <select name="brand_id" class="form-select" id="floatingSelect" aria-label="Floating label select example">
                                         <?php
-                                        require '../config/connect.php';
                                         $stmt = $conn->query("SELECT * FROM brand");
                                         $stmt->execute();
                                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         ?>
-                                            <option value="<?= $row["brand_id"]; ?>" <?= ($row["brand_id"] == $row['brand_id']) ? 'selected="selected"' : ''; ?>>
+                                            <option value="<?= $row["brand_id"]; ?>" <?= ($row["brand_id"] == $result['brand_id']) ? 'selected="selected"' : ''; ?>>
                                                 <?= $row['brand_name']; ?></option>
                                         <?php }  ?>
                                     </select>
