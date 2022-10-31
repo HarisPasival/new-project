@@ -69,6 +69,7 @@ require '../config/connect.php';
         </div>
       </div>
     </div>
+
     <?php include '../navemp/footer.php' ?>
   </main>
   <!-- content -->

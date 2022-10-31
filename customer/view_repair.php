@@ -64,23 +64,19 @@ session_start();
                                     <label class="form-label">วันที่แจ้งซ่อม :</label>
                                     <input type="date" name="repair_date" value="<?= $result['repair_date'] ?>" class="form-control" readonly />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label class="form-label">ชื่อลูกค้า :</label>
                                     <input type="text" name="repair_name" value="<?= $result['repair_name'] ?>" class="form-control" readonly />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label class="form-label">นามสกุล :</label>
                                     <input type="text" name="repair_surname" value="<?= $result['repair_surname'] ?>" class="form-control" readonly />
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-6">
                                     <label class="form-label">ยี่ห้อ :</label>
                                     <input type="text" name="repair_brand" value="<?= $result['repair_brand'] ?>" class="form-control" readonly />
                                 </div>
-                                <div class="col-4">
-                                    <label class="form-label">รุ่น :</label>
-                                    <input type="text" name="repair_model" value="<?= $result['repair_model'] ?>" class="form-control" readonly />
-                                </div>
-                                <div class="col-4">
+                                <div class="col-md-6">
                                     <label class="form-label">เบอร์โทรศัพท์ :</label>
                                     <input type="text" name="repair_phone" value="<?= $result['repair_phone'] ?>" class="form-control" readonly />
                                 </div>
