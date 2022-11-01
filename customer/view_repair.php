@@ -106,7 +106,7 @@ session_start();
                                     </select>
                                 </div>
                             </form>
-                            <div class="col-12 mt-2">
+                            <!-- <div class="col-12 mt-2">
                                 <form action="up_slip.php" method="POST" enctype="multipart/form-data">
                                     <div>
                                         <label class="form-label">อัพโหลดหลักฐานการชำระเงิน :</label>
@@ -117,7 +117,7 @@ session_start();
                                         <button type="submit" name="payment" class="btn btn-outline-success"><i class="fa-solid fa-circle-check"></i> อัปโหลดหลักฐานชำระเงิน</button>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -150,6 +150,7 @@ session_start();
                                                     <th>ราคา</th>
                                                     <th>จำนวนที่ใช้</th>
                                                     <th>ราคารวม</th>
+                                                    <th>หน่วย</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -165,9 +166,9 @@ session_start();
                                         WHERE repair_details.repair_id = $repair_id";
                                                 $stmt = $conn->query($sql);
                                                 while ($row = $stmt->fetch()) {
-                                                    $sum_price = ($row['spare_price'] * $row['details_quanlity']);
-                                                    $total += $sum_price;
-                                                    $resultAll = $total + ($row['repair_price']);
+                                                    $sum_price = ($row['spare_price'] * $row['details_quanlity']); //(ราคาค่าอะไหล่ * จำนวนอะไหล่ที่ใช้)
+                                                    $total += $sum_price; //(รวมราคาอะไหล่ทั้งหมดที่ใช้ในการซ่อม)
+                                                    $resultAll = $total + ($row['repair_price']); //(ราคาค่าอะไหล่ที่ใช้ + ราคาค่าซ่อม)
                                                 ?>
                                                     <tr>
                                                         <td><?= $i++ ?></td>
@@ -176,22 +177,53 @@ session_start();
                                                         <td><?= number_format($row['spare_price'], 2); ?></td>
                                                         <td><?= $row['details_quanlity']; ?></td>
                                                         <td><?= number_format($sum_price, 2) ?></td>
+                                                        <td>บาท</td>
                                                     </tr>
                                                 <?php } ?>
                                                 <tr>
                                                     <td colspan="5" class="text-center">ราคาค่าอะไหล่ที่ใช้</td>
                                                     <td><?= number_format($total, 2); ?></td>
                                                     <td>บาท</td>
-                                                    <td></td>
                                                 </tr>
                                                 <tr class="table-info">
-                                                    <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด(ราคาค่าอะไหล่ที่ใช้ + ราคาค่าซ่อม)</td>
+                                                    <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด (ราคาค่าอะไหล่ที่ใช้ + ราคาค่าซ่อม)</td>
                                                     <td><?= number_format($resultAll, 2); ?></td>
                                                     <td>บาท</td>
-                                                    <td></td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 mt-2">
+                        <div class="card bg-dark">
+                            <div class="card-body">
+                                <h5 class="text-white">อัปโหลดหลักฐานการชำระเงิน</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form action="up_slip.php" method="POST" enctype="multipart/form-data">
+                                    <div class="mt-2">
+                                        <label class="form-label">อัปโหลดหลักฐานการชำระเงิน :</label>
+                                        <input type="file" name="slip_payment" class="form-control" required />
+                                    </div>
+                                    <input type="hidden" name="repair_id" value="<?= $result['repair_id'] ?>">
+                                    <div class="mt-2">
+                                        <button type="submit" name="payment" class="btn btn-outline-success"><i class="fa-solid fa-circle-check"></i> อัปโหลดหลักฐานชำระเงิน</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-6 mt-2">
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <img src="../payment/NEXT.jpg" class="card-img-top">
                                     </div>
                                 </div>
                             </div>

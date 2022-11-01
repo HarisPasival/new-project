@@ -37,7 +37,7 @@ session_start();
                 <div class="col-md-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">จัดการรับซ่อม</li>
-                        <li class="breadcrumb-item active text-primary">แก้ไขรายการซ่อม</li>
+                        <li class="breadcrumb-item active text-primary">รายการซ่อม</li>
                     </ol>
                 </div>
             </div>
@@ -167,6 +167,7 @@ session_start();
                                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addspareModal">ระบุอะไหล่ที่ใช้</button>
                                     <button type="submit" name="update_repair" class="btn btn-outline-warning"><i class="fa-solid fa-circle-check"></i> ปรับสถานะการซ่อม</button>
                                     <a href="repair.php" class="btn btn-outline-danger"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</a>
+                                    <a href="pdf.php" class="btn btn-outline-info">ออกใบเสนอราคา</a>
                                 </div>
                             </form>
                         </div>
@@ -213,9 +214,9 @@ session_start();
                                         WHERE repair_details.repair_id = $repair_id";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
-                                            $sum_price = ($row['spare_price'] * $row['details_quanlity']);
-                                            $total += $sum_price;
-                                            $resultAll = $total+($row['repair_price']);
+                                            $sum_price = ($row['spare_price'] * $row['details_quanlity']); //(ราคาค่าอะไหล่ * จำนวนอะไหล่ที่ใช้)
+                                            $total += $sum_price; //(รวมราคาอะไหล่ทั้งหมดที่ใช้ในการซ่อม)
+                                            $resultAll = $total+($row['repair_price']); //(ราคาค่าอะไหล่ที่ใช้ + ราคาค่าซ่อม)
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
@@ -235,13 +236,11 @@ session_start();
                                             <td colspan="5" class="text-center">ราคาค่าอะไหล่ที่ใช้</td>
                                             <td><?= number_format($total, 2); ?></td>
                                             <td>บาท</td>
-                                            <td></td>
                                         </tr>
                                         <tr class="table-info">
-                                            <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด(ราคาค่าอะไหล่ที่ใช้ + ราคาค่าซ่อม)</td>
+                                            <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด</td>
                                             <td><?= number_format( $resultAll, 2); ?></td>
                                             <td>บาท</td>
-                                            <td></td>
                                         </tr>
                                     </tbody>
                                 </table>

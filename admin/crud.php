@@ -443,7 +443,7 @@ if (isset($_POST['delete_spare'])) {
                 });
             });
             </script>";
-            header('refresh:1; url = spare.php');
+            header('refresh:1; url = spares.php');
             exit(0);
         }
     } catch (PDOException $e) {

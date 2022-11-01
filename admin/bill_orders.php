@@ -43,6 +43,7 @@
                             </div>
                             <div class="col-auto">
                                 <button type="submit" class="btn btn-outline-info">ค้นหา</button>
+                                <a class="btn btn-outline-danger" href="orders.php">ยกเลิก</a>
                             </div>
                         </div>
                     </form>
@@ -59,7 +60,7 @@
                         if ($stmt->rowCount() > 0) {
                     ?>
                             <br>
-                            <h4>รายงานการสั่งซื้อวันที่ : <?= date('d/m/Y',strtotime($_GET['bill_date']));?></h4>
+                            <h4>ใบเสร็จการสั่งซื้อวันที่ : <?= date('d/m/Y', strtotime($_GET['bill_date'])); ?></h4>
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">

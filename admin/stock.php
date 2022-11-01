@@ -37,33 +37,33 @@ include '../config/connect.php';
                     <h4>รับเข้าอะไหล่</h4>
                     <div class="card">
                         <div class="card-body">
-                            <?php
+                        <?php
+                            require '../config/connect.php';
                             if (isset($_GET['spare_id'])) {
                                 $spare_id = $_GET['spare_id'];
                                 $query = "SELECT * FROM spare WHERE spare_id =:spare_id";
                                 $stmt = $conn->prepare($query);
                                 $data = [':spare_id' => $spare_id];
                                 $stmt->execute($data);
-
-                                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
                             }
                             ?>
                             <form action="up_stock.php" method="POST" class="row g-3">
-                                <input type="hidden" name="spare_id" value="<?= $row['spare_id']; ?>">
+                                <input type="hidden" name="spare_id" value="<?= $result['spare_id']; ?>">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">ชื่ออะไหล่:</label>
-                                    <input type="text" name="spare_name" value="<?= $row['spare_name']; ?>" class="form-control" readonly />
+                                    <input type="text" name="spare_name" value="<?= $result['spare_name']; ?>" class="form-control" readonly />
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">ยี่ห้อฝาสูบ :</label>
                                     <select name="brand_id" class="form-select" disabled>
                                         <?php
-                                        require '../config/connect.php';
                                         $stmt = $conn->query("SELECT * FROM brand");
                                         $stmt->execute();
-                                        while ($row = $stmt->fetch()) {
+                                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         ?>
-                                            <option value="<?= $row['brand_id']; ?>"><?= $row['brand_name']; ?></option>
+                                            <option value="<?= $row["brand_id"]; ?>" <?= ($row["brand_id"] == $result['brand_id']) ? 'selected="selected"' : ''; ?>>
+                                                <?= $row['brand_name']; ?></option>
                                         <?php }  ?>
                                     </select>
                                 </div>

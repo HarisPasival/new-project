@@ -20,12 +20,6 @@
                         </div>
                     </li>
                     <li>
-                        <a href="follow_status.php" class="nav-link px-3">
-                            <span class="me-2"><i class="fa-solid fa-signal"></i></span>
-                            <span>ติดตามสถานะการซ่อม</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="#" class="nav-link px-3">
                             <span class="me-2"><i class="fa-solid fa-calendar-week"></i></span>
                             <span>รายละเอียดการซ่อม</span>

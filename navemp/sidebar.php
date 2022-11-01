@@ -20,6 +20,12 @@
                     </div>
                 </li>
                 <li>
+                    <a href="spares.php" class="nav-link px-3">
+                        <span class="me-2"><i class="fa-solid fa-toolbox"></i></span>
+                        <span>จัดการข้อมูลอะไหล่</span>
+                    </a>
+                </li>
+                <li>
                     <a href="repair.php" class="nav-link px-3">
                         <span class="me-2"><i class="fa-solid fa-toolbox"></i></span>
                         <span>รายการซ่อมทั้งหมด</span>
