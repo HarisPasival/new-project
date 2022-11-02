@@ -106,6 +106,7 @@ session_start();
                                                 <td>
                                                     <form action="repairdb.php.php" method="POST">
                                                         <a href="update_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-warning btn-sm text-white">ดูรายละเอียดการซ่อม</a>
+                                                        <a href="bill_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-info btn-sm text-white">ใบเสนอราคา</a>
                                                     </form>
                                                 </td>
                                             </tr>

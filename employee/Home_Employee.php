@@ -43,34 +43,101 @@ require '../config/connect.php';
       ?>
       <div class="row">
         <div class="col-md-12">
-          <h4>Dashboard : <?php echo $row['name_emp'] . ' ' . $row['surname_emp'] ?></h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3 mb-3">
-          <div class="card bg-primary text-white h-100">
-            <div class="card-body py-5">Primary Card</div>
+          <div class="card bg-dark">
+            <div class="card-body">
+              <h4 class="text-white"><i class="fa-solid fa-circle-user"></i> <?php echo $row['name_emp'] . ' ' . $row['surname_emp'] ?></h4>
+              </h4>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-4 mb-3">
+              <div class="card bg-warning text-white h-100">
+                <?php
+                require '../config/connect.php';
+                $stmt = $conn->query("SELECT COUNT(repair_status) AS wait
+                        FROM repair
+                        WHERE repair_status = '1'");
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                ?>
+                <div class="card-body"><i class="fa-solid fa-calendar-week"></i> รายการซ่อมที่รอยืนยันการซ่อม<h4><?= $row['wait'] ?> รายการ</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card bg-success text-white h-100">
+                <?php
+                require '../config/connect.php';
+                $stmt = $conn->query("SELECT COUNT(repair_status) AS confirm
+                        FROM repair
+                        WHERE repair_status = '2'");
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                ?>
+                <div class="card-body"><i class="fa-solid fa-calendar-week"></i> รายการซ่อมที่ยืนยันแล้ว<h4><?= $row['confirm'] ?> รายการ</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card bg-primary text-white h-100">
+                <?php
+                require '../config/connect.php';
+                $stmt = $conn->query("SELECT COUNT(repair_status) AS canpair
+                        FROM repair
+                        WHERE repair_status = '3'");
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                ?>
+                <div class="card-body"><i class="fa-solid fa-calendar-week"></i> รายการซ่อมที่กำลังซ่อม<h4><?= $row['canpair'] ?> รายการ</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card bg-info text-white h-100">
+                <?php
+                require '../config/connect.php';
+                $stmt = $conn->query("SELECT COUNT(repair_status) AS complete
+                        FROM repair
+                        WHERE repair_status = '4'");
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                ?>
+                <div class="card-body"><i class="fa-solid fa-calendar-week"></i> รายการซ่อมที่ซ่อมเสร็จแล้ว<h4><?= $row['complete'] ?> รายการ</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card bg-secondary text-white h-100">
+                <?php
+                require '../config/connect.php';
+                $stmt = $conn->query("SELECT COUNT(repair_status) AS turn
+                        FROM repair
+                        WHERE repair_status = '5'");
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                ?>
+                <div class="card-body"><i class="fa-solid fa-calendar-week"></i> รายการที่ส่งมอบแล้ว<h4><?= $row['turn'] ?> รายการ</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card bg-danger text-white h-100">
+                <?php
+                require '../config/connect.php';
+                $stmt = $conn->query("SELECT COUNT(repair_status) AS cancel
+                        FROM repair
+                        WHERE repair_status = '6'");
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                ?>
+                <div class="card-body"><i class="fa-solid fa-calendar-week"></i> รายการซ่อมที่ยกเลิก<h4><?= $row['cancel'] ?> รายการ</h4>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-md-3 mb-3">
-          <div class="card bg-warning text-dark h-100">
-            <div class="card-body py-5">Warning Card</div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-3">
-          <div class="card bg-success text-white h-100">
-            <div class="card-body py-5">Success Card</div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-3">
-          <div class="card bg-danger text-white h-100">
-            <div class="card-body py-5">Danger Card</div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <?php include '../navemp/footer.php' ?>
+        <?php include '../navemp/footer.php' ?>
   </main>
   <!-- content -->
   <script src="../js/bootstrap.bundle.min.js"></script>

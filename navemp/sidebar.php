@@ -48,15 +48,15 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#" class="nav-link px-3">
+                    <a href="report_spare.php" class="nav-link px-3">
                         <span class="me-2"><i class="fa-solid fa-flag"></i></span>
-                        <span>รายงานการรับซ่อม</span>
+                        <span>รายงานอะไหล่คงเหลือ</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link px-3">
+                    <a href="report_repair.php" class="nav-link px-3">
                         <span class="me-2"><i class="fa-solid fa-flag"></i></span>
-                        <span>รายงานการส่งมอบฝาสูบ</span>
+                        <span>รายงานการรับซ่อม</span>
                     </a>
                 </li>
             </ul>

@@ -74,6 +74,7 @@
                                                     <form action="crud.php" method="POST">
                                                         <a href="update_spare.php?spare_id=<?= $row['spare_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>
                                                         <button type="submit" name="delete_spare" value="<?= $row['spare_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                                        <a href="cut_stock.php?spare_id=<?= $row['spare_id'] ?>" class="btn btn-info btn-sm text-white"><i class="fa-solid fa-square-pen"> ปรับสต็อก</i></a>
                                                     </form>
                                                 </td>
                                             </tr>

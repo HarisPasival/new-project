@@ -132,7 +132,8 @@ require '../config/connect.php';
                                                                     </td>
                                                                     <td>
                                                                         <form action="crud.php" method="POST">
-                                                                            <a href="view_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-info text-white"><i class="fa-solid fa-square-pen"></i> ดูรายละเอียด</a>
+                                                                            <a href="view_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-info btn-sm text-white"><i class="fa-solid fa-square-pen"></i> ดูรายละเอียด</a>
+                                                                            <a href="payment_repair.php?repair_id=<?= $row['repair_id'] ?>" class="btn btn-warning btn-sm text-white"><i class="fa-solid fa-square-pen"></i> ใบเสร็จ</a>
                                                                         </form>
                                                                     </td>
                                                                 </tr>

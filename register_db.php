@@ -68,7 +68,7 @@ if (isset($_POST['Regis'])) {
                     });
                 });
                 </script>";
-                header('refresh:1; url = customer/Home_Customer.php');
+                header('refresh:1; url = Register.php');
                 exit(0);
             } else {
                 echo "<script>

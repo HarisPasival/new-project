@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <h4>ข้อมูลการสั่งซื้อ</h4>
-                    <a href="bill_orders.php" class="btn btn-outline-primary"><i class="fa-regular fa-folder-open"></i> ไปที่หน้าออกใบเสร็จสั่งซื้ออะไหล่</a>
+                    <!-- <a href="bill_orders.php" class="btn btn-outline-primary"><i class="fa-regular fa-folder-open"></i> สั่งซื้ออะไหล่</a> -->
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addordersModal">
                         <i class="fa-solid fa-folder-plus"></i> เพิ่มรายการสั่งซื้อ</a>

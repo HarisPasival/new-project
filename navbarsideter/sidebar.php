@@ -83,9 +83,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link px-3">
+                    <a href="report_spare.php" class="nav-link px-3">
                         <span class="me-2"><i class="fa-solid fa-flag"></i></span>
-                        <span>รายงานการรับเข้าอะไหล่</span>
+                        <span>รายงานอะไหล่คงเหลือ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="report_repair.php" class="nav-link px-3">
+                        <span class="me-2"><i class="fa-solid fa-flag"></i></span>
+                        <span>รายงานรายการซ่อมฝาสูบ</span>
                     </a>
                 </li>
             </ul>

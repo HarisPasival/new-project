@@ -90,7 +90,7 @@ if (isset($_POST['update_repair'])) {
             $(document).ready(function(){
                 Swal.fire({
                     title: 'success',
-                    text: 'แก้ไขข้อมูลสำเร็จ',
+                    text: 'ปรับสถานะเรียบร้อย',
                     icon: 'success',
                     timer : 1000,
                     showConfirmButton: false
@@ -104,7 +104,7 @@ if (isset($_POST['update_repair'])) {
             $(document).ready(function(){
                 Swal.fire({
                     title: 'warning',
-                    text: 'แก้ไขข้อมูลไม่สำเร็จ',
+                    text: 'ไม่สำเร็จ',
                     icon: 'warning',
                     timer : 1500,
                     showConfirmButton: false

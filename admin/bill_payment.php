@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,8 +9,7 @@ session_start();
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/form.css">
-    <title>ใบเสร็จ</title>
+    <title>ใบเสร็จชำระเงิน</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -24,15 +20,14 @@ session_start();
 </head>
 
 <body>
-    <!-- content -->
-    <main class="mt-5 pt-3">
+    <main class="mt-5">
         <div class="container-fluid">
-            <div class="row mt-2">
-                <div class="col-md-12">
-                    <h3 class="text-center">ใบเสร็จการซ่อม</h3>
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <h2 class="text-center">ใบเสร็จชำระเงิน</h2>
                 </div>
             </div>
-            <div class="row mt-2">
+            <div class="row">
                 <div class="col-md-12 mb-3">
                     <?php
                     require '../config/connect.php';
@@ -48,17 +43,15 @@ session_start();
                     <h3>ร้านก้าวหน้าฝาสูบ</h3>
                     <h5>ที่อยู่ : หมู่ 9 ตำบลสะเตงนอก อ.เมือง จ.ยะลา</h5>
                     <h6>เบอร์โทร : 0805426306</h6>
-                    เลขที่ใบเสร็จการซ่อม : <?= $result['repair_id'] ?> <br>
+                    เลขที่ใบชำระเงิน : <?= $result['repair_id'] ?> <br>
                     วันที่แจ้งซ่อม : <?= $result['repair_date'] ?> <br>
-                    ชื่อ - นามสกุล : <?= $result['repair_name'] ?> <?= $result['repair_surname'] ?><br>
-                    ที่อยู่ : <?= $result['repair_address'] ?><br>
+                    ชื่อ - นามสกุล : <?= $result['repair_name'] ?> <?= $result['repair_surname'] ?>
                     หมายเหตุ : <?= $result['details'] ?>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mb-3 mt-2">
+
                     <div class="table-responsive">
                         <table id="example" class="table table-hover dt-responsive nowrap data-table" style="width: 100%">
                             <thead>
@@ -105,7 +98,7 @@ session_start();
                                     <td>บาท</td>
                                 </tr>
                                 <tr class="table-info">
-                                    <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด (ราคาค่าอะไหล่ที่ใช้ + ราคาค่าซ่อม)</td>
+                                    <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด</td>
                                     <td><?= number_format($resultAll, 2); ?></td>
                                     <td>บาท</td>
                                 </tr>
@@ -114,14 +107,16 @@ session_start();
                     </div>
                 </div>
             </div>
+            <span>ลงชื่อ..................................................................................................................................ผู้รับเงิน</span>
+        </div>
     </main>
-    <!-- content -->
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="../js/jquery-3.5.1.js"></script>
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/dataTables.bootstrap5.min.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/sheet.js"></script>
 </body>
 
 </html>

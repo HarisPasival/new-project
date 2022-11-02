@@ -12,8 +12,7 @@ session_start();
     <script src="https://kit.fontawesome.com/79a0376aeb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/form.css">
-    <title>ใบเสร็จ</title>
+    <title>ใบเสนอราคา</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
@@ -24,15 +23,12 @@ session_start();
 </head>
 
 <body>
-    <!-- content -->
-    <main class="mt-5 pt-3">
+    <main class="mt-5">
         <div class="container-fluid">
-            <div class="row mt-2">
-                <div class="col-md-12">
-                    <h3 class="text-center">ใบเสร็จการซ่อม</h3>
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <h2 class="text-center">ใบเสนอราคา</h2>
                 </div>
-            </div>
-            <div class="row mt-2">
                 <div class="col-md-12 mb-3">
                     <?php
                     require '../config/connect.php';
@@ -45,14 +41,25 @@ session_start();
                         $result = $stmt->fetch(PDO::FETCH_ASSOC);
                     }
                     ?>
-                    <h3>ร้านก้าวหน้าฝาสูบ</h3>
-                    <h5>ที่อยู่ : หมู่ 9 ตำบลสะเตงนอก อ.เมือง จ.ยะลา</h5>
-                    <h6>เบอร์โทร : 0805426306</h6>
-                    เลขที่ใบเสร็จการซ่อม : <?= $result['repair_id'] ?> <br>
-                    วันที่แจ้งซ่อม : <?= $result['repair_date'] ?> <br>
+                    <h4 class="text-center">ร้านก้าวหน้าฝาสูบ</h4>
+                    <h5 class="text-center">ที่อยู่ : หมู่ 9 ตำบลสะเตงนอก อ.เมือง จ.ยะลา</h5>
+                    <h6 class="text-center">เบอร์โทร : 0805426306</h6>
+                    <h6> เลขที่ใบชำระเงิน : <?= $result['repair_id'] ?></h6>
+                    <h6 class="text-end"> วันที่ : <?= $result['repair_date'] ?> </h6>
+                    <h6>ยี่ห้อ/รุ่นฝาสูบ : <?= $result['repair_brand'] ?></h6>
+                    หมายเหตุ : <?= $result['details'] ?><br>
                     ชื่อ - นามสกุล : <?= $result['repair_name'] ?> <?= $result['repair_surname'] ?><br>
-                    ที่อยู่ : <?= $result['repair_address'] ?><br>
-                    หมายเหตุ : <?= $result['details'] ?>
+                    ที่อยู่ : <?= $result['repair_address'] ?> <br>
+                    เบอร์โทร : <?= $result['repair_phone'] ?> <br>
+                    <?php
+                    require '../config/connect.php';
+                    if (isset($_SESSION['Emp_login'])) {
+                        $emp_id = $_SESSION['Emp_login'];
+                        $stmt = $conn->query("SELECT employee_id,name_emp,surname_emp FROM employee WHERE employee_id = $emp_id");
+                        $stmt->execute();
+                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -105,7 +112,7 @@ session_start();
                                     <td>บาท</td>
                                 </tr>
                                 <tr class="table-info">
-                                    <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด (ราคาค่าอะไหล่ที่ใช้ + ราคาค่าซ่อม)</td>
+                                    <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด</td>
                                     <td><?= number_format($resultAll, 2); ?></td>
                                     <td>บาท</td>
                                 </tr>
@@ -114,14 +121,18 @@ session_start();
                     </div>
                 </div>
             </div>
+            <span>ลงชื่อ..................................................................................................................................ผู้เสนอราคา</span>//
+            <span>ลงชื่อ.................................................................................................................................ผู้อนุมัติ</span>//
+        </div>
+        </div>
     </main>
-    <!-- content -->
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="../js/jquery-3.5.1.js"></script>
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/dataTables.bootstrap5.min.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/sheet.js"></script>
 </body>
 
 </html>

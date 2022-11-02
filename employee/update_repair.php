@@ -167,7 +167,6 @@ session_start();
                                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addspareModal">ระบุอะไหล่ที่ใช้</button>
                                     <button type="submit" name="update_repair" class="btn btn-outline-warning"><i class="fa-solid fa-circle-check"></i> ปรับสถานะการซ่อม</button>
                                     <a href="repair.php" class="btn btn-outline-danger"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</a>
-                                    <a href="pdf.php" class="btn btn-outline-info">ออกใบเสนอราคา</a>
                                 </div>
                             </form>
                         </div>
