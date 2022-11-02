@@ -22,8 +22,6 @@
         <div class="row text-center content">
             <h1>Menagement System of Khawna Phasoob</h1>
             <h3>ระบบจัดการร้านก้าวหน้าฝาสูบ</h3>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil delectus praesentium aspernatur. Quidem temporibus ab aspernatur, libero fugiat itaque! Sint tenetur odio doloremque. Repudiandae, sequi. Odio quas nostrum unde. Vero.
-            <hr>
             <div>
                 <a href="Login-emp.php" class="btn btn-primary">พนักงาน</a>
                 <a href="Login-cus.php" class="btn btn-success">ลูกค้า</a>

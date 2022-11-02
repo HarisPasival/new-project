@@ -89,15 +89,17 @@ require '../config/connect.php';
                                                     <table id="example" class="table table-borderless dt-responsive nowrap">
                                                         <thead>
                                                             <tr>
-                                                                <th width="25%">วันที่แจ้งซ่อม</th>
+                                                                <th width="20%">วันที่แจ้งซ่อม</th>
                                                                 <th width="25%">ชื่อลูกค้า</th>
-                                                                <th width="20%">สถานะ</th>
-                                                                <th whidth="20"></th>
+                                                                <th width="20%">สถานะการซ่อม</th>
+                                                                <th width="15%">สถานะการชำระเงิน</th>
+                                                                <th whidth="15%"></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php foreach ($result as $row) {
                                                                 $repair_status = $row['repair_status'];
+                                                                $payment_status = $row['payment_status'];
                                                             ?>
                                                                 <tr>
                                                                     <td><?= $row['repair_date']; ?></td>
@@ -116,6 +118,15 @@ require '../config/connect.php';
                                                                             echo "<b style = 'background-color: DodgerBlue;border-radius: 5px;padding: 5px;color:black' >ส่งมอบเรียบร้อย</b>";
                                                                         } else if ($repair_status == 6) {
                                                                             echo "<b style = 'background-color: red;border-radius: 5px;padding: 5px;color:black' >ยกเลิก</b>";
+                                                                        }
+                                                                        ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php
+                                                                        if ($payment_status == 1) {
+                                                                            echo "<b style = 'background-color: yellow;border-radius: 5px;padding: 5px;color:black; font-size: 15px' >ค้างชำระเงิน</b>";
+                                                                        } else if ($payment_status == 2) {
+                                                                            echo "<b style = 'background-color: lime;border-radius: 5px;padding: 5px;color:black; font-size: 15px' >ชำระเงินเรียบร้อยแล้ว</b>";
                                                                         }
                                                                         ?>
                                                                     </td>

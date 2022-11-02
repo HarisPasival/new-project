@@ -11,10 +11,10 @@
                     <li>
                         <a href="Home_Customer.php" class="nav-link active px-3 mt-3 my-3">
                             <span class="me-2"><i class="fa-solid fa-table-columns"></i></span>
-                            <span>หน้าหลัก</span>
+                            <span>ติดตามสถานะการซ่อม</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="text-muted small fw-bold px-3 mb-3">
                             การซ่อม
                         </div>
@@ -35,7 +35,7 @@
                             <span class="me-2"><i class="fa-regular fa-credit-card"></i></span>
                             <span>รายการชำระเงิน</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>

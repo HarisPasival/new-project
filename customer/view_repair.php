@@ -105,7 +105,12 @@ session_start();
                                         <option value="6" <?php if ($result['repair_status'] == 6) { ?> selected="selected" <?php } ?>>ยกเลิก</option>
                                     </select>
                                 </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">สลิปชำระเงิน :</label>
+                                    <img src="../slip/<?= $result['slip_payment']; ?>" width="250px" height="445px">
+                                </div>
                             </form>
+
                             <!-- <div class="col-12 mt-2">
                                 <form action="up_slip.php" method="POST" enctype="multipart/form-data">
                                     <div>
