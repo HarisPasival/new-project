@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['Emp_login'])) {
+    header('location: ../Login-emp.php');
+}
 require '../config/connect.php';
 ?>
 <!DOCTYPE html>

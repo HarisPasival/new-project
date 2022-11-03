@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['login_cus'])) {
+    header('location: ../Login-cus.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,7 +110,15 @@ session_start();
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">สลิปชำระเงิน :</label>
-                                    <img src="../slip/<?= $result['slip_payment']; ?>" width="250px" height="445px">
+                                    <?php
+                                    if ($result['slip_payment'] == NULL) {
+                                        echo 'ยังไม่มีการชำระเงิน';
+                                    } else {
+                                    ?>
+                                        <img src="../slip/<?= $result['slip_payment']; ?>" width="250px" height="445px">
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </form>
 

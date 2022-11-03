@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Admin_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,9 +56,8 @@
                                 <div class="modal-body">
                                     <form action="ordersDB.php" method="POST">
                                         <div class="row">
-                                            <div class="col-md-6 mt-2">
-                                                <label class="form-label">ชื่ออะไหล่ :</label>
-                                                <select name="spare_id" class="form-select">
+                                            <div class="form-floating col-md-6 mt-2">
+                                                <select class="form-select" name="spare_id" id="floatingSelect" aria-label="Floating label select example">
                                                     <?php
                                                     require '../config/connect.php';
                                                     $stmt = $conn->query("SELECT * FROM spare");
@@ -62,10 +67,10 @@
                                                         <option value="<?= $row['spare_id']; ?>"><?= $row['spare_name']; ?></option>
                                                     <?php }  ?>
                                                 </select>
+                                                <label for="floatingSelect">ชื่ออะไหล่</label>
                                             </div>
-                                            <div class="col-md-6 mt-2">
-                                                <label class="form-label">ยี่ห้อ/รุ่นฝาสูบ :</label>
-                                                <select name="brand_id" class="form-select">
+                                            <div class="form-floating col-md-6 mt-2">
+                                                <select class="form-select" name="brand_id" id="floatingSelect" aria-label="Floating label select example">
                                                     <?php
                                                     require '../config/connect.php';
                                                     $stmt = $conn->query("SELECT * FROM brand");
@@ -75,18 +80,19 @@
                                                         <option value="<?= $row['brand_id']; ?>"><?= $row['brand_name']; ?></option>
                                                     <?php }  ?>
                                                 </select>
+                                                <label for="floatingSelect">ยี่ห้อ/รุ่นฝาสูบ</label>
                                             </div>
-                                            <div class="col-md-6 mt-2">
-                                                <label class="form-label">จำนวนที่สั่งซื้อ</label>
-                                                <input type="number" name="order_quanlity" min="1" class="form-control">
+                                            <div class="form-floating col-md-6 mt-2">
+                                                <input type="number" name="order_quanlity" min="1" class="form-control" id="floatingInput" placeholder="order_quanlity">
+                                                <label for="floatingInput">จำนวนที่สั่งซื้อ</label>
                                             </div>
-                                            <div class="col-md-6 mt-2">
-                                                <label class="form-label">วันที่สั่งซื้อ</label>
-                                                <input type="date" name="order_date" class="form-control">
+                                            <div class="form-floating col-md-6 mt-2">
+                                                <input type="date" name="order_date" class="form-control" id="floatingInput" placeholder="order_date">
+                                                <label for="floatingInput">วันที่สั่งซื้อ</label>
                                             </div>
                                             <div class="mb-3 mt-3 text-center">
                                                 <button class="btn btn-outline-success" name="add_orders"><i class="fa-solid fa-location-arrow"></i> เพิ่มรายการสั่งซื้อ</button>
-                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ย้อนกลับ</button>
+                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> ยกเลิก</button>
                                             </div>
                                         </div>
                                     </form>

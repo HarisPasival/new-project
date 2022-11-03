@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Admin_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,6 +53,7 @@
                                     <thead>
                                         <tr>
                                             <th>ลำดับ</th>
+                                            <th>คำนำหน้า</th>
                                             <th>ชื่อ</th>
                                             <th>นามสกุล</th>
                                             <th>เบอร์โทรศัพท์</th>
@@ -62,9 +69,21 @@
                                         $sql = "SELECT * FROM customer";
                                         $stmt = $conn->query($sql);
                                         while ($row = $stmt->fetch()) {
+                                            $titie_ct = $row['title_ct'];
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($titie_ct == 1) {
+                                                        echo "นาย";
+                                                    } else if ($titie_ct == 2) {
+                                                        echo "นาง";
+                                                    } else if ($titie_ct == 3) {
+                                                        echo "นางสาว";
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td><?= $row['name_ct']; ?></td>
                                                 <td><?= $row['surname_ct']; ?></td>
                                                 <td><?= $row['phone_ct']; ?></td>

@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Admin_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,47 +52,60 @@
                         </div>
                         <div class="card-body">
                             <form action="crud.php" method="POST" class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label">ชื่อ :</label>
-                                    <input type="text" name="name_emp" class="form-control" />
+                                <div class="form-floating  col-md-2 mb-3">
+                                    <select class="form-select" name="title_emp" id="floatingSelect" aria-label="Floating label select example">
+                                        <option selected>เลือก</option>
+                                        <option value="1">นาย</option>
+                                        <option value="2">นาง</option>
+                                        <option value="3">นางสาว</option>
+                                    </select>
+                                    <label for="floatingSelect">คำนำหน้า</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">นามสกุล :</label>
-                                    <input type="text" name="surname_emp" class="form-control" />
+                                <div class="form-floating col-md-5 mb-3">
+                                    <input type="text" name="name_emp" class="form-control" id="floatingInput" placeholder="name_emp">
+                                    <label for="floatingInput">ชื่อ</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">ชื่อผู้ใช้ :</label>
-                                    <input type="text" name="username_emp" class="form-control" />
+                                <div class="form-floating col-md-5 mb-3">
+                                    <input type="text" name="surname_emp" class="form-control" id="floatingInput" placeholder="surname_emp">
+                                    <label for="floatingInput">นามสกุล</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">รหัสผ่าน :</label>
-                                    <input type="password" name="password_emp" id="myPassword" class="form-control" />
-                                    <input type="checkbox" onclick="passShow()">
-                                    <label>แสดงรหัสผ่าน</label>
+                                <div class="form-floating col-md-5 mb-3">
+                                    <input type="text" name="username_emp" class="form-control" id="floatingInput" placeholder="username_emp">
+                                    <label for="floatingInput">ชื่อผู้ใช้</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">ตำแหน่ง :</label>
-                                    <select name="u_role" class="form-control">
+                                <div class="form-floating col-md-5 mb-3">
+                                    <input type="password" name="password_emp" id="myPassword" class="form-control" id="floatingInput" placeholder="password_emp">
+                                    <label for="floatingInput">รหัสผ่าน</label>
+                                </div>
+                                <div class="form-floating  col-md-2 mb-3">
+                                    <select class="form-select" name="u_role" id="floatingSelect" aria-label="Floating label select example">
                                         <option selected>เลือกสิทธิ์</option>
                                         <option value="1">เจ้าของร้าน</option>
-                                        <option value="2">พนักงาน</option>
+                                        <option value="3">พนักงาน</option>
                                     </select>
+                                    <label for="floatingSelect">สิทธิ์การใช้งาน</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">เบอร์โทรศัพท์:</label>
-                                    <input type="text" name="phone_emp" class="form-control" />
+                                <div class="form-floating col-md-4 mb-3">
+                                    <input type="text" name="phone_emp" maxlength="10" class="form-control" id="floatingInput" placeholder="phone_emp">
+                                    <label for="floatingInput">เบอร์โทรศัพท์</label>
                                 </div>
-                                <div class="col-md-8">
-                                    <label class="form-label">อีเมล:</label>
-                                    <input type="email" name="email_emp" class="form-control" />
+                                <div class="form-floating col-md-8 mb-3">
+                                    <input type="email" name="email_emp" class="form-control" id="floatingInput" placeholder="email_emp">
+                                    <label for="floatingInput">อีเมล</label>
                                 </div>
-                                <div class="col-12">
-                                    <label class="form-label">ที่อยู่:</label>
-                                    <input type="text" name="address_emp" class="form-control" />
+                                <div class="form-floating col-12 mb-3">
+                                    <input type="text" name="address_emp" class="form-control" id="floatingInput" placeholder="address_emp">
+                                    <label for="floatingInput">ที่อยู่</label>
+                                </div>
+                                <div class="form-floating col-12 mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" onclick="passShow()">
+                                        <label>แสดงรหัสผ่าน</label>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="add_emp" class="btn btn-outline-success btn-sm"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
-                                    <a href="employee.php" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
+                                    <button type="submit" name="add_emp" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> เพิ่มข้อมูล</button>
+                                    <a href="employee.php" class="btn btn-outline-danger"><i class="fa-solid fa-caret-left"></i> ยกเลิก</a>
                                 </div>
                             </form>
                         </div>

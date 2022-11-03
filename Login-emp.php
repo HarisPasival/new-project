@@ -34,9 +34,11 @@
                         <label for="password_emp">รหัสผ่าน</label>
                         <input type="password" name="password_emp" id="myPassword" class="form-control">
                     </div>
-                    <div class="form-group mb-3">
-                        <input type="checkbox" onclick="passShow()">
-                        <label>แสดงรหัสผ่าน</label>
+                    <div class="form-floating col-12 mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" onclick="passShow()">
+                            <label>แสดงรหัสผ่าน</label>
+                        </div>
                     </div>
                     <button class="btn btn-info" name="login_emp">เข้าสู่ระบบ</button>
                 </form>

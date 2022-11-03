@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Admin_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,7 +75,7 @@
                                                 <td><?= $row['spare_name']; ?></td>
                                                 <td><?= $row['brand_name']; ?></td>
                                                 <td><?= $row['spare_quanlity'] ?></td>
-                                                <td><?= $row['spare_price'] ?></td>
+                                                <td><?= number_format($row['spare_price'],2) ?></td>
                                                 <td>
                                                     <form action="crud.php" method="POST">
                                                         <a href="update_spare.php?spare_id=<?= $row['spare_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-square-pen"></i></a>

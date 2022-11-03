@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Admin_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,11 +64,20 @@
                             ?>
                             <form action="crud.php" method="POST" class="row g-3">
                                 <input type="hidden" name="customer_id" value="<?= $result['customer_id'] ?>">
-                                <div class="form-floating col-md-6 mb-3">
+                                <div class="form-floating  col-md-2 mb-3">
+                                    <select class="form-select" name="title_ct" id="floatingSelect" aria-label="Floating label select example">
+                                        <option selected>เลือก</option>
+                                        <option value="1" <?php if ($result['title_ct'] == '1') { ?> selected="selected" <?php } ?>>นาย</option>
+                                        <option value="2" <?php if ($result['title_ct'] == '2') { ?> selected="selected" <?php } ?>>นาง</option>
+                                        <option value="3" <?php if ($result['title_ct'] == '3') { ?> selected="selected" <?php } ?>>นางสาว</option>
+                                    </select>
+                                    <label for="floatingSelect">คำนำหน้า</label>
+                                </div>
+                                <div class="form-floating col-md-5 mb-3">
                                     <input type="text" name="name_ct" class="form-control" value="<?= $result['name_ct'] ?>" id="floatingInput" placeholder="name_ct">
                                     <label for="floatingInput">ชื่อ</label>
                                 </div>
-                                <div class="form-floating col-md-6 mb-3">
+                                <div class="form-floating col-md-5 mb-3">
                                     <input type="text" name="surname_ct" class="form-control" value="<?= $result['surname_ct'] ?>" id="floatingInput" placeholder="surname_ct">
                                     <label for="floatingInput">นามสกุล</label>
                                 </div>

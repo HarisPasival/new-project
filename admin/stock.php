@@ -1,5 +1,9 @@
 <?php
 include '../config/connect.php';
+session_start();
+if (!isset($_SESSION['Admin_login'])) {
+    header('location: ../Login-emp.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +41,7 @@ include '../config/connect.php';
                     <h4>รับเข้าอะไหล่</h4>
                     <div class="card">
                         <div class="card-body">
-                        <?php
+                            <?php
                             require '../config/connect.php';
                             if (isset($_GET['spare_id'])) {
                                 $spare_id = $_GET['spare_id'];
@@ -50,13 +54,13 @@ include '../config/connect.php';
                             ?>
                             <form action="up_stock.php" method="POST" class="row g-3">
                                 <input type="hidden" name="spare_id" value="<?= $result['spare_id']; ?>">
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">ชื่ออะไหล่:</label>
-                                    <input type="text" name="spare_name" value="<?= $result['spare_name']; ?>" class="form-control" readonly />
+
+                                <div class="form-floating col-md-4 mb-3">
+                                    <input type="text" name="spare_name" value="<?= $result['spare_name']; ?>" class="form-control" id="floatingInput" placeholder="spare_name" readonly>
+                                    <label for="floatingInput">ชื่ออะไหล่</label>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">ยี่ห้อฝาสูบ :</label>
-                                    <select name="brand_id" class="form-select" disabled>
+                                <div class="form-floating col-md-4 mb-3">
+                                    <select class="form-select" name="brand_id" id="floatingSelect" aria-label="Floating label select example" disabled>
                                         <?php
                                         $stmt = $conn->query("SELECT * FROM brand");
                                         $stmt->execute();
@@ -66,10 +70,11 @@ include '../config/connect.php';
                                                 <?= $row['brand_name']; ?></option>
                                         <?php }  ?>
                                     </select>
+                                    <label for="floatingSelect">ยี่ห้อ/รุ่นฝาสูบ</label>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">จำนวนที่เพิ่ม:</label>
-                                    <input type="number" name="stock_up" min="1" class="form-control text-center" />
+                                <div class="form-floating col-md-4 mb-3">
+                                    <input type="number" name="stock_up" min="1" class="form-control" id="floatingInput" placeholder="stock_up">
+                                    <label for="floatingInput">จำนวนที่เพิ่ม</label>
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit" name="submit" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i> บันทึกการรับเข้า</button>

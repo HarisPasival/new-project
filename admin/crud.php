@@ -7,6 +7,7 @@ require '../config/connect.php';
 // print_r($_POST);
 // echo "<pre>";
 if (isset($_POST['add_emp'])) {
+    $title_emp = $_POST['title_emp'];
     $name_emp = $_POST['name_emp'];
     $surname_emp = $_POST['surname_emp'];
     $username_emp = $_POST['username_emp'];
@@ -15,9 +16,10 @@ if (isset($_POST['add_emp'])) {
     $phone_emp = $_POST['phone_emp'];
     $address_emp = $_POST['address_emp'];
     $u_role = $_POST['u_role'];
-    $query = "INSERT INTO employee(name_emp,surname_emp,username_emp,password_emp,email_emp,phone_emp,address_emp,u_role) VALUES (:name_emp,:surname_emp,:username_emp,:password_emp,:email_emp,:phone_emp,:address_emp,:u_role)";
+    $query = "INSERT INTO employee(title_emp,name_emp,surname_emp,username_emp,password_emp,email_emp,phone_emp,address_emp,u_role) VALUES (:title_emp,:name_emp,:surname_emp,:username_emp,:password_emp,:email_emp,:phone_emp,:address_emp,:u_role)";
     $query_run = $conn->prepare($query);
     $data = [
+        ':title_emp' => $title_emp,
         ':name_emp' => $name_emp,
         ':surname_emp' => $surname_emp,
         ':username_emp' => $username_emp,
@@ -60,6 +62,7 @@ if (isset($_POST['add_emp'])) {
 }
 if (isset($_POST['update_emp'])) {
     $employee_id = $_POST['employee_id'];
+    $title_emp = $_POST['title_emp'];
     $name_emp = $_POST['name_emp'];
     $surname_emp = $_POST['surname_emp'];
     $username_emp = $_POST['username_emp'];
@@ -68,10 +71,11 @@ if (isset($_POST['update_emp'])) {
     $email_emp = $_POST['email_emp'];
     $address_emp = $_POST['address_emp'];
     try {
-        $query = "UPDATE employee SET name_emp = :name_emp,surname_emp = :surname_emp,username_emp = :username_emp,u_role = :u_role,phone_emp = :phone_emp,email_emp = :email_emp,address_emp = :address_emp WHERE employee_id = :employee_id";
+        $query = "UPDATE employee SET title_emp = :title_emp,name_emp = :name_emp,surname_emp = :surname_emp,username_emp = :username_emp,u_role = :u_role,phone_emp = :phone_emp,email_emp = :email_emp,address_emp = :address_emp WHERE employee_id = :employee_id";
         $stmt = $conn->prepare($query);
 
         $data = [
+            ':title_emp' => $title_emp,
             ':name_emp' => $name_emp,
             ':surname_emp' => $surname_emp,
             ':username_emp' => $username_emp,
@@ -162,6 +166,7 @@ if (isset($_POST['delete_emp'])) {
 
 // ---เพิ่ม ลบ แก้ไข ลูกค้า---//
 if (isset($_POST['add_cus'])) {
+    $title_ct = $_POST['title_ct'];
     $name_ct = $_POST['name_ct'];
     $surname_ct = $_POST['surname_ct'];
     $username_ct = $_POST['username_ct'];
@@ -169,9 +174,10 @@ if (isset($_POST['add_cus'])) {
     $phone_ct = $_POST['phone_ct'];
     $email_ct = $_POST['email_ct'];
     $address_ct = $_POST['address_ct'];
-    $query = "INSERT INTO customer(name_ct,surname_ct,username_ct,password_ct,phone_ct,email_ct,address_ct) VALUES (:name_ct,:surname_ct,:username_ct,:password_ct,:phone_ct,:email_ct,:address_ct)";
+    $query = "INSERT INTO customer(title_ct,name_ct,surname_ct,username_ct,password_ct,phone_ct,email_ct,address_ct) VALUES (:title_ct,:name_ct,:surname_ct,:username_ct,:password_ct,:phone_ct,:email_ct,:address_ct)";
     $query_run = $conn->prepare($query);
     $data = [
+        ':title_ct' => $title_ct,
         ':name_ct' => $name_ct,
         ':surname_ct' => $surname_ct,
         ':username_ct' => $username_ct,
@@ -213,6 +219,7 @@ if (isset($_POST['add_cus'])) {
 }
 if (isset($_POST['update_cus'])) {
     $customer_id = $_POST['customer_id'];
+    $title_ct = $_POST['title_ct'];
     $name_ct = $_POST['name_ct'];
     $surname_ct = $_POST['surname_ct'];
     $username_ct = $_POST['username_ct'];
@@ -220,10 +227,11 @@ if (isset($_POST['update_cus'])) {
     $email_ct = $_POST['email_ct'];
     $address_ct = $_POST['address_ct'];
     try {
-        $query = "UPDATE customer SET name_ct = :name_ct, surname_ct = :surname_ct, username_ct = :username_ct, phone_ct = :phone_ct, email_ct = :email_ct, address_ct = :address_ct WHERE customer_id = :customer_id";
+        $query = "UPDATE customer SET title_ct = :title_ct, name_ct = :name_ct, surname_ct = :surname_ct, username_ct = :username_ct, phone_ct = :phone_ct, email_ct = :email_ct, address_ct = :address_ct WHERE customer_id = :customer_id";
         $stmt = $conn->prepare($query);
 
         $data = [
+            ':title_ct' => $title_ct,
             ':name_ct' => $name_ct,
             ':surname_ct' => $surname_ct,
             ':username_ct' => $username_ct,

@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Emp_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <script src="../js/jquery-3.5.1.js"></script>
 <script src="../js/sweetalert2.all.min.js"></script>
 <!DOCTYPE html>

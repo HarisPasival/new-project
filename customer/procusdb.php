@@ -4,6 +4,7 @@
 require '../config/connect.php';
 if (isset($_POST['updatepro_cus'])) {
     $customer_id = $_POST['customer_id'];
+    $title_ct = $_POST['title_ct'];
     $name_ct = $_POST['name_ct'];
     $surname_ct = $_POST['surname_ct'];
     $username_ct = $_POST['username_ct'];
@@ -12,10 +13,11 @@ if (isset($_POST['updatepro_cus'])) {
     $email_ct = $_POST['email_ct'];
     $address_ct = $_POST['address_ct'];
     try {
-        $query = "UPDATE customer SET name_ct = :name_ct, surname_ct = :surname_ct, username_ct = :username_ct, password_ct = :password_ct, phone_ct = :phone_ct, email_ct = :email_ct, address_ct = :address_ct WHERE customer_id = :customer_id";
+        $query = "UPDATE customer SET title_ct = :title_ct, name_ct = :name_ct, surname_ct = :surname_ct, username_ct = :username_ct, password_ct = :password_ct, phone_ct = :phone_ct, email_ct = :email_ct, address_ct = :address_ct WHERE customer_id = :customer_id";
         $stmt = $conn->prepare($query);
 
         $data = [
+            ':title_ct' => $title_ct,
             ':name_ct' => $name_ct,
             ':surname_ct' => $surname_ct,
             ':username_ct' => $username_ct,

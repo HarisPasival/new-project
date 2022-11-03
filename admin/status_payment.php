@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Admin_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,29 +55,29 @@
                             ?>
                             <form action="repairdb.php" method="POST" class="row g-3">
                                 <input type="hidden" name="repair_id" value="<?= $result['repair_id'] ?>">
-                                <div class="col-md-4">
-                                    <label class="form-label">วันที่แจ้งซ่อม :</label>
-                                    <input type="date" name="repair_date" value="<?= $result['repair_date'] ?>" class="form-control" readonly />
+                                <div class="form-floating col-md-4 mb-3">
+                                    <input type="date" name="repair_date" class="form-control" value="<?= $result['repair_date'] ?>" id="floatingInput" placeholder="repair_date" readonly>
+                                    <label for="floatingInput">วันที่แจ้งซ่อม</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">ชื่อลูกค้า :</label>
-                                    <input type="text" name="repair_name" value="<?= $result['repair_name'] ?>" class="form-control" readonly />
+                                <div class="form-floating col-md-4 mb-3">
+                                    <input type="text" name="repair_name" class="form-control" value="<?= $result['repair_name'] ?>" id="floatingInput" placeholder="repair_name" readonly>
+                                    <label for="floatingInput">ชื่อลูกค้า</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">นามสกุล :</label>
-                                    <input type="text" name="repair_surname" value="<?= $result['repair_surname'] ?>" class="form-control" readonly />
+                                <div class="form-floating col-md-4 mb-3">
+                                    <input type="text" name="repair_surname" class="form-control" value="<?= $result['repair_surname'] ?>" id="floatingInput" placeholder="repair_surname" readonly>
+                                    <label for="floatingInput">นามสกุล</label>
                                 </div>
-                                <div class="col-12">
-                                    <label class="form-label">สาเหตุที่เสีย :</label>
-                                    <input type="text" name="details" value="<?= $result['details'] ?>" class="form-control" readonly />
+                                <div class="form-floating col-12 mb-3">
+                                    <input type="text" name="details" class="form-control" value="<?= $result['details'] ?>" id="floatingInput" placeholder="details" readonly>
+                                    <label for="floatingInput">สาเหตุที่เสีย</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">ราคาค่าซ่อม:</label>
-                                    <input type="number" min="1" name="repair_price" value="<?= $result['repair_price'] ?>" class="form-control" readonly />
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="number" name="repair_price" class="form-control" value="<?= $result['repair_price'] ?>" id="floatingInput" placeholder="repair_price" readonly>
+                                    <label for="floatingInput">ราคาค่าซ่อม</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">สถานะการซ่อม :</label>
-                                    <select name="repair_status" class="form-select" disabled>
+                                <div class="form-floating  col-md-6 mb-3">
+                                    <select class="form-select" name="repair_status" id="floatingSelect" aria-label="Floating label select example" disabled>
+                                        <option selected>เลือก</option>
                                         <option value="1" <?php if ($result['repair_status'] == 1) { ?> selected="selected" <?php } ?>>รอยืนยันการซ่อม</option>
                                         <option value="2" <?php if ($result['repair_status'] == 2) { ?> selected="selected" <?php } ?>>ยืนยันแล้ว</option>
                                         <option value="3" <?php if ($result['repair_status'] == 3) { ?> selected="selected" <?php } ?>>กำลังซ่อม</option>
@@ -79,10 +85,20 @@
                                         <option value="5" <?php if ($result['repair_status'] == 5) { ?> selected="selected" <?php } ?>>ส่งมอบเรียบร้อย</option>
                                         <option value="6" <?php if ($result['repair_status'] == 6) { ?> selected="selected" <?php } ?>>ยกเลิก</option>
                                     </select>
+                                    <label for="floatingSelect">สถานะการซ่อม</label>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">สลิปชำระเงิน :</label>
-                                    <img src="../slip/<?= $result['slip_payment']; ?>" width="250px" height="445px">
+                                    <?php
+                                    if ($result['slip_payment'] == NULL) {
+                                        echo 'ยังไม่มีการชำระเงิน';
+                                    } else {
+                                    ?>
+                                        <label class="form-label">สลิปชำระเงิน :</label>
+                                        <img src="../slip/<?= $result['slip_payment']; ?>" width="250px" height="445px">
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </form>
                         </div>

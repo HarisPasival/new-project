@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['Emp_login'])) {
+    header('location: ../Login-emp.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,37 +62,37 @@ session_start();
                                 }
                                 ?>
                                 <input type="hidden" name="employee_id" value="<?= $row['employee_id'] ?>">
-                                <div class="col-md-4">
-                                    <label class="form-label">วันที่แจ้งซ่อม :</label>
-                                    <input type="date" name="repair_date" class="form-control" />
+                                <div class="form-floating col-md-4 mb-3">
+                                    <input type="date" name="repair_date" class="form-control" id="floatingInput" placeholder="repair_date">
+                                    <label for="floatingInput">วันที่แจ้งซ่อม</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">ชื่อลูกค้า :</label>
-                                    <input type="text" name="repair_name" class="form-control" />
+                                <div class="form-floating col-md-4 mb-3">
+                                    <input type="text" name="repair_name" class="form-control" id="floatingInput" placeholder="repair_name">
+                                    <label for="floatingInput">ชื่อลูกค้า</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">นามสกุล :</label>
-                                    <input type="text" name="repair_surname" class="form-control" />
+                                <div class="form-floating col-md-4 mb-3">
+                                    <input type="text" name="repair_surname" class="form-control" id="floatingInput" placeholder="repair_surname">
+                                    <label for="floatingInput">นามสกุล</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">ยี่ห้อ :</label>
-                                    <input type="text" name="repair_brand" class="form-control" />
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="text" name="repair_brand" class="form-control" id="floatingInput" placeholder="repair_brand">
+                                    <label for="floatingInput">ยี่ห้อ/รุ่นฝาสูบ</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">เบอร์โทรศัพท์ :</label>
-                                    <input type="text" name="repair_phone" class="form-control" />
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="text" name="repair_phone" maxlength="10" class="form-control" id="floatingInput" placeholder="repair_phone">
+                                    <label for="floatingInput">เบอร์โทรศัพท์</label>
                                 </div>
-                                <div class="col-12">
-                                    <label class="form-label">ที่อยู่ :</label>
-                                    <input type="text" name="repair_address" class="form-control" />
+                                <div class="form-floating col-12 mb-3">
+                                    <input type="text" name="repair_address" class="form-control" id="floatingInput" placeholder="repair_address">
+                                    <label for="floatingInput">ที่อยู่</label>
                                 </div>
-                                <div class="col-md-8">
-                                    <label class="form-label">สาเหตุที่เสีย :</label>
-                                    <input type="text" name="details" class="form-control" />
+                                <div class="form-floating col-md-8 mb-3">
+                                    <input type="text" name="details" class="form-control" id="floatingInput" placeholder="details">
+                                    <label for="floatingInput">สาเหตุที่เสีย</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">ราคาค่าซ่อม :</label>
-                                    <input type="number" name="repair_price" class="form-control" />
+                                <div class="form-floating col-md-4 mb-3">
+                                    <input type="number" name="repair_price" class="form-control" id="floatingInput" placeholder="repair_price">
+                                    <label for="floatingInput">ราคาค่าซ่อม</label>
                                 </div>
                                 <input type="hidden" name="repair_status" value="1">
                                 <input type="hidden" name="payment_status" value="1">

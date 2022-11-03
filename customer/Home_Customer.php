@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['login_cus'])) {
+    header('location: ../Login-cus.php');
+}
 require '../config/connect.php';
 ?>
 <!DOCTYPE html>

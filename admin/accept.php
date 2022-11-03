@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Admin_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +37,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-2">
-                    <h4>ข้อมูลอะไหล่</h4>
+                    <h4>รับเข้าอะไหล่</h4>
                 </div>
             </div>
             <div class="row">

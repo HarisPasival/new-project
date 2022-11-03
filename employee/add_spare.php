@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Emp_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Admin_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +51,7 @@
                     <h6>เบอร์โทร : 0805426306</h6>
                     เลขที่ใบชำระเงิน : <?= $result['repair_id'] ?> <br>
                     วันที่แจ้งซ่อม : <?= $result['repair_date'] ?> <br>
-                    ชื่อ - นามสกุล : <?= $result['repair_name'] ?> <?= $result['repair_surname'] ?>
+                    ชื่อ - นามสกุล : <?= $result['repair_name'] ?> <?= $result['repair_surname'] ?><br>
                     หมายเหตุ : <?= $result['details'] ?>
                 </div>
             </div>

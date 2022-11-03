@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Admin_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +87,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit" name="update_spare" class="btn btn-outline-warning"><i class="fa-solid fa-circle-plus"></i> แก้ไขข้อมูล</button>
-                                    <a href="spares.php" class="btn btn-outline-danger"><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</a>
+                                    <a href="spares.php" class="btn btn-outline-danger"><i class="fa-solid fa-caret-left"></i> ยกเลิก</a>
                                 </div>
                             </form>
                         </div>

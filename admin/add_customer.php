@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['Admin_login'])) {
+    header('location: ../Login-emp.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,11 +52,20 @@
                         </div>
                         <div class="card-body">
                             <form action="crud.php" method="POST" class="row g-3">
-                                <div class="form-floating col-md-6 mb-3">
+                                <div class="form-floating  col-md-2 mb-3">
+                                    <select class="form-select" name="title_ct" id="floatingSelect" aria-label="Floating label select example">
+                                        <option selected>เลือก</option>
+                                        <option value="1">นาย</option>
+                                        <option value="2">นาง</option>
+                                        <option value="3">นางสาว</option>
+                                    </select>
+                                    <label for="floatingSelect">คำนำหน้า</label>
+                                </div>
+                                <div class="form-floating col-md-5 mb-3">
                                     <input type="text" name="name_ct" class="form-control" id="floatingInput" placeholder="name_ct">
                                     <label for="floatingInput">ชื่อ</label>
                                 </div>
-                                <div class="form-floating col-md-6 mb-3">
+                                <div class="form-floating col-md-5 mb-3">
                                     <input type="text" name="surname_ct" class="form-control" id="floatingInput" placeholder="surname_ct">
                                     <label for="floatingInput">นามสกุล</label>
                                 </div>

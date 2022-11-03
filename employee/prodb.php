@@ -4,24 +4,24 @@
 require '../config/connect.php';
 if (isset($_POST['updatepro_emp'])) {
     $employee_id = $_POST['employee_id'];
+    $title_emp = $_POST['title_emp'];
     $name_emp = $_POST['name_emp'];
     $surname_emp = $_POST['surname_emp'];
     $username_emp = $_POST['username_emp'];
     $password_emp = $_POST['password_emp'];
-    $u_role = $_POST['u_role'];
     $phone_emp = $_POST['phone_emp'];
     $email_emp = $_POST['email_emp'];
     $address_emp = $_POST['address_emp'];
     try {
-        $query = "UPDATE employee SET name_emp = :name_emp,surname_emp = :surname_emp,username_emp = :username_emp,password_emp = :password_emp,u_role = :u_role,phone_emp = :phone_emp,email_emp = :email_emp,address_emp = :address_emp WHERE employee_id = :employee_id";
+        $query = "UPDATE employee SET title_emp = :title_emp, name_emp = :name_emp,surname_emp = :surname_emp,username_emp = :username_emp,password_emp = :password_emp,phone_emp = :phone_emp,email_emp = :email_emp,address_emp = :address_emp WHERE employee_id = :employee_id";
         $stmt = $conn->prepare($query);
 
         $data = [
+            ':title_emp' => $title_emp,
             ':name_emp' => $name_emp,
             ':surname_emp' => $surname_emp,
             ':username_emp' => $username_emp,
             ':password_emp' => $password_emp,
-            ':u_role' => $u_role,
             ':phone_emp' => $phone_emp,
             ':email_emp' => $email_emp,
             ':address_emp' => $address_emp,

@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['login_cus'])) {
+    header('location: ../Login-cus.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,38 +64,51 @@ session_start();
                             ?>
                             <form action="procusdb.php" method="POST" class="row g-3">
                                 <input type="hidden" name="customer_id" value="<?= $row['customer_id'] ?>">
-                                <div class="col-md-6">
-                                    <label class="form-label">ชื่อ :</label>
-                                    <input type="text" name="name_ct" value="<?= $row['name_ct'] ?>" class="form-control" />
+                                <div class="form-floating  col-md-2 mb-3">
+                                    <select class="form-select" name="title_ct" id="floatingSelect" aria-label="Floating label select example">
+                                        <option selected>เลือก</option>
+                                        <option value="1" <?php if ($row['title_ct'] == '1') { ?> selected="selected" <?php } ?>>นาย</option>
+                                        <option value="2" <?php if ($row['title_ct'] == '2') { ?> selected="selected" <?php } ?>>นาง</option>
+                                        <option value="3" <?php if ($row['title_ct'] == '3') { ?> selected="selected" <?php } ?>>นางสาว</option>
+                                    </select>
+                                    <label for="floatingSelect">คำนำหน้า</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">นามสกุล :</label>
-                                    <input type="text" name="surname_ct" value="<?= $row['surname_ct'] ?>" class="form-control" />
+                                <div class="form-floating col-md-5 mb-3">
+                                    <input type="text" name="name_ct" value="<?= $row['name_ct'] ?>" class="form-control" id="floatingInput" placeholder="name_ct">
+                                    <label for="floatingInput">ชื่อ</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">ชื่อผู้ใช้ :</label>
-                                    <input type="text" name="username_ct" value="<?= $row['username_ct'] ?>" class="form-control" readonly />
+                                <div class="form-floating col-md-5 mb-3">
+                                    <input type="text" name="surname_ct" value="<?= $row['surname_ct'] ?>" class="form-control" id="floatingInput" placeholder="surname_ct">
+                                    <label for="floatingInput">นามสกุล</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">รหัสผ่าน :</label>
-                                    <input type="password" name="password_ct" id="myPassword" value="<?= $row['password_ct'] ?>" class="form-control" />
-                                    <input type="checkbox" onclick="passShow()">
-                                    <label>แสดงรหัสผ่าน</label>
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="text" name="username_ct" value="<?= $row['username_ct'] ?>" class="form-control" id="floatingInput" placeholder="username_ct" readonly>
+                                    <label for="floatingInput">ชื่อผู้ใช้</label>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">เบอร์โทรศัพท์:</label>
-                                    <input type="text" name="phone_ct" value="<?= $row['phone_ct'] ?>" class="form-control" />
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="password" name="password_ct" value="<?= $row['password_ct'] ?>" id="myPassword" class="form-control" id="floatingInput" placeholder="password_ct">
+                                    <label for="floatingInput">รหัสผ่าน</label>
                                 </div>
-                                <div class="col-md-8">
-                                    <label class="form-label">อีเมล:</label>
-                                    <input type="email" name="email_ct" value="<?= $row['email_ct'] ?>" class="form-control" />
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="text" name="phone_ct" value="<?= $row['phone_ct'] ?>" maxlength="10" class="form-control" id="floatingInput" placeholder="phone_ct">
+                                    <label for="floatingInput">เบอร์โทรศัพท์</label>
                                 </div>
-                                <div class="col-12">
-                                    <label class="form-label">ที่อยู่:</label>
-                                    <input type="text" name="address_ct" value="<?= $row['address_ct'] ?>" class="form-control" />
+                                <div class="form-floating col-md-6 mb-3">
+                                    <input type="email" name="email_ct" value="<?= $row['email_ct'] ?>" class="form-control" id="floatingInput" placeholder="email_ct">
+                                    <label for="floatingInput">อีเมล</label>
+                                </div>
+                                <div class="form-floating col-12 mb-3">
+                                    <input type="text" name="address_ct" value="<?= $row['address_ct'] ?>" class="form-control" id="floatingInput" placeholder="address_ct">
+                                    <label for="floatingInput">ที่อยู่</label>
+                                </div>
+                                <div class="form-floating col-12 mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" onclick="passShow()">
+                                        <label>แสดงรหัสผ่าน</label>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" name="updatepro_cus" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i>แก้ไขข้อมูล</button>
+                                    <button type="submit" name="updatepro_cus" class="btn btn-warning text-white"><i class="fa-solid fa-pen-to-square"></i>แก้ไขข้อมูล</button>
                                 </div>
                             </form>
                         </div>
