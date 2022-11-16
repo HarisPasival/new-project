@@ -26,13 +26,25 @@ if (!isset($_SESSION['Emp_login'])) {
 </head>
 
 <body>
+    <?php
+    function ThaiDate($strDate)
+    {
+        $strYear = date("Y", strtotime($strDate)) + 543;
+        $strMonth = date("n", strtotime($strDate));
+        $strDay = date("j", strtotime($strDate));
+        $strMonthCut = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+        $strMonthThai = $strMonthCut[$strMonth];
+
+        return "$strDay $strMonthThai $strYear";
+    }
+    ?>
     <main class="mt-5">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 mt-2">
+                <div class="col-md-9 mt-2">
                     <h2 class="text-center">ใบเสนอราคา</h2>
                 </div>
-                <div class="col-md-12 mb-3">
+                <div class="col-md-9 mb-3">
                     <?php
                     require '../config/connect.php';
                     if (isset($_GET['repair_id'])) {
@@ -47,8 +59,8 @@ if (!isset($_SESSION['Emp_login'])) {
                     <h4 class="text-center">ร้านก้าวหน้าฝาสูบ</h4>
                     <h5 class="text-center">ที่อยู่ : หมู่ 9 ตำบลสะเตงนอก อ.เมือง จ.ยะลา</h5>
                     <h6 class="text-center">เบอร์โทร : 0805426306</h6>
-                    <h6> เลขที่ใบชำระเงิน : <?= $result['repair_id'] ?></h6>
-                    <h6 class="text-end"> วันที่ : <?= $result['repair_date'] ?> </h6>
+                    <h6> เลขที่ใบเสนอราคา : <?= $result['repair_id'] ?></h6>
+                    <h6> วันที่ : <?= ThaiDate($result['repair_date']) ?> </h6>
                     <h6>ยี่ห้อ/รุ่นฝาสูบ : <?= $result['repair_brand'] ?></h6>
                     หมายเหตุ : <?= $result['details'] ?><br>
                     ชื่อ - นามสกุล : <?= $result['repair_name'] ?> <?= $result['repair_surname'] ?><br>
@@ -68,12 +80,12 @@ if (!isset($_SESSION['Emp_login'])) {
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 mb-3 mt-2">
+                <div class="col-md-9 mb-3 mt-2">
                     <div class="table-responsive">
-                        <table id="example" class="table table-hover dt-responsive nowrap data-table" style="width: 100%">
+                        <table id="example" class="table table-bordered border-dark dt-responsive nowrap data-table" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th>ลำดับ</th>
+                                    <!-- <th>ลำดับ</th> -->
                                     <th>ชื่ออะไหล่</th>
                                     <th>ยี่ห้อ/รุ่นฝาสูบ</th>
                                     <th>ราคา</th>
@@ -100,22 +112,27 @@ if (!isset($_SESSION['Emp_login'])) {
                                     $resultAll = $total + ($row['repair_price']); //(ราคาค่าอะไหล่ที่ใช้ + ราคาค่าซ่อม)
                                 ?>
                                     <tr>
-                                        <td><?= $i++ ?></td>
+                                        <!-- <td><?= $i++ ?></td> -->
                                         <td><?= $row['spare_name']; ?></td>
                                         <td><?= $row['brand_name']; ?></td>
                                         <td><?= number_format($row['spare_price'], 2); ?></td>
-                                        <td><?= $row['details_quanlity']; ?></td>
+                                        <td class="text-center"><?= $row['details_quanlity']; ?></td>
                                         <td><?= number_format($sum_price, 2) ?></td>
                                         <td>บาท</td>
+                                    <tr>
+                                        <td colspan="4" class="text-center">ราคาค่าซ่อม</td>
+                                        <td><?= number_format($row['repair_price'], 2); ?></td>
+                                        <td>บาท</td>
+                                    </tr>
                                     </tr>
                                 <?php } ?>
                                 <tr>
-                                    <td colspan="5" class="text-center">ราคาค่าอะไหล่ที่ใช้</td>
+                                    <td colspan="4" class="text-center">ราคาค่าอะไหล่ที่ใช้</td>
                                     <td><?= number_format($total, 2); ?></td>
                                     <td>บาท</td>
                                 </tr>
-                                <tr class="table-info">
-                                    <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด</td>
+                                <tr>
+                                    <td colspan="4" class="text-center">รวมราคาทั้งหมดสุทธิ</td>
                                     <td><?= number_format($resultAll, 2); ?></td>
                                     <td>บาท</td>
                                 </tr>
@@ -124,8 +141,8 @@ if (!isset($_SESSION['Emp_login'])) {
                     </div>
                 </div>
             </div>
-            <span>ลงชื่อ..................................................................................................................................ผู้เสนอราคา</span>//
-            <span>ลงชื่อ.................................................................................................................................ผู้อนุมัติ</span>//
+            <span>ลงชื่อ........................................................................ผู้เสนอราคา</span>//
+            <span>ลงชื่อ........................................................................ผู้อนุมัติ</span>//
         </div>
         </div>
     </main>

@@ -53,7 +53,7 @@ if (!isset($_SESSION['Admin_login'])) {
                                     <thead>
                                         <tr>
                                             <th>ลำดับ</th>
-                                            <th>คำนำหน้า</th>
+                                            <!-- <th>คำนำหน้า</th> -->
                                             <th>ชื่อ</th>
                                             <th>นามสกุล</th>
                                             <th>เบอร์โทรศัพท์</th>
@@ -73,7 +73,7 @@ if (!isset($_SESSION['Admin_login'])) {
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
-                                                <td>
+                                                <!-- <td>
                                                     <?php
                                                     if ($titie_emp == 1) {
                                                         echo "นาย";
@@ -83,7 +83,7 @@ if (!isset($_SESSION['Admin_login'])) {
                                                         echo "นางสาว";
                                                     }
                                                     ?>
-                                                </td>
+                                                </td> -->
                                                 <td><?= $row['name_emp']; ?></td>
                                                 <td><?= $row['surname_emp']; ?></td>
                                                 <td><?= $row['phone_emp']; ?></td>
@@ -92,7 +92,7 @@ if (!isset($_SESSION['Admin_login'])) {
                                                     if ($u_role == 1) {
                                                         echo "<b style = 'background-color: green;border-radius: 5px;padding: 4px;color:white' >เจ้าของร้าน</b>";
                                                     } else if ($u_role == 2) {
-                                                        echo "<b style = 'background-color: red;border-radius: 5px;padding: 4px;color:white' >พนักงาน</b>";
+                                                        echo "<b style = 'background-color: blue;border-radius: 5px;padding: 4px;color:white' >พนักงาน</b>";
                                                     }
                                                     ?>
                                                 </td>

@@ -35,6 +35,18 @@ if (!isset($_SESSION['Admin_login'])) {
     <!-- sidebar -->
     <?php include '../navbarsideter/sidebar.php' ?>
     <!-- sidebar -->
+    <?php
+    function ThaiDate($strDate)
+    {
+        $strYear = date("Y", strtotime($strDate)) + 543;
+        $strMonth = date("n", strtotime($strDate));
+        $strDay = date("j", strtotime($strDate));
+        $strMonthCut = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+        $strMonthThai = $strMonthCut[$strMonth];
+
+        return "$strDay $strMonthThai $strYear";
+    }
+    ?>
     <!-- content -->
     <main class="mt-5 pt-3">
         <div class="container-fluid">
@@ -72,7 +84,7 @@ if (!isset($_SESSION['Admin_login'])) {
                         if ($stmt->rowCount() > 0) {
                     ?>
                             <br>
-                            <h4>รายงานการสั่งซื้อวันที่ : <?= date('d/m/Y', strtotime($_GET['start_date'])); ?> ถึง <?= date('d/m/Y', strtotime($_GET['final_date'])); ?></h4>
+                            <h4>รายงานการสั่งซื้อวันที่ : <?= ThaiDate($_GET['start_date']); ?> ถึง <?= ThaiDate($_GET['final_date']); ?></h4>
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -103,7 +115,7 @@ if (!isset($_SESSION['Admin_login'])) {
                                                         <td><?= number_format($row['spare_price'], 2); ?></td>
                                                         <td><?= $row['order_quanlity']; ?></td>
                                                         <td align="right"><?= number_format($sum_price, 2); ?></td>
-                                                        <td class="text-center"><?= date('d/m/Y', strtotime($row['order_date'])); ?></td>
+                                                        <td class="text-center"><?= ThaiDate($row['order_date']); ?></td>
                                                     </tr>
                                                 <?php } ?>
                                                 <tr class="table-info">

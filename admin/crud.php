@@ -471,7 +471,7 @@ if (isset($_POST['add_brand'])) {
         ':brand_name' => $brand_name,
     ];
     $query_execute = $query_run->execute($data);
-
+    
     if ($query_execute) {
         echo "<script>
         $(document).ready(function(){

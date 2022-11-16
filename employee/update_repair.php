@@ -245,6 +245,11 @@ if (!isset($_SESSION['Emp_login'])) {
                                                         <button type="submit" name="delspare" value="<?= $row['repair_details_id'] ?>" onclick="return confirm('คุณต้องการลบหรือไม่');" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                                                     </form>
                                                 </td>
+                                            <tr>
+                                                <td colspan="5" class="text-center">ราคาค่าซ่อม</td>
+                                                <td><?= number_format($row['repair_price'], 2); ?></td>
+                                                <td>บาท</td>
+                                            </tr>
                                             </tr>
                                         <?php } ?>
                                         <tr>
@@ -253,7 +258,7 @@ if (!isset($_SESSION['Emp_login'])) {
                                             <td>บาท</td>
                                         </tr>
                                         <tr class="table-info">
-                                            <td colspan="5" class="text-center">รวมราคาค่าซ่อมทั้งหมด</td>
+                                            <td colspan="5" class="text-center">รวมราคาทั้งหมดสุทธิ</td>
                                             <td><?= number_format($resultAll, 2); ?></td>
                                             <td>บาท</td>
                                         </tr>

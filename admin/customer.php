@@ -53,7 +53,7 @@ if (!isset($_SESSION['Admin_login'])) {
                                     <thead>
                                         <tr>
                                             <th>ลำดับ</th>
-                                            <th>คำนำหน้า</th>
+                                            <!-- <th>คำนำหน้า</th> -->
                                             <th>ชื่อ</th>
                                             <th>นามสกุล</th>
                                             <th>เบอร์โทรศัพท์</th>
@@ -73,7 +73,7 @@ if (!isset($_SESSION['Admin_login'])) {
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
-                                                <td>
+                                                <!-- <td>
                                                     <?php
                                                     if ($titie_ct == 1) {
                                                         echo "นาย";
@@ -83,7 +83,7 @@ if (!isset($_SESSION['Admin_login'])) {
                                                         echo "นางสาว";
                                                     }
                                                     ?>
-                                                </td>
+                                                </td> -->
                                                 <td><?= $row['name_ct']; ?></td>
                                                 <td><?= $row['surname_ct']; ?></td>
                                                 <td><?= $row['phone_ct']; ?></td>

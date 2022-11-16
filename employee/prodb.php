@@ -33,7 +33,7 @@ if (isset($_POST['updatepro_emp'])) {
             $(document).ready(function(){
                 Swal.fire({
                     title: 'success',
-                    text: 'แก้ไขข้อมูลสำเร็จ',
+                    text: 'แก้ไขข้อมูลส่วนตัวสำเร็จ',
                     icon: 'success',
                     timer : 1000,
                     showConfirmButton: false
@@ -47,7 +47,7 @@ if (isset($_POST['updatepro_emp'])) {
             $(document).ready(function(){
                 Swal.fire({
                     title: 'warning',
-                    text: 'แก้ไขข้อมูลไม่สำเร็จ',
+                    text: 'แก้ไขข้อมูลส่วนตัวไม่สำเร็จ',
                     icon: 'warning',
                     timer : 1500,
                     showConfirmButton: false

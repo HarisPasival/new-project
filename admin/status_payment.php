@@ -150,6 +150,11 @@ if (!isset($_SESSION['Admin_login'])) {
                                                 <td><?= $row['details_quanlity']; ?></td>
                                                 <td><?= number_format($sum_price, 2) ?></td>
                                                 <td>บาท</td>
+                                            <tr>
+                                                <td colspan="5" class="text-center">ราคาค่าซ่อม</td>
+                                                <td><?= number_format($row['repair_price'], 2); ?></td>
+                                                <td>บาท</td>
+                                            </tr>
                                             </tr>
                                         <?php } ?>
                                         <tr>

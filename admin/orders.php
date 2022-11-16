@@ -33,6 +33,18 @@ if (!isset($_SESSION['Admin_login'])) {
     <!-- sidebar -->
     <?php include '../navbarsideter/sidebar.php' ?>
     <!-- sidebar -->
+    <?php
+    function ThaiDate($strDate)
+    {
+        $strYear = date("Y", strtotime($strDate)) + 543;
+        $strMonth = date("n", strtotime($strDate));
+        $strDay = date("j", strtotime($strDate));
+        $strMonthCut = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+        $strMonthThai = $strMonthCut[$strMonth];
+
+        return "$strDay $strMonthThai $strYear";
+    }
+    ?>
     <!-- content -->
     <main class="mt-5 pt-3">
         <div class="container-fluid">
@@ -144,7 +156,7 @@ if (!isset($_SESSION['Admin_login'])) {
                                                 <td><?= number_format($row['spare_price'], 2) ?></td>
                                                 <td><?= $row['order_quanlity'] ?></td>
                                                 <td><?= number_format($sum_price, 2) ?></td>
-                                                <td><?= $row['order_date'] ?></td>
+                                                <td><?= ThaiDate($row['order_date']) ?></td>
                                                 <td>
                                                     <form action="ordersDB.php" method="POST">
                                                         <button type="submit" name="delorders" value="<?= $row['order_id'] ?>" class="btn btn-danger btn-sm"><i class="fa-solid fa-delete-left"></i></button>

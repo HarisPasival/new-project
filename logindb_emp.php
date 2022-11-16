@@ -14,7 +14,7 @@ if (empty('username_emp') || empty('password_emp')) {
             title: 'warning',
             text: 'กรุณากรอกข้อมูลให้ครบถ้วน',
             icon: 'warning',
-            timer : 1500,
+            timer : 5000,
             showConfirmButton: false
         });
     });
@@ -38,7 +38,7 @@ if (empty('username_emp') || empty('password_emp')) {
                                 title: 'success',
                                 text: 'เข้าสู่ระบบสำเร็จ',
                                 icon: 'success',
-                                timer : 1500,
+                                timer : 5000,
                                 showConfirmButton: false
                             });
                         });
@@ -53,7 +53,7 @@ if (empty('username_emp') || empty('password_emp')) {
                                 title: 'success',
                                 text: 'เข้าสู่ระบบสำเร็จ',
                                 icon: 'success',
-                                timer : 1500,
+                                timer : 5000,
                                 showConfirmButton: false
                             });
                         });
@@ -68,7 +68,7 @@ if (empty('username_emp') || empty('password_emp')) {
                             title: 'warning',
                             text: 'รหัสผ่านไม่ถูกต้อง',
                             icon: 'warning',
-                            timer : 1500,
+                            timer : 5000,
                             showConfirmButton: false
                         });
                     });
@@ -83,7 +83,7 @@ if (empty('username_emp') || empty('password_emp')) {
                         title: 'warning',
                         text: 'ชื่อผู้ใช้ไม่ถูกต้อง',
                         icon: 'warning',
-                        timer : 1500,
+                        timer : 5000,
                         showConfirmButton: false
                     });
                 });
@@ -98,7 +98,7 @@ if (empty('username_emp') || empty('password_emp')) {
                     title: 'warning',
                     text: 'ไม่มีชื่อผู้ใช้นี้ในระบบ',
                     icon: 'warning',
-                    timer : 1500,
+                    timer : 5000,
                     showConfirmButton: false
                 });
             });

@@ -33,6 +33,18 @@ if (!isset($_SESSION['Emp_login'])) {
     <!-- sidebar -->
     <?php include '../navemp/sidebar.php' ?>
     <!-- sidebar -->
+    <?php
+    function ThaiDate($strDate)
+    {
+        $strYear = date("Y", strtotime($strDate)) + 543;
+        $strMonth = date("n", strtotime($strDate));
+        $strDay = date("j", strtotime($strDate));
+        $strMonthCut = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+        $strMonthThai = $strMonthCut[$strMonth];
+
+        return "$strDay $strMonthThai $strYear";
+    }
+    ?>
     <!-- content -->
     <main class="mt-5 pt-3">
         <div class="container-fluid">
@@ -77,7 +89,7 @@ if (!isset($_SESSION['Emp_login'])) {
                                         ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
-                                                <td><?= $row['repair_date']; ?></td>
+                                                <td><?= ThaiDate($row['repair_date']); ?></td>
                                                 <td><?= $row['repair_name'] . ' ' . $row['repair_surname']; ?></td>
                                                 <td><?= $row['details']; ?></td>
                                                 <td><?= $row['name_emp'] . ' ' . $row['surname_emp']; ?></td>
